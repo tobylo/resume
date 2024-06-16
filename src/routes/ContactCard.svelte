@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="full-w flex flex-col flex-wrap justify-between rounded-md bg-gray-200 p-4 text-xs md:gap-y-1 lg:flex-row lg:text-sm"
+	class="full-w flex flex-col flex-wrap justify-between rounded-md bg-gray-200 p-4 text-xs md:gap-y-1 lg:flex-row md:text-sm"
 >
 	<ContactDetail>
 		<GlobeLogo class="h-full" />
