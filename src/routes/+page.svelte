@@ -110,6 +110,8 @@
 				</div>
 			</div>
 		</div>
+
+		<span class="text-center font-serif text-lg italic">Work in progress, more to come..</span>
 	</div>
 </div>
 
