@@ -7,7 +7,7 @@
 	import Certifier from '$lib/Certifier.svelte';
 </script>
 
-<div class="flex h-full w-full flex-grow justify-center bg-slate-700">
+<div class="flex min-h-dvh w-full flex-grow justify-center bg-slate-700">
 	<div
 		class="grid max-w-screen-lg auto-rows-min grid-cols-1 gap-x-8 gap-y-4 justify-self-center bg-slate-300 p-12 shadow-2xl sm:grid-cols-[minmax(auto,400px)_1fr]"
 	>
