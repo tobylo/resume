@@ -1,5 +1,4 @@
 <script lang="ts">
-	import CNCFLogo from 'virtual:icons/simple-icons/cncf';
 	import LinuxFoundationLogo from 'virtual:icons/simple-icons/linuxfoundation';
 	import MicrosoftLogo from 'virtual:icons/ion/logo-microsoft';
 
