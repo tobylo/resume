@@ -1,3 +1,221 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	@keyframes spin-backwards {
+		from {
+			transform: rotate(360deg);
+		}
+		to {
+			transform: rotate(0deg);
+		}
+	}
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+	*,
+	::after,
+	::before,
+	::backdrop,
+	::file-selector-button {
+		border-color: var(--color-gray-200, currentcolor);
+	}
+}
+
+/* Print styles */
+@media print {
+	body {
+		background: white !important;
+		font-size: 12pt;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	/* Remove padding from containers */
+	.print-container {
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+
+	/* Reduce padding and gaps for print */
+	.p-6,
+	.p-8,
+	.sm\:p-8,
+	.sm\:p-12 {
+		padding: 0.5rem !important;
+	}
+
+	.gap-6,
+	.gap-4 {
+		gap: 0.5rem !important;
+	}
+
+	.pb-4 {
+		padding-bottom: 0.25rem !important;
+	}
+
+	/* 1. Single column layout */
+	.lg\:grid-cols-\[1fr_2fr\] {
+		grid-template-columns: 1fr !important;
+	}
+
+	/* 2. Remove card borders, use divider lines */
+	.bg-slate-600,
+	.bg-slate-700 {
+		background: none !important;
+		border: none !important;
+		border-bottom: 1px solid #ddd !important;
+		border-radius: 0 !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
+	button.block {
+		background: none !important;
+		border: none !important;
+		border-bottom: 1px solid #eee !important;
+		border-radius: 0 !important;
+		padding: 0.4rem 0 !important;
+	}
+
+	/* 3. Compact header - hide profile image */
+	.print-hide {
+		display: none !important;
+	}
+
+	/* 4. Technology tags as plain text */
+	.expanded-content .flex.flex-wrap.gap-1 {
+		display: block !important;
+	}
+
+	.expanded-content .flex.flex-wrap.gap-1 span {
+		background: none !important;
+		padding: 0 !important;
+		font-size: 0.7rem !important;
+		color: #666 !important;
+		display: inline !important;
+	}
+
+	.expanded-content .flex.flex-wrap.gap-1 span::after {
+		content: ', ';
+	}
+
+	.expanded-content .flex.flex-wrap.gap-1 span:last-child::after {
+		content: '';
+	}
+
+	/* Remove background colors for printing */
+	.bg-slate-700,
+	.bg-slate-600,
+	.bg-slate-500,
+	.bg-slate-400,
+	.bg-slate-300,
+	.bg-gray-200 {
+		background: white !important;
+		color: black !important;
+	}
+
+	/* Make cards have borders instead of backgrounds */
+	.bg-slate-600,
+	.bg-slate-700 {
+		border: 1px solid #ccc !important;
+	}
+
+	/* Hide interactive elements */
+	.animate-\[spin-backwards_50s_linear_infinite\] {
+		animation: none !important;
+	}
+
+	/* Ensure text is readable */
+	.text-white {
+		color: black !important;
+	}
+
+	.text-slate-300 {
+		color: #666 !important;
+	}
+
+	/* Hide elements marked for print */
+	.print-hidden,
+	[aria-label='Toggle dark mode'] {
+		display: none !important;
+	}
+
+	/* Remove shadow from cards */
+	.shadow-2xl,
+	.shadow-md {
+		box-shadow: none !important;
+	}
+
+	/* Remove all borders/shadows from main containers */
+	.print-container {
+		border: none !important;
+		outline: none !important;
+		box-shadow: none !important;
+		border-width: 0 !important;
+	}
+
+	/* Page break control */
+	.overflow-hidden {
+		overflow: visible !important;
+	}
+
+	/* Ensure project cards display as blocks, not buttons */
+	button.block {
+		display: block !important;
+		cursor: default !important;
+	}
+
+	/* Ensure links are visible */
+	a {
+		color: black !important;
+		text-decoration: underline !important;
+	}
+
+	a::after {
+		content: ' (' attr(href) ')';
+		font-size: 0.8em;
+		color: #666;
+	}
+
+	a[href^='mailto:']::after,
+	a[href^='#']::after {
+		content: '';
+	}
+
+	/* Prevent page breaks inside cards */
+	.rounded-sm {
+		break-inside: avoid;
+	}
+
+	/* Show expanded content, hide collapsed content */
+	.expanded-content {
+		display: block !important;
+	}
+
+	.collapsed-content {
+		display: none !important;
+	}
+
+	/* Hide timeline elements for print */
+	.timeline-line,
+	.timeline-dot {
+		display: none !important;
+	}
+
+	/* Remove timeline gap on project rows */
+	.timeline-row {
+		gap: 0 !important;
+	}
+}

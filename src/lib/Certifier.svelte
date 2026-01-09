@@ -25,7 +25,11 @@
 	});
 </script>
 
-<div class="trigger" use:melt={$trigger} aria-label="Certifier">
+<div
+	class="inline-flex items-center justify-center rounded-full p-0 text-sm font-medium text-white transition-colors hover:text-gray-400 focus-visible:text-white focus-visible:ring-3 focus-visible:ring-offset-2"
+	use:melt={$trigger}
+	aria-label="Certifier"
+>
 	{@render children()}
 </div>
 
@@ -33,18 +37,9 @@
 	<div
 		use:melt={$content}
 		transition:fade={{ duration: 100 }}
-		class="z-10 rounded-lg bg-white shadow"
+		class="z-10 rounded-lg bg-white shadow-sm"
 	>
 		<div use:melt={$arrow}></div>
 		<p class="px-4 py-1">{tooltip}</p>
 	</div>
 {/if}
-
-<style lang="postcss">
-	.trigger {
-		@apply inline-flex items-center justify-center rounded-full;
-		@apply text-white transition-colors hover:text-gray-400;
-		@apply focus-visible:ring focus-visible:text-white focus-visible:ring-offset-2;
-		@apply p-0 text-sm font-medium;
-	}
-</style>

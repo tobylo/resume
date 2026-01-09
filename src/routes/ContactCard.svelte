@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="full-w flex flex-col flex-wrap justify-between rounded-md bg-gray-200 p-4 text-xs md:gap-y-1 lg:flex-row md:text-sm"
+	class="grid grid-cols-1 gap-x-4 gap-y-2 rounded-md bg-gray-200 p-4 text-xs min-[500px]:grid-cols-2 md:text-sm xl:grid-cols-4 dark:bg-slate-700 dark:text-white"
 >
 	<ContactDetail>
 		<GlobeLogo class="h-full" />
@@ -16,7 +16,7 @@
 
 	<ContactDetail href="mailto:tobias.lolax+resume@gmail.com">
 		<EmailSymbol class="h-full" />
-		<span>tobias.lolax@gmail.com</span>
+		<span class="truncate">tobias.lolax@gmail.com</span>
 	</ContactDetail>
 
 	<ContactDetail href="https://www.linkedin.com/in/tobiaslolax/">
