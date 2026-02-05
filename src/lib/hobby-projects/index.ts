@@ -5,17 +5,18 @@ import type { HobbyProject } from './types';
 export const hobbyProjects: HobbyProject[] = [
 	{
 		id: 'sdd-sub5',
-		title: 'Spec driven development',
+		title: 'SUB5 Racing & Event',
 		image: '/hobby-projects/sdd-sub5.webp',
 		description:
-			'A new trial to see how far one can push agentic coding in 2025. Rebuilding an old WordPress/WooCommerce site from scratch into a jamstack using headless CMS and eCommerce platforms.',
+			'A 2025 trial to see how far one can push agentic coding. Rebuilding an old, complete WordPress/WooCommerce site from scratch into a jamstack using headless CMS and eCommerce platforms.',
 		technologies: [
 			'SvelteKit',
 			'TypeScript',
 			'TailwindCSS',
 			'Sentry',
 			'CommerceLayer',
-			'Cloudflare'
+			'Cloudflare',
+			'Resend'
 		]
 	},
 	{
