@@ -75,9 +75,9 @@
 
 **Purpose**: Quality gates and final validation
 
-- [ ] T011 Run quality gates: `bun run check` (TypeScript + Svelte), `bun run lint` (Prettier + ESLint), `bun run build` (zero warnings)
-- [ ] T012 Run quickstart.md verification checklist from `specs/001-hobby-projects/quickstart.md`
-- [ ] T013 Update `specs/001-hobby-projects/tasks.md` with completion status for all tasks
+- [x] T011 Run quality gates: `bun run check` (TypeScript + Svelte), `bun run lint` (Prettier + ESLint), `bun run build` (zero warnings)
+- [x] T012 Run quickstart.md verification checklist from `specs/001-hobby-projects/quickstart.md`
+- [x] T013 Update `specs/001-hobby-projects/tasks.md` with completion status for all tasks
 
 ---
 

@@ -60,15 +60,15 @@ bun run dev      # Visual inspection at http://localhost:5173
 
 ## Verification Checklist
 
-- [ ] Hobby projects section appears below the work experience grid
-- [ ] Each card shows image (or placeholder), title, and description
-- [ ] Description text is clamped at 3 lines
-- [ ] Cards with a URL are clickable and open in a new tab
-- [ ] Cards without a URL are not clickable
-- [ ] Technology tags appear on hover (desktop) or tap (mobile)
-- [ ] Section is hidden in print preview
-- [ ] Dark mode renders correctly
-- [ ] Mobile layout stacks cards in a single column
-- [ ] `bun run check` passes
-- [ ] `bun run lint` passes
-- [ ] `bun run build` succeeds with zero warnings
+- [x] Hobby projects section appears below the work experience grid
+- [x] Each card shows image (or placeholder), title, and description
+- [x] Description text is clamped at 3 lines
+- [x] Cards with a URL are clickable and open in a new tab
+- [x] Cards without a URL are not clickable
+- [x] Technology tags appear on hover (desktop) or tap (mobile)
+- [x] Section is hidden in print preview
+- [x] Dark mode renders correctly
+- [x] Mobile layout stacks cards in a single column
+- [x] `bun run check` passes
+- [x] `bun run lint` passes
+- [x] `bun run build` succeeds with zero warnings
