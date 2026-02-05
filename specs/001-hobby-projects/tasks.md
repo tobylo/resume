@@ -33,9 +33,9 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [P] [US1] Create HobbyProjectCard component in `src/lib/HobbyProjectCard.svelte` — card with thumbnail image (lazy-loaded, object-fit cover, fallback placeholder), title, description (clamped to 3 lines), conditional `<a>` wrapper for URL (target="_blank", rel="noopener noreferrer") vs static `<article>`, technology tags hidden by default and revealed on hover/tap via group-hover and $state toggle. Use Svelte 5 $props(). Support dark mode via existing Tailwind dark: variant. Add visible focus-visible outline on the `<a>` wrapper for keyboard navigation accessibility.
-- [ ] T005 [P] [US1] Create HobbyProjects section container in `src/lib/HobbyProjects.svelte` — section with "Hobby Projects" heading (visually secondary: smaller than work projects heading), responsive grid layout (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3), imports hobbyProjects from data module, iterates with {#each}. Include print-hide class on section wrapper.
-- [ ] T006 [US1] Add HobbyProjects section to `src/routes/+page.svelte` — import HobbyProjects component and place it below the main content grid (after the closing `</div>` of the lg:grid-cols-[1fr_2fr] grid), inside the max-w-6xl container.
+- [x] T004 [P] [US1] Create HobbyProjectCard component in `src/lib/HobbyProjectCard.svelte` — card with thumbnail image (lazy-loaded, object-fit cover, fallback placeholder), title, description (clamped to 3 lines), conditional `<a>` wrapper for URL (target="\_blank", rel="noopener noreferrer") vs static `<article>`, technology tags hidden by default and revealed on hover/tap via group-hover and $state toggle. Use Svelte 5 $props(). Support dark mode via existing Tailwind dark: variant. Add visible focus-visible outline on the `<a>` wrapper for keyboard navigation accessibility.
+- [x] T005 [P] [US1] Create HobbyProjects section container in `src/lib/HobbyProjects.svelte` — section with "Hobby Projects" heading (visually secondary: smaller than work projects heading), responsive grid layout (grid-cols-1 sm:grid-cols-2 lg:grid-cols-3), imports hobbyProjects from data module, iterates with {#each}. Include print-hide class on section wrapper.
+- [x] T006 [US1] Add HobbyProjects section to `src/routes/+page.svelte` — import HobbyProjects component and place it below the main content grid (after the closing `</div>` of the lg:grid-cols-[1fr_2fr] grid), inside the max-w-6xl container.
 
 **Checkpoint**: Hobby projects section visible on desktop with all card features working. MVP complete.
 
