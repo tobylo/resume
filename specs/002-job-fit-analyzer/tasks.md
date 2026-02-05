@@ -53,21 +53,21 @@
 
 ### Implementation for User Story 1
 
-- [ ] T011 [P] [US1] Create src/lib/JobFitButton.svelte - fixed-position floating button component
-- [ ] T012 [P] [US1] Create src/lib/JobFitDialog.svelte - modal dialog with Melt-UI (input state), character counter, max 10000 char limit with warning
-- [ ] T013 [US1] Add JobFitButton to src/routes/+page.svelte (import and render)
-- [ ] T014 [US1] Add Turnstile widget script and component to JobFitDialog.svelte
-- [ ] T015 [US1] Create src/routes/api/analyze/+server.ts with POST handler skeleton
-- [ ] T016 [US1] Implement Turnstile verification in +server.ts (call siteverify API)
-- [ ] T017 [US1] Implement rate limiting in +server.ts using Cloudflare KV
-- [ ] T018 [US1] Implement input validation in +server.ts: (a) reject <50 chars, (b) reject >10000 chars with "description too long" error, (c) job description heuristic - require ≥2 keywords from: role, responsibilities, requirements, experience, skills, qualifications, position, candidate, team, company
-- [ ] T019 [US1] Implement Claude API call in +server.ts with system prompt from prompt.ts
-- [ ] T020 [US1] Parse and validate LLM response structure in +server.ts - ensure FitAnalysis schema, verify ≥3 total resumeReferences across strengths (SC-003), retry once if insufficient
-- [ ] T021 [US1] Add loading state UI to JobFitDialog.svelte (spinner during API call)
-- [ ] T022 [US1] Add result display UI to JobFitDialog.svelte (overall fit, strengths, gaps sections)
-- [ ] T023 [US1] Wire up form submission in JobFitDialog.svelte → fetch /api/analyze
-- [ ] T024 [US1] Manual test: Full flow with real job description - verify (a) analysis quality, (b) interaction time <30s excluding LLM wait (SC-001), (c) analysis references ≥3 resume items (SC-003)
-- [ ] T025 [US1] Run quality gates: `bun run check && bun run lint && bun run build`
+- [x] T011 [P] [US1] Create src/lib/JobFitButton.svelte - fixed-position floating button component
+- [x] T012 [P] [US1] Create src/lib/JobFitDialog.svelte - modal dialog with Melt-UI (input state), character counter, max 10000 char limit with warning
+- [x] T013 [US1] Add JobFitButton to src/routes/+page.svelte (import and render)
+- [x] T014 [US1] Add Turnstile widget script and component to JobFitDialog.svelte
+- [x] T015 [US1] Create src/routes/api/analyze/+server.ts with POST handler skeleton
+- [x] T016 [US1] Implement Turnstile verification in +server.ts (call siteverify API)
+- [x] T017 [US1] Implement rate limiting in +server.ts using Cloudflare KV
+- [x] T018 [US1] Implement input validation in +server.ts: (a) reject <50 chars, (b) reject >10000 chars with "description too long" error, (c) job description heuristic - require ≥2 keywords from: role, responsibilities, requirements, experience, skills, qualifications, position, candidate, team, company
+- [x] T019 [US1] Implement Claude API call in +server.ts with system prompt from prompt.ts
+- [x] T020 [US1] Parse and validate LLM response structure in +server.ts - ensure FitAnalysis schema, verify ≥3 total resumeReferences across strengths (SC-003), retry once if insufficient
+- [x] T021 [US1] Add loading state UI to JobFitDialog.svelte (spinner during API call)
+- [x] T022 [US1] Add result display UI to JobFitDialog.svelte (overall fit, strengths, gaps sections)
+- [x] T023 [US1] Wire up form submission in JobFitDialog.svelte → fetch /api/analyze
+- [x] T024 [US1] Manual test: Full flow with real job description - verify (a) analysis quality, (b) interaction time <30s excluding LLM wait (SC-001), (c) analysis references ≥3 resume items (SC-003)
+- [x] T025 [US1] Run quality gates: `bun run check && bun run lint && bun run build`
 
 **Checkpoint**: User Story 1 complete - recruiters can submit job descriptions and receive analyses
 

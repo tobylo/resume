@@ -9,6 +9,39 @@
 	import Projects from '$lib/Projects.svelte';
 	import HobbyProjects from '$lib/HobbyProjects.svelte';
 	import ThemeToggle from '$lib/ThemeToggle.svelte';
+	import JobFitButton from '$lib/JobFitButton.svelte';
+	import JobFitDialog from '$lib/JobFitDialog.svelte';
+	import type { FitAnalysis, AnalyzeErrorResponse } from '$lib/job-fit/types';
+
+	let dialogOpen = $state(false);
+	let dialog: JobFitDialog;
+
+	async function handleAnalyze(data: { jobDescription: string; turnstileToken: string }) {
+		try {
+			const response = await fetch('/api/analyze', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					jobDescription: data.jobDescription,
+					turnstileToken: data.turnstileToken
+				})
+			});
+
+			const result = await response.json();
+
+			if (result.success) {
+				dialog.setResult(result.analysis as FitAnalysis);
+			} else {
+				const err = result as AnalyzeErrorResponse;
+				dialog.setError(err.error, err.code);
+			}
+		} catch {
+			dialog.setError(
+				'Network error. Please check your connection and try again.',
+				'INTERNAL_ERROR'
+			);
+		}
+	}
 </script>
 
 <div class="print-container flex min-h-dvh w-full justify-center bg-slate-700 dark:bg-slate-900">
@@ -183,3 +216,6 @@
 		</div>
 	</div>
 </div>
+
+<JobFitButton onclick={() => (dialogOpen = true)} />
+<JobFitDialog bind:open={dialogOpen} onsubmit={handleAnalyze} bind:this={dialog} />
