@@ -61,7 +61,7 @@ The site MUST load fast and score high on Core Web Vitals.
 - Total page weight MUST stay under 200KB gzipped (excluding fonts)
 - Images MUST use modern formats (WebP/AVIF) with appropriate sizing and lazy loading
 - JavaScript bundle MUST be minimized; CSS-only solutions MUST be preferred where possible
-- Static site generation via `adapter-static` MUST be used for zero server overhead
+- Static site generation via `adapter-static` MUST be used for zero server overhead, EXCEPT for features explicitly requiring server-side processing (e.g., secure API endpoints), which MAY use `adapter-cloudflare` with justification documented in the feature's plan.md
 
 ### IV. Dependency Minimalism
 
@@ -99,7 +99,7 @@ Specialized agents MUST be used for their designated domains, and their output M
 **Styling**: Tailwind CSS 4 with `@tailwindcss/postcss` and `@tailwindcss/typography`
 **Language**: TypeScript 5 (strict mode)
 **Build**: Vite 7
-**Adapter**: `@sveltejs/adapter-static` (static site generation)
+**Adapter**: `@sveltejs/adapter-static` (default) or `@sveltejs/adapter-cloudflare` (when server-side processing required)
 **Icons**: `unplugin-icons` with `@iconify/json`
 **UI Components**: `@melt-ui/svelte` with `@melt-ui/pp` preprocessor
 **CSS Optimization**: `cssnano`
@@ -149,4 +149,4 @@ All gates MUST pass before a session is considered complete:
 - All implementation work MUST verify compliance with these principles before completion
 - Use `CLAUDE.md` for runtime development guidance once generated
 
-**Version**: 1.0.0 | **Ratified**: 2026-02-05 | **Last Amended**: 2026-02-05
+**Version**: 1.1.0 | **Ratified**: 2026-02-05 | **Last Amended**: 2026-02-05
