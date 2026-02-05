@@ -107,14 +107,14 @@ Specialized agents MUST be used for their designated domains, and their output M
 **Formatting**: Prettier with `prettier-plugin-svelte` and `prettier-plugin-tailwindcss`
 **Type Checking**: `svelte-check`
 
-| Category | Pre-Approved | Requires Justification |
-|---|---|---|
-| Framework | SvelteKit 2, Svelte 5 | Any framework addition |
-| Styling | Tailwind CSS 4, cssnano | Any CSS library or preprocessor |
-| Icons | unplugin-icons, @iconify/json | Any icon library |
-| UI Components | @melt-ui/svelte | Any component library |
-| Build | Vite 7, TypeScript 5 | Any build plugin |
-| Linting | ESLint 9, Prettier | Any lint rule package |
+| Category      | Pre-Approved                  | Requires Justification          |
+| ------------- | ----------------------------- | ------------------------------- |
+| Framework     | SvelteKit 2, Svelte 5         | Any framework addition          |
+| Styling       | Tailwind CSS 4, cssnano       | Any CSS library or preprocessor |
+| Icons         | unplugin-icons, @iconify/json | Any icon library                |
+| UI Components | @melt-ui/svelte               | Any component library           |
+| Build         | Vite 7, TypeScript 5          | Any build plugin                |
+| Linting       | ESLint 9, Prettier            | Any lint rule package           |
 
 ## Development Workflow
 

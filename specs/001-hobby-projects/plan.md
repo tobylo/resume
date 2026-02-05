@@ -25,16 +25,16 @@ Add a compact, visually secondary "Hobby Projects" section below the existing wo
 
 ## Constitution Check
 
-*GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
+_GATE: Must pass before Phase 0 research. Re-check after Phase 1 design._
 
-| Principle | Gate | Status |
-|---|---|---|
-| I. Code Quality | Svelte 5 runes only, strict TS, ESLint/Prettier zero warnings, semantic HTML, keyboard-navigable, ARIA only when needed | PASS — plan uses Svelte 5 `$props`/`$state`, strict TS, semantic `<article>`/`<section>` |
-| II. Visual Design | Tailwind CSS 4, light/dark themes, WCAG AA contrast, responsive, print styles | PASS — Tailwind-only styling, dark mode support via existing custom variant, print-hide class, responsive grid |
-| III. Performance | Lighthouse 95+, LCP < 2.5s, CLS < 0.1, < 200KB gzipped, lazy loading, static gen | PASS — images lazy-loaded, static data, no JS-heavy interactions, adapter-static |
-| IV. Dependency Minimalism | No new dependencies unless justified, latest stable versions | PASS — zero new dependencies |
-| V. Incremental Implementation | Smallest task sets, update docs, wait for approval | PASS — plan structured for incremental delivery |
-| VI. Agent Delegation | svelte:svelte-file-editor for Svelte, code-reviewer after changes, build-error-resolver for errors | PASS — plan directs agent usage in task execution |
+| Principle                     | Gate                                                                                                                    | Status                                                                                                         |
+| ----------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| I. Code Quality               | Svelte 5 runes only, strict TS, ESLint/Prettier zero warnings, semantic HTML, keyboard-navigable, ARIA only when needed | PASS — plan uses Svelte 5 `$props`/`$state`, strict TS, semantic `<article>`/`<section>`                       |
+| II. Visual Design             | Tailwind CSS 4, light/dark themes, WCAG AA contrast, responsive, print styles                                           | PASS — Tailwind-only styling, dark mode support via existing custom variant, print-hide class, responsive grid |
+| III. Performance              | Lighthouse 95+, LCP < 2.5s, CLS < 0.1, < 200KB gzipped, lazy loading, static gen                                        | PASS — images lazy-loaded, static data, no JS-heavy interactions, adapter-static                               |
+| IV. Dependency Minimalism     | No new dependencies unless justified, latest stable versions                                                            | PASS — zero new dependencies                                                                                   |
+| V. Incremental Implementation | Smallest task sets, update docs, wait for approval                                                                      | PASS — plan structured for incremental delivery                                                                |
+| VI. Agent Delegation          | svelte:svelte-file-editor for Svelte, code-reviewer after changes, build-error-resolver for errors                      | PASS — plan directs agent usage in task execution                                                              |
 
 **Result**: All gates PASS. No violations to justify.
 

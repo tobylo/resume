@@ -19,12 +19,12 @@
 import type { HobbyProject } from './types';
 
 export const myProject: HobbyProject = {
-  id: 'my-project',
-  title: 'My Project',
-  description: 'A short description of what this project does and why it exists.',
-  image: '/hobby-projects/my-project.webp',
-  url: 'https://github.com/user/my-project',
-  technologies: ['Svelte', 'TypeScript', 'Tailwind']
+	id: 'my-project',
+	title: 'My Project',
+	description: 'A short description of what this project does and why it exists.',
+	image: '/hobby-projects/my-project.webp',
+	url: 'https://github.com/user/my-project',
+	technologies: ['Svelte', 'TypeScript', 'Tailwind']
 };
 ```
 
@@ -34,8 +34,8 @@ export const myProject: HobbyProject = {
 import { myProject } from './my-project';
 
 export const hobbyProjects = [
-  // ... existing projects
-  myProject
+	// ... existing projects
+	myProject
 ];
 ```
 
@@ -49,14 +49,14 @@ bun run dev      # Visual inspection at http://localhost:5173
 
 ## Development Commands
 
-| Command | Purpose |
-|---|---|
-| `bun run dev` | Start dev server with hot reload |
-| `bun run build` | Build static site |
-| `bun run preview` | Preview built site |
-| `bun run check` | TypeScript + Svelte type checking |
-| `bun run lint` | Prettier + ESLint validation |
-| `bun run format` | Auto-format with Prettier |
+| Command           | Purpose                           |
+| ----------------- | --------------------------------- |
+| `bun run dev`     | Start dev server with hot reload  |
+| `bun run build`   | Build static site                 |
+| `bun run preview` | Preview built site                |
+| `bun run check`   | TypeScript + Svelte type checking |
+| `bun run lint`    | Prettier + ESLint validation      |
+| `bun run format`  | Auto-format with Prettier         |
 
 ## Verification Checklist
 

@@ -41,6 +41,7 @@
   },
   "type": "module",
   "trustedDependencies": [
+    "sharp",
     "svelte-preprocess"
   ],
   "dependencies": {

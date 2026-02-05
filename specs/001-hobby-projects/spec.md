@@ -5,7 +5,7 @@
 **Status**: Draft
 **Input**: User description: "Somewhere on the page I'd like to include the hobby projects that I've worked on, perhaps with an image, a title and a description. It shouldn't take up too much space, my work resume is still the most important."
 
-## User Scenarios & Testing *(mandatory)*
+## User Scenarios & Testing _(mandatory)_
 
 ### User Story 1 - View Hobby Projects at a Glance (Priority: P1)
 
@@ -66,7 +66,7 @@ When the visitor prints the page, hobby projects are hidden so they do not consu
 - Q: Should hobby project cards display technology tags? → A: Technologies are shown only on hover or expand (hidden by default) to keep the compact layout.
 - Q: What image aspect ratio should hobby project thumbnails use? → A: Flexible — accept any aspect ratio, crop/fit to a consistent container using object-fit.
 
-## Requirements *(mandatory)*
+## Requirements _(mandatory)_
 
 ### Functional Requirements
 
@@ -86,7 +86,7 @@ When the visitor prints the page, hobby projects are hidden so they do not consu
 
 - **HobbyProject**: Represents a personal/hobby project. Key attributes: id, title, description, image path (optional), optional URL link to the project, optional list of technologies used
 
-## Success Criteria *(mandatory)*
+## Success Criteria _(mandatory)_
 
 ### Measurable Outcomes
 

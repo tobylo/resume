@@ -9,14 +9,14 @@
 
 Represents a personal/hobby project for display in the hobby projects section.
 
-| Field | Type | Required | Description |
-|---|---|---|---|
-| `id` | `string` | Yes | Unique identifier (kebab-case slug, e.g., `"my-game-engine"`) |
-| `title` | `string` | Yes | Display title of the project |
-| `description` | `string` | Yes | Short description (will be clamped to 3 lines in the UI) |
-| `image` | `string \| undefined` | No | Path to thumbnail image relative to `static/` (e.g., `"/hobby-projects/my-project.webp"`). When absent, a placeholder visual is rendered. |
-| `url` | `string \| undefined` | No | External URL to the project (e.g., GitHub repo, live demo). When present, the card becomes a clickable link opening in a new tab. |
-| `technologies` | `string[]` | No | List of technologies used. Defaults to empty array. Hidden by default, revealed on hover/expand. |
+| Field          | Type                  | Required | Description                                                                                                                               |
+| -------------- | --------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`           | `string`              | Yes      | Unique identifier (kebab-case slug, e.g., `"my-game-engine"`)                                                                             |
+| `title`        | `string`              | Yes      | Display title of the project                                                                                                              |
+| `description`  | `string`              | Yes      | Short description (will be clamped to 3 lines in the UI)                                                                                  |
+| `image`        | `string \| undefined` | No       | Path to thumbnail image relative to `static/` (e.g., `"/hobby-projects/my-project.webp"`). When absent, a placeholder visual is rendered. |
+| `url`          | `string \| undefined` | No       | External URL to the project (e.g., GitHub repo, live demo). When present, the card becomes a clickable link opening in a new tab.         |
+| `technologies` | `string[]`            | No       | List of technologies used. Defaults to empty array. Hidden by default, revealed on hover/expand.                                          |
 
 ### Validation Rules
 
@@ -32,12 +32,12 @@ Represents a personal/hobby project for display in the hobby projects section.
 
 ```typescript
 export interface HobbyProject {
-  id: string;
-  title: string;
-  description: string;
-  image?: string;
-  url?: string;
-  technologies?: string[];
+	id: string;
+	title: string;
+	description: string;
+	image?: string;
+	url?: string;
+	technologies?: string[];
 }
 ```
 
