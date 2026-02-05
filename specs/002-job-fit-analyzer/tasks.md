@@ -36,10 +36,10 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 Create src/lib/job-fit/types.ts with all TypeScript interfaces from data-model.md
-- [ ] T008 [P] Create src/lib/job-fit/resume-data.ts that compiles resume context from existing data modules
-- [ ] T009 [P] Create src/lib/job-fit/prompt.ts with LLM system prompt template for job fit analysis - include instruction to respond in the same language as the job description
-- [ ] T010 Run type check to verify types are correct: `bun run check`
+- [x] T007 Create src/lib/job-fit/types.ts with all TypeScript interfaces from data-model.md
+- [x] T008 [P] Create src/lib/job-fit/resume-data.ts that compiles resume context from existing data modules
+- [x] T009 [P] Create src/lib/job-fit/prompt.ts with LLM system prompt template for job fit analysis - include instruction to respond in the same language as the job description
+- [x] T010 Run type check to verify types are correct: `bun run check`
 
 **Checkpoint**: Foundation ready - all shared types and data modules available for user stories
 
