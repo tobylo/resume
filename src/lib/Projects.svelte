@@ -46,7 +46,7 @@
 		{#if filterExpanded}
 			<div transition:slide={{ duration: 200 }} class="flex flex-col gap-2">
 				<div class="flex flex-wrap gap-1">
-					{#each allTechnologies as tech}
+					{#each allTechnologies as tech (tech)}
 						<button
 							type="button"
 							class="cursor-pointer rounded-sm px-2 py-0.5 text-xs transition-colors {selectedTech ===

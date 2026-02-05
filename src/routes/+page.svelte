@@ -7,6 +7,7 @@
 	import Profile from './Profile.svelte';
 	import Certifier from '$lib/Certifier.svelte';
 	import Projects from '$lib/Projects.svelte';
+	import HobbyProjects from '$lib/HobbyProjects.svelte';
 	import ThemeToggle from '$lib/ThemeToggle.svelte';
 </script>
 
@@ -171,6 +172,8 @@
 						</div>
 					</div>
 				</div>
+				<!-- Hobby Projects -->
+				<HobbyProjects />
 			</div>
 
 			<!-- Right Column: Projects -->
