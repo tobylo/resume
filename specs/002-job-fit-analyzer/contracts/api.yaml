@@ -1,0 +1,222 @@
+openapi: 3.1.0
+info:
+  title: Job Fit Analyzer API
+  version: 1.0.0
+  description: |
+    API for analyzing job fit between a job description and Tobias's resume.
+    Protected by Cloudflare Turnstile CAPTCHA and rate limiting.
+
+servers:
+  - url: /api
+    description: SvelteKit API routes
+
+paths:
+  /analyze:
+    post:
+      operationId: analyzeJobFit
+      summary: Analyze job fit against resume
+      description: |
+        Accepts a job description and Turnstile token, validates the request,
+        checks rate limits, and returns an AI-generated fit analysis.
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalyzeRequest'
+            example:
+              jobDescription: |
+                We are looking for a Senior Full Stack Developer with experience
+                in TypeScript, React, and cloud infrastructure (AWS/Azure).
+                5+ years experience required. Kubernetes knowledge is a plus.
+              turnstileToken: '0.XXXXXX...'
+
+      responses:
+        '200':
+          description: Analysis completed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeSuccessResponse'
+              example:
+                success: true
+                analysis:
+                  overallFit: strong
+                  overallSummary: |
+                    Tobias is a strong fit for this role with extensive full-stack
+                    experience, Kubernetes certifications, and Azure expertise.
+                  strengths:
+                    - title: 'Cloud & Kubernetes Expertise'
+                      description: 'Certified Kubernetes Administrator and Developer with hands-on experience'
+                      resumeReferences:
+                        - 'CKA certification'
+                        - 'CKAD certification'
+                        - 'H&M project: Azure Functions, Service Bus'
+                    - title: 'TypeScript Proficiency'
+                      description: 'Extensive TypeScript experience across multiple projects'
+                      resumeReferences:
+                        - 'Current SvelteKit projects'
+                        - 'Multiple frontend implementations'
+                  gaps:
+                    - title: 'React vs Svelte'
+                      description: 'Primary frontend experience is with Svelte/SvelteKit rather than React'
+                      mitigation: 'Strong JavaScript/TypeScript fundamentals transfer easily between frameworks'
+
+        '400':
+          description: Validation error (invalid input)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeErrorResponse'
+              example:
+                success: false
+                error: 'Job description must be at least 50 characters'
+                code: VALIDATION_ERROR
+
+        '403':
+          description: CAPTCHA verification failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeErrorResponse'
+              example:
+                success: false
+                error: 'CAPTCHA verification failed. Please try again.'
+                code: CAPTCHA_FAILED
+
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeErrorResponse'
+              example:
+                success: false
+                error: 'Rate limit exceeded. Please try again in an hour.'
+                code: RATE_LIMITED
+
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnalyzeErrorResponse'
+              example:
+                success: false
+                error: 'Analysis service temporarily unavailable'
+                code: LLM_ERROR
+
+components:
+  schemas:
+    AnalyzeRequest:
+      type: object
+      required:
+        - jobDescription
+        - turnstileToken
+      properties:
+        jobDescription:
+          type: string
+          minLength: 50
+          maxLength: 10000
+          description: The job description to analyze against the resume
+        turnstileToken:
+          type: string
+          description: Cloudflare Turnstile verification token
+
+    AnalyzeSuccessResponse:
+      type: object
+      required:
+        - success
+        - analysis
+      properties:
+        success:
+          type: boolean
+          const: true
+        analysis:
+          $ref: '#/components/schemas/FitAnalysis'
+
+    AnalyzeErrorResponse:
+      type: object
+      required:
+        - success
+        - error
+        - code
+      properties:
+        success:
+          type: boolean
+          const: false
+        error:
+          type: string
+          description: Human-readable error message
+        code:
+          type: string
+          enum:
+            - VALIDATION_ERROR
+            - RATE_LIMITED
+            - CAPTCHA_FAILED
+            - LLM_ERROR
+            - INTERNAL_ERROR
+          description: Machine-readable error code
+
+    FitAnalysis:
+      type: object
+      required:
+        - overallFit
+        - overallSummary
+        - strengths
+        - gaps
+      properties:
+        overallFit:
+          type: string
+          enum: [strong, partial, not-ideal]
+          description: Qualitative overall fit assessment
+        overallSummary:
+          type: string
+          description: 1-2 sentence summary of the fit analysis
+        strengths:
+          type: array
+          items:
+            $ref: '#/components/schemas/StrengthItem'
+          description: Reasons why Tobias fits the role
+        gaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/GapItem'
+          description: Potential gaps or areas of concern
+
+    StrengthItem:
+      type: object
+      required:
+        - title
+        - description
+        - resumeReferences
+      properties:
+        title:
+          type: string
+          description: Brief title for this strength
+        description:
+          type: string
+          description: Explanation of how this strength applies
+        resumeReferences:
+          type: array
+          items:
+            type: string
+          minItems: 1
+          description: Specific items from resume that support this strength
+
+    GapItem:
+      type: object
+      required:
+        - title
+        - description
+      properties:
+        title:
+          type: string
+          description: Brief title for this gap
+        description:
+          type: string
+          description: Honest assessment of the gap
+        mitigation:
+          type: string
+          description: Related experience that partially addresses this gap

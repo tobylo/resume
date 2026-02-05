@@ -5,3 +5,6 @@ yarn.lock
 
 # Local tooling
 .claude/
+
+# Speckit templates
+.specify/
