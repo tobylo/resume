@@ -49,8 +49,8 @@
 
 ### Implementation for User Story 2
 
-- [ ] T007 [US2] Verify and refine responsive grid breakpoints in `src/lib/HobbyProjects.svelte` — ensure grid-cols-1 at mobile, sm:grid-cols-2 at tablet, lg:grid-cols-3 at desktop. Adjust gap and padding for mobile viewports.
-- [ ] T008 [US2] Verify and refine card image and text sizing in `src/lib/HobbyProjectCard.svelte` — ensure thumbnail container and font sizes scale appropriately at narrow viewports (320px-768px). Verify touch-based tech tag reveal works on mobile.
+- [x] T007 [US2] Verify and refine responsive grid breakpoints in `src/lib/HobbyProjects.svelte` — ensure grid-cols-1 at mobile, sm:grid-cols-2 at tablet, lg:grid-cols-3 at desktop. Adjust gap and padding for mobile viewports.
+- [x] T008 [US2] Verify and refine card image and text sizing in `src/lib/HobbyProjectCard.svelte` — ensure thumbnail container and font sizes scale appropriately at narrow viewports (320px-768px). Verify touch-based tech tag reveal works on mobile.
 
 **Checkpoint**: Section renders correctly across all breakpoints (320px to 2560px).
 
@@ -64,8 +64,8 @@
 
 ### Implementation for User Story 3
 
-- [ ] T009 [US3] Verify print-hide class is applied to hobby projects section wrapper in `src/lib/HobbyProjects.svelte` (should already be present from T005). If not, add it. Confirm `app.css` print media query hides elements with print-hide class.
-- [ ] T010 [US3] Test print preview in browser — verify hobby projects section is completely absent from print output and work resume fills the available space.
+- [x] T009 [US3] Verify print-hide class is applied to hobby projects section wrapper in `src/lib/HobbyProjects.svelte` (should already be present from T005). If not, add it. Confirm `app.css` print media query hides elements with print-hide class.
+- [x] T010 [US3] Test print preview in browser — verify hobby projects section is completely absent from print output and work resume fills the available space.
 
 **Checkpoint**: Print output contains zero hobby project content.
 

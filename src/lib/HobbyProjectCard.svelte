@@ -13,16 +13,11 @@
 				? 'grid-rows-[1fr]'
 				: 'grid-rows-[0fr] group-hover:grid-rows-[1fr]'}"
 		>
-			<img
-				src={project.image}
-				alt={project.title}
-				loading="lazy"
-				class="min-h-0 w-full"
-			/>
+			<img src={project.image} alt={project.title} loading="lazy" class="min-h-0 w-full" />
 		</div>
 	{/if}
 
-	<div class="px-4 py-3">
+	<div class="px-3 py-2 sm:px-4 sm:py-3">
 		<h3 class="mb-1 text-base font-bold">{project.title}</h3>
 		<p
 			class="text-xs text-slate-200 sm:text-sm {showTech
