@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { Project } from './projects';
 
-	let { project, expanded = false }: { project: Project; expanded?: boolean } = $props();
+	let { project }: { project: Project } = $props();
 
-	let isExpanded = $state(expanded);
+	let isExpanded = $state(false);
 	const maxVisibleTechnologies = 4;
-	const visibleTechnologies = project.technologies.slice(0, maxVisibleTechnologies);
-	const hiddenCount = project.technologies.length - maxVisibleTechnologies;
+	const visibleTechnologies = $derived(project.technologies.slice(0, maxVisibleTechnologies));
+	const hiddenCount = $derived(project.technologies.length - maxVisibleTechnologies);
 
 	function formatPeriod(period: { start: string; end: string | null }) {
 		if (!period.end) return `${period.start} - Present`;
@@ -33,7 +33,7 @@
 			<p class="mb-4 text-xs sm:text-sm">{project.description}</p>
 
 			<div class="flex flex-wrap gap-1">
-				{#each project.technologies as tech}
+				{#each project.technologies as tech (tech)}
 					<span class="rounded-sm bg-slate-500 px-2 py-0.5 text-xs">{tech}</span>
 				{/each}
 			</div>
@@ -42,7 +42,7 @@
 		<!-- Collapsed view (hidden in print) -->
 		<div class="collapsed-content" class:hidden={isExpanded}>
 			<div class="flex flex-wrap gap-1">
-				{#each visibleTechnologies as tech}
+				{#each visibleTechnologies as tech (tech)}
 					<span class="rounded-sm bg-slate-500 px-2 py-0.5 text-xs">{tech}</span>
 				{/each}
 				{#if hiddenCount > 0}
