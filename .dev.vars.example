@@ -1,0 +1,8 @@
+# Copy this file to .dev.vars and fill in the values
+# DO NOT commit .dev.vars to version control
+
+# Anthropic Claude API key for job fit analysis
+ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
+
+# Cloudflare Turnstile secret key for CAPTCHA verification
+TURNSTILE_SECRET_KEY=0x-your-secret-key-here

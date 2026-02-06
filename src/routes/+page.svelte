@@ -9,6 +9,50 @@
 	import Projects from '$lib/Projects.svelte';
 	import HobbyProjects from '$lib/HobbyProjects.svelte';
 	import ThemeToggle from '$lib/ThemeToggle.svelte';
+	import JobFitButton from '$lib/JobFitButton.svelte';
+	import JobFitDialog from '$lib/JobFitDialog.svelte';
+	import type { AnalyzeResponse, AnalyzeErrorResponse } from '$lib/job-fit/types';
+
+	let dialogOpen = $state(false);
+	let dialog: JobFitDialog;
+	let abortController: AbortController | null = null;
+
+	async function handleAnalyze(data: { jobDescription: string; turnstileToken: string }) {
+		abortController?.abort();
+		abortController = new AbortController();
+
+		try {
+			const response = await fetch('/api/analyze', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					jobDescription: data.jobDescription,
+					turnstileToken: data.turnstileToken
+				}),
+				signal: abortController.signal
+			});
+
+			const result: AnalyzeResponse | AnalyzeErrorResponse = await response.json();
+
+			if (result.success) {
+				dialog.setResult(result.analysis);
+			} else {
+				dialog.setError(result.error, result.code);
+			}
+		} catch (err) {
+			if (err instanceof DOMException && err.name === 'AbortError') return;
+			dialog.setError(
+				'Network error. Please check your connection and try again.',
+				'INTERNAL_ERROR'
+			);
+		} finally {
+			abortController = null;
+		}
+	}
+
+	function handleCancel() {
+		abortController?.abort();
+	}
 </script>
 
 <div class="print-container flex min-h-dvh w-full justify-center bg-slate-700 dark:bg-slate-900">
@@ -183,3 +227,11 @@
 		</div>
 	</div>
 </div>
+
+<JobFitButton onclick={() => (dialogOpen = true)} />
+<JobFitDialog
+	bind:open={dialogOpen}
+	onsubmit={handleAnalyze}
+	oncancel={handleCancel}
+	bind:this={dialog}
+/>

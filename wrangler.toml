@@ -1,0 +1,11 @@
+name = "resume"
+compatibility_date = "2026-01-22"
+compatibility_flags = ["nodejs_compat"]
+
+# KV namespace for rate limiting
+# Create with: bunx wrangler kv namespace create KV
+# Create preview with: bunx wrangler kv namespace create KV --preview
+[[kv_namespaces]]
+binding = "KV"
+id = "b437692669e541fe944a668658e3215a"
+preview_id = "2cc678fce1e24db19b59c70f78a81d6c"

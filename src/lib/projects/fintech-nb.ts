@@ -21,6 +21,7 @@ export const fintechNb: Project = {
 		'Bun',
 		'TailwindCSS',
 		'shadcn',
+		'python',
 		'Tanstack Router',
 		'Tanstack Query',
 		'Tanstack Table',

@@ -1,4 +1,4 @@
-# Resume Site Development Guidelines
+﻿# Resume Site Development Guidelines
 
 Auto-generated from all feature plans. Last updated: 2026-02-05
 
@@ -17,9 +17,11 @@ src/
 ├── lib/
 │   ├── projects/          # Work project data + types
 │   ├── hobby-projects/    # Hobby project data + types (001-hobby-projects)
+│   ├── job-fit/           # Job fit analyzer module (002-job-fit-analyzer)
 │   ├── *.svelte           # Reusable components
 │   └── theme.svelte.ts    # Theme state
 ├── routes/
+│   ├── api/analyze/       # Job fit API endpoint (002-job-fit-analyzer)
 │   ├── +page.svelte       # Main resume page
 │   ├── +page.ts           # Prerender config
 │   └── +layout.svelte     # Root layout
@@ -49,6 +51,7 @@ bun run format    # Auto-format
 
 ## Recent Changes
 
+- 002-job-fit-analyzer: Job fit analyzer with LLM integration (Cloudflare Pages + Claude API)
 - 001-hobby-projects: Adding hobby projects section with image cards
 
 <!-- MANUAL ADDITIONS START -->

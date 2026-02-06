@@ -27,5 +27,14 @@ export const hobbyProjects: HobbyProject[] = [
 		image: '/hobby-projects/daddy-status.webp',
 		url: 'https://github.com/tobylo/daddy-status/blob/master/README.md',
 		technologies: ['C', 'ESP32', 'GraphAPI', 'OAuth']
+	},
+	{
+		id: 'bgg-what-to-play',
+		title: 'What to Play (BGG)',
+		description:
+			'Explored trying to use a data dump of BoardGameGeek imported into a vector database and use RAG to query what game to play based on how many players we have and our preferences.',
+		image: '',
+		url: 'https://github.com/tobylo/bgg-scraper',
+		technologies: ['Bun', 'TypeScript', 'Weaviate', 'OpenAI']
 	}
 ];
