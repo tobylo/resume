@@ -5,7 +5,7 @@
 <button
 	type="button"
 	class="print-hide fixed right-4 bottom-4 z-40 cursor-pointer rounded-full bg-slate-600 p-3 text-white shadow-lg transition-all duration-200 hover:bg-slate-500 hover:shadow-xl active:scale-95 sm:right-6 sm:bottom-6 sm:px-6 sm:py-3 sm:text-base"
-	aria-label="Is Tobias a good fit?"
+	aria-label="Are we a match?"
 	{onclick}
 >
 	<!-- Icon only on small screens -->
@@ -24,5 +24,5 @@
 		/>
 	</svg>
 	<!-- Full text on sm+ -->
-	<span class="hidden text-sm font-medium sm:inline">Is Tobias a good fit?</span>
+	<span class="hidden text-sm font-medium sm:inline">Are we a match?</span>
 </button>
