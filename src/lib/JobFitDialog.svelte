@@ -253,7 +253,7 @@
 					class="flex items-center justify-between border-b border-slate-400 px-4 py-3 sm:px-6 sm:py-4 dark:border-slate-600"
 				>
 					<h2 use:melt={$title} class="text-lg font-bold text-slate-900 sm:text-xl dark:text-white">
-						Job Fit Analyzer
+						Are we a match?
 					</h2>
 					<button
 						use:melt={$close}
