@@ -206,6 +206,15 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 
 	const { KV, ANTHROPIC_API_KEY, TURNSTILE_SECRET_KEY } = platform.env;
 
+	if (!KV || !ANTHROPIC_API_KEY || !TURNSTILE_SECRET_KEY) {
+		console.error('Missing required bindings/env vars:', {
+			KV: !!KV,
+			ANTHROPIC_API_KEY: !!ANTHROPIC_API_KEY,
+			TURNSTILE_SECRET_KEY: !!TURNSTILE_SECRET_KEY
+		});
+		return errorResponse(500, 'Server configuration error', 'INTERNAL_ERROR');
+	}
+
 	// Read and enforce body size limit (Content-Length is client-controlled, so verify actual size)
 	let rawBody: string;
 	try {
