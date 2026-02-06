@@ -16,6 +16,7 @@ const MAX_BODY_SIZE = 20000;
 const MAX_TOKEN_LENGTH = 2048;
 const RATE_LIMIT = 5;
 const JOB_KEYWORDS = [
+	// English
 	'role',
 	'responsibilities',
 	'requirements',
@@ -25,7 +26,18 @@ const JOB_KEYWORDS = [
 	'position',
 	'candidate',
 	'team',
-	'company'
+	'company',
+	// Swedish
+	'roll',
+	'ansvar',
+	'krav',
+	'erfarenhet',
+	'kompetens',
+	'kvalifikationer',
+	'tjänst',
+	'kandidat',
+	'företag',
+	'meriterande'
 ];
 const MIN_KEYWORD_MATCHES = 2;
 
