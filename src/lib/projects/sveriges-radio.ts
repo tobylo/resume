@@ -5,7 +5,7 @@ export const sverigesRadio: Project = {
 	company: 'Sveriges Radio',
 	role: 'System Developer',
 	description: 'Development and maintenance of various applications.',
-	technologies: ['C#', 'ASP.NET', 'JavaScript', 'Dojo', 'WCF', 'Windows WF'],
+	technologies: ['C#', 'ASP.NET', 'JavaScript', 'Dojo', 'WCF', 'Windows WF', 'AWS SQS', 'AWS DynamoDB', 'ElasticSearch'],
 	period: {
 		start: '2013',
 		end: '2014'
