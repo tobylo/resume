@@ -8,6 +8,7 @@ import type {
 import { buildSystemPrompt } from '$lib/job-fit/prompt';
 import { resumeContext } from '$lib/job-fit/resume-data';
 import Anthropic from '@anthropic-ai/sdk';
+import * as z from 'zod';
 
 const MIN_CHARS = 50;
 const MAX_CHARS = 10000;
@@ -108,37 +109,31 @@ function validateJobDescription(text: string): string | null {
 	return null;
 }
 
-function isValidFitAnalysis(data: unknown): data is FitAnalysis {
-	if (!data || typeof data !== 'object') return false;
-	const obj = data as Record<string, unknown>;
-	if (!['strong', 'partial', 'not-ideal'].includes(obj.overallFit as string)) return false;
-	if (typeof obj.overallSummary !== 'string' || obj.overallSummary.length > 500) return false;
-	if (!Array.isArray(obj.strengths) || obj.strengths.length === 0) return false;
-	if (!Array.isArray(obj.gaps)) return false;
-	// Validate strengths have resumeReferences with length limits
-	for (const s of obj.strengths) {
-		if (!s || typeof s !== 'object') return false;
-		if (typeof s.title !== 'string' || s.title.length > 200) return false;
-		if (typeof s.description !== 'string' || s.description.length > 1000) return false;
-		if (!Array.isArray(s.resumeReferences)) return false;
-		if (!s.resumeReferences.every((r: unknown) => typeof r === 'string' && r.length <= 200))
-			return false;
-	}
-	// Validate gaps with length limits
-	for (const g of obj.gaps) {
-		if (!g || typeof g !== 'object') return false;
-		if (typeof g.title !== 'string' || g.title.length > 200) return false;
-		if (typeof g.description !== 'string' || g.description.length > 1000) return false;
-		if (
-			g.mitigation !== undefined &&
-			(typeof g.mitigation !== 'string' || g.mitigation.length > 500)
-		)
-			return false;
-	}
-	return true;
-}
+const strengthSchema = z.object({
+	title: z.string().max(200),
+	description: z.string().max(1000),
+	resumeReferences: z.array(z.string().max(200)).max(10)
+});
 
-function countResumeReferences(analysis: FitAnalysis): number {
+const gapSchema = z.object({
+	title: z.string().max(200),
+	description: z.string().max(1000),
+	mitigation: z
+		.string()
+		.max(500)
+		.nullable()
+		.optional()
+		.transform((v) => v ?? undefined)
+});
+
+const fitAnalysisSchema = z.object({
+	overallFit: z.enum(['strong', 'partial', 'not-ideal']),
+	overallSummary: z.string().max(500),
+	strengths: z.array(strengthSchema).min(1).max(10),
+	gaps: z.array(gapSchema).max(10)
+});
+
+function countResumeReferences(analysis: z.infer<typeof fitAnalysisSchema>): number {
 	return analysis.strengths.reduce((sum, s) => sum + s.resumeReferences.length, 0);
 }
 
@@ -151,7 +146,7 @@ async function callLLM(
 	const systemPrompt = buildSystemPrompt(resumeContext);
 
 	const message = await client.messages.create({
-		model: 'claude-sonnet-4-5-20250514',
+		model: 'claude-sonnet-4-5-20250929',
 		max_tokens: 2048,
 		system: systemPrompt,
 		messages: [{ role: 'user', content: jobDescription }]
@@ -171,19 +166,25 @@ async function callLLM(
 		}
 		parsed = JSON.parse(text);
 	} catch {
+		console.error('Failed to parse LLM response as JSON. Raw text:', textContent.text);
 		throw new Error('Failed to parse LLM response as JSON');
 	}
 
-	if (!isValidFitAnalysis(parsed)) {
+	const parseResult = fitAnalysisSchema.safeParse(parsed);
+	if (!parseResult.success) {
+		console.error('Schema validation failed:', JSON.stringify(parseResult.error.issues, null, 2));
+		console.error('Parsed LLM response:', JSON.stringify(parsed, null, 2));
 		throw new Error('LLM response does not match expected schema');
 	}
 
+	const result = parseResult.data;
+
 	// SC-003: Verify at least 3 resume references
-	if (countResumeReferences(parsed) < 3 && attempt === 1) {
+	if (countResumeReferences(result) < 3 && attempt === 1) {
 		return callLLM(apiKey, jobDescription, 2);
 	}
 
-	return parsed;
+	return result;
 }
 
 export const POST: RequestHandler = async ({ request, platform }) => {
@@ -193,16 +194,21 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 
 	const { KV, ANTHROPIC_API_KEY, TURNSTILE_SECRET_KEY } = platform.env;
 
-	// Enforce request body size limit
-	const contentLength = parseInt(request.headers.get('content-length') ?? '0');
-	if (contentLength > MAX_BODY_SIZE) {
+	// Read and enforce body size limit (Content-Length is client-controlled, so verify actual size)
+	let rawBody: string;
+	try {
+		rawBody = await request.text();
+	} catch {
+		return errorResponse(400, 'Invalid request body', 'VALIDATION_ERROR');
+	}
+	if (rawBody.length > MAX_BODY_SIZE) {
 		return errorResponse(413, 'Request body too large', 'VALIDATION_ERROR');
 	}
 
 	// Parse request body
 	let body: AnalyzeRequest;
 	try {
-		body = await request.json();
+		body = JSON.parse(rawBody);
 	} catch {
 		return errorResponse(400, 'Invalid request body', 'VALIDATION_ERROR');
 	}
@@ -245,7 +251,8 @@ export const POST: RequestHandler = async ({ request, platform }) => {
 	try {
 		const analysis = await callLLM(ANTHROPIC_API_KEY, jobDescription);
 		return successResponse(analysis);
-	} catch {
+	} catch (err) {
+		console.error('LLM call failed:', err);
 		return errorResponse(500, "Analysis couldn't be completed. Please try again.", 'LLM_ERROR');
 	}
 };

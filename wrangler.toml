@@ -7,5 +7,5 @@ compatibility_flags = ["nodejs_compat"]
 # Create preview with: bunx wrangler kv namespace create KV --preview
 [[kv_namespaces]]
 binding = "KV"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
-preview_id = "REPLACE_WITH_PREVIEW_KV_NAMESPACE_ID"
+id = "b437692669e541fe944a668658e3215a"
+preview_id = "2cc678fce1e24db19b59c70f78a81d6c"
