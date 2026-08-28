@@ -7,7 +7,7 @@
 </script>
 
 <div
-	class="grid grid-cols-1 gap-x-4 gap-y-2 rounded-md bg-gray-200 p-4 text-xs min-[500px]:grid-cols-2 md:text-sm xl:grid-cols-4 dark:bg-slate-700 dark:text-white"
+	class="text-ink-soft grid grid-cols-1 gap-x-4 gap-y-2 text-xs min-[500px]:grid-cols-2 md:text-sm xl:grid-cols-4"
 >
 	<ContactDetail>
 		<GlobeLogo class="h-full" />

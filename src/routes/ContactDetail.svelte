@@ -11,7 +11,7 @@
 {/snippet}
 
 {#if href}
-	<a {href} class="font-normal no-underline">
+	<a {href} class="text-ink-soft hover:text-accent font-normal no-underline transition-colors">
 		{@render contact()}
 	</a>
 {:else}

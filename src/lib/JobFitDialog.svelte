@@ -191,11 +191,11 @@
 	function fitBadgeClasses(fit: OverallFit): string {
 		switch (fit) {
 			case 'strong':
-				return 'bg-green-600 text-white';
+				return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300';
 			case 'partial':
-				return 'bg-yellow-500 text-black';
+				return 'bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300';
 			case 'not-ideal':
-				return 'bg-red-600 text-white';
+				return 'bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300';
 		}
 	}
 
@@ -246,18 +246,18 @@
 			class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
 		>
 			<div
-				class="flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-lg bg-slate-300 shadow-xl sm:max-w-2xl dark:bg-slate-800"
+				class="border-edge bg-card flex max-h-[90dvh] w-full flex-col overflow-hidden rounded-2xl border shadow-xl sm:max-w-2xl"
 			>
 				<!-- Header -->
 				<div
-					class="flex items-center justify-between border-b border-slate-400 px-4 py-3 sm:px-6 sm:py-4 dark:border-slate-600"
+					class="border-edge flex items-center justify-between border-b px-4 py-3 sm:px-6 sm:py-4"
 				>
-					<h2 use:melt={$title} class="text-lg font-bold text-slate-900 sm:text-xl dark:text-white">
+					<h2 use:melt={$title} class="font-display text-ink text-lg font-bold sm:text-xl">
 						Are we a match?
 					</h2>
 					<button
 						use:melt={$close}
-						class="rounded-md p-1 text-slate-600 transition-colors hover:bg-slate-400/50 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+						class="text-ink-muted hover:bg-accent-tint hover:text-accent rounded-md p-1 transition-colors"
 						aria-label="Close dialog"
 					>
 						<svg
@@ -307,7 +307,7 @@
 
 {#snippet inputState()}
 	<div class="flex flex-col gap-4">
-		<p class="text-sm text-slate-700 dark:text-slate-300">
+		<p class="text-ink-soft text-sm">
 			Paste a job description below to analyze how well Tobias fits the role.
 		</p>
 
@@ -317,7 +317,7 @@
 				placeholder="Paste the job description here..."
 				aria-label="Job description"
 				rows={6}
-				class="w-full resize-y rounded-md border border-slate-400 bg-white p-3 text-sm text-slate-900 placeholder-slate-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 focus:outline-none dark:border-slate-600 dark:bg-slate-700 dark:text-white dark:placeholder-slate-400"
+				class="border-edge bg-canvas text-ink placeholder-ink-muted focus:border-accent focus:ring-accent/30 w-full resize-y rounded-md border p-3 text-sm focus:ring-2 focus:outline-none"
 			></textarea>
 
 			<div class="flex items-center justify-between text-xs">
@@ -325,8 +325,8 @@
 					class={isOverLimit
 						? 'font-semibold text-red-600 dark:text-red-400'
 						: isNearLimit
-							? 'font-semibold text-yellow-600 dark:text-yellow-400'
-							: 'text-slate-500 dark:text-slate-400'}
+							? 'font-semibold text-amber-600 dark:text-amber-400'
+							: 'text-ink-muted'}
 				>
 					{charCount.toLocaleString()} / {MAX_CHARS.toLocaleString()} characters
 					{#if isOverLimit}
@@ -336,7 +336,7 @@
 					{/if}
 				</span>
 				{#if charCount > 0 && charCount < MIN_CHARS}
-					<span class="text-slate-500 dark:text-slate-400">
+					<span class="text-ink-muted">
 						{MIN_CHARS - charCount} more characters needed
 					</span>
 				{/if}
@@ -345,7 +345,7 @@
 
 		<div id="turnstile-container" class="min-h-[65px]"></div>
 		{#if turnstileScriptFailed}
-			<p class="text-xs text-yellow-600 dark:text-yellow-400">
+			<p class="text-xs text-amber-600 dark:text-amber-400">
 				CAPTCHA could not load. You may need to disable your ad blocker or try again later.
 			</p>
 		{/if}
@@ -354,7 +354,7 @@
 			type="button"
 			onclick={handleSubmit}
 			disabled={!canSubmit}
-			class="w-full rounded-md bg-slate-700 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-slate-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-slate-700 dark:bg-slate-600 dark:hover:bg-slate-500 dark:disabled:hover:bg-slate-600"
+			class="bg-accent text-accent-contrast hover:bg-accent/90 focus:ring-accent disabled:hover:bg-accent w-full rounded-full px-4 py-2.5 text-sm font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 		>
 			Analyze Job Fit
 		</button>
@@ -363,14 +363,12 @@
 
 {#snippet loadingState()}
 	<div class="flex flex-col items-center justify-center gap-4 py-12">
-		<div
-			class="h-10 w-10 animate-spin rounded-full border-4 border-slate-400 border-t-slate-700 dark:border-slate-600 dark:border-t-slate-300"
-		></div>
-		<p class="text-sm font-medium text-slate-700 dark:text-slate-300">Analyzing job fit...</p>
+		<div class="border-edge border-t-accent h-10 w-10 animate-spin rounded-full border-4"></div>
+		<p class="text-ink-soft text-sm font-medium">Analyzing job fit...</p>
 		<button
 			type="button"
 			onclick={handleCancel}
-			class="text-sm text-slate-500 underline transition-colors hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+			class="text-ink-muted hover:text-accent text-sm underline transition-colors"
 		>
 			Cancel
 		</button>
@@ -405,21 +403,23 @@
 						{fitLabel(analysis.overallFit)}
 					</span>
 				</div>
-				<p class="text-sm text-slate-700 dark:text-slate-300">{analysis.overallSummary}</p>
+				<p class="text-ink-soft text-sm">{analysis.overallSummary}</p>
 			</div>
 
 			<!-- Strengths -->
 			{#if analysis.strengths.length > 0}
 				<div class="flex flex-col gap-3">
-					<h3 class="text-lg font-bold text-slate-900 dark:text-white">Strengths</h3>
+					<h3 class="font-display text-ink text-lg font-bold">Strengths</h3>
 					{#each analysis.strengths as strength (strength.title)}
-						<div class="rounded-md bg-slate-600 p-3 text-white shadow-sm sm:p-4 dark:bg-slate-700">
-							<h4 class="mb-1 text-sm font-semibold">{strength.title}</h4>
-							<p class="mb-2 text-xs text-slate-200">{strength.description}</p>
+						<div class="border-edge bg-canvas rounded-xl border p-3 sm:p-4">
+							<h4 class="text-ink mb-1 text-sm font-semibold">{strength.title}</h4>
+							<p class="text-ink-soft mb-2 text-xs">{strength.description}</p>
 							{#if strength.resumeReferences.length > 0}
 								<div class="flex flex-wrap gap-1">
 									{#each strength.resumeReferences as ref (ref)}
-										<span class="rounded-sm bg-slate-500 px-2 py-0.5 text-xs">{ref}</span>
+										<span class="bg-accent-tint text-accent rounded-full px-2 py-0.5 text-xs"
+											>{ref}</span
+										>
 									{/each}
 								</div>
 							{/if}
@@ -431,13 +431,13 @@
 			<!-- Gaps -->
 			{#if analysis.gaps.length > 0}
 				<div class="flex flex-col gap-3">
-					<h3 class="text-lg font-bold text-slate-900 dark:text-white">Gaps</h3>
+					<h3 class="font-display text-ink text-lg font-bold">Gaps</h3>
 					{#each analysis.gaps as gap (gap.title)}
-						<div class="rounded-md bg-slate-600 p-3 text-white shadow-sm sm:p-4 dark:bg-slate-700">
-							<h4 class="mb-1 text-sm font-semibold">{gap.title}</h4>
-							<p class="text-xs text-slate-200">{gap.description}</p>
+						<div class="border-edge bg-canvas rounded-xl border p-3 sm:p-4">
+							<h4 class="text-ink mb-1 text-sm font-semibold">{gap.title}</h4>
+							<p class="text-ink-soft text-xs">{gap.description}</p>
 							{#if gap.mitigation}
-								<p class="mt-2 text-xs text-green-300">
+								<p class="mt-2 text-xs text-emerald-700 dark:text-emerald-400">
 									<span class="font-semibold">Mitigation:</span>
 									{gap.mitigation}
 								</p>
@@ -449,16 +449,16 @@
 
 			<!-- Get in Touch -->
 			<div class="flex flex-col gap-3">
-				<h3 class="text-lg font-bold text-slate-900 dark:text-white">
+				<h3 class="font-display text-ink text-lg font-bold">
 					{contactHeading(analysis.overallFit)}
 				</h3>
 				<div
-					class="grid grid-cols-1 gap-2 rounded-md bg-slate-600 p-4 text-sm text-white shadow-sm min-[500px]:grid-cols-2 dark:bg-slate-700"
+					class="border-accent/20 bg-accent-tint grid grid-cols-1 gap-2 rounded-xl border p-4 text-sm min-[500px]:grid-cols-2"
 				>
 					<!-- mailto uses +resume suffix for tracking -->
 					<a
 						href="mailto:tobias.lolax+resume@gmail.com"
-						class="flex items-center gap-2 font-normal text-white no-underline transition-colors hover:text-blue-300"
+						class="text-ink-soft hover:text-accent flex items-center gap-2 font-normal no-underline transition-colors"
 					>
 						<svg
 							class="h-4 w-4 shrink-0"
@@ -475,7 +475,7 @@
 					<a
 						href="https://www.linkedin.com/in/tobiaslolax/"
 						target="_blank"
-						class="flex items-center gap-2 font-normal text-white no-underline transition-colors hover:text-blue-300"
+						class="text-ink-soft hover:text-accent flex items-center gap-2 font-normal no-underline transition-colors"
 					>
 						<svg
 							class="h-4 w-4 shrink-0"
@@ -495,7 +495,7 @@
 			<button
 				type="button"
 				onclick={resetToInput}
-				class="text-sm text-slate-500 underline transition-colors hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200"
+				class="text-ink-muted hover:text-accent text-sm underline transition-colors"
 			>
 				Analyze another job description
 			</button>
@@ -522,16 +522,16 @@
 			</svg>
 		</div>
 		<div class="text-center">
-			<p class="text-sm font-medium text-slate-900 dark:text-white">Something went wrong</p>
-			<p class="mt-1 text-xs text-slate-600 dark:text-slate-400">{errorMessage}</p>
+			<p class="text-ink text-sm font-medium">Something went wrong</p>
+			<p class="text-ink-muted mt-1 text-xs">{errorMessage}</p>
 			{#if errorCode}
-				<p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Code: {errorCode}</p>
+				<p class="text-ink-muted mt-1 text-xs">Code: {errorCode}</p>
 			{/if}
 		</div>
 		<button
 			type="button"
 			onclick={retrySubmit}
-			class="rounded-md bg-slate-700 px-6 py-2 text-sm font-medium text-white transition-colors hover:bg-slate-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none dark:bg-slate-600 dark:hover:bg-slate-500"
+			class="bg-accent text-accent-contrast hover:bg-accent/90 focus:ring-accent rounded-full px-6 py-2 text-sm font-semibold transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none"
 		>
 			Try Again
 		</button>

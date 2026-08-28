@@ -17,7 +17,7 @@
 		<defs>
 			<path id="circlePath" d={circlePath} fill="none" />
 		</defs>
-		<text class="fill-current text-sm uppercase dark:fill-slate-300">
+		<text class="fill-ink-muted text-sm uppercase">
 			<textPath href="#circlePath" textLength={circumference} lengthAdjust="spacing"
 				>{description}</textPath
 			>

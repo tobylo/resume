@@ -8,14 +8,23 @@
 	import Certifier from '$lib/Certifier.svelte';
 	import Projects from '$lib/Projects.svelte';
 	import HobbyProjects from '$lib/HobbyProjects.svelte';
-	import ThemeToggle from '$lib/ThemeToggle.svelte';
-	import JobFitButton from '$lib/JobFitButton.svelte';
+	import TopBar from '$lib/TopBar.svelte';
+	import JobFitCard from '$lib/JobFitCard.svelte';
 	import JobFitDialog from '$lib/JobFitDialog.svelte';
+	import { projects } from '$lib/projects';
+	import { resumeContext } from '$lib/job-fit/resume-data';
 	import type { AnalyzeResponse, AnalyzeErrorResponse } from '$lib/job-fit/types';
 
 	let dialogOpen = $state(false);
 	let dialog: JobFitDialog;
 	let abortController: AbortController | null = null;
+
+	const stats = [
+		{ value: `${new Date().getFullYear() - 2009}`, label: 'years shipping software' },
+		{ value: `${projects.length}`, label: 'client engagements' },
+		{ value: `${resumeContext.certifications.length}`, label: 'active & past certifications' },
+		{ value: 'K8s', label: 'CKA + CKAD certified' }
+	];
 
 	async function handleAnalyze(data: { jobDescription: string; turnstileToken: string }) {
 		abortController?.abort();
@@ -53,75 +62,84 @@
 	function handleCancel() {
 		abortController?.abort();
 	}
+
+	function openDialog() {
+		dialogOpen = true;
+	}
 </script>
 
-<div class="print-container flex min-h-dvh w-full justify-center bg-slate-700 dark:bg-slate-900">
+<div id="top" class="print-container bg-canvas text-ink flex min-h-dvh w-full flex-col">
+	<TopBar onanalyze={openDialog} />
+
 	<div
-		class="print-container relative flex w-full max-w-6xl flex-col bg-slate-300 shadow-2xl dark:bg-slate-800"
+		class="print-container mx-auto flex w-full max-w-6xl flex-1 flex-col gap-6 px-4 py-6 sm:px-8"
 	>
-		<!-- Theme Toggle -->
-		<div class="absolute top-4 right-4 z-10">
-			<ThemeToggle />
-		</div>
-		<!-- Hero Section -->
-		<div class="flex flex-col items-center gap-6 p-6 sm:flex-row sm:items-center sm:p-8">
-			<div class="print-hide w-56 shrink-0 sm:w-72">
+		<!-- Hero -->
+		<section
+			class="resume-card border-edge bg-card flex flex-col items-center gap-6 rounded-2xl border p-6 sm:flex-row sm:p-8"
+		>
+			<div class="print-hide w-56 shrink-0 sm:w-64">
 				<Profile />
 			</div>
 
-			<div
-				class="not-prose flex flex-col justify-center gap-1 text-center sm:text-left dark:text-white"
-			>
-				<h1 class="font-sans text-3xl font-bold sm:text-4xl">Tobias Lolax</h1>
-				<p class="font-serif text-lg italic">Curious tinkerer by nature</p>
-				<p class="mt-1 font-serif text-sm italic sm:text-base">
+			<div class="not-prose flex flex-col justify-center gap-2 text-center sm:text-left">
+				<h1 class="font-display text-3xl font-bold sm:text-4xl">Tobias Lolax</h1>
+				<p class="text-ink-muted text-base sm:text-lg">Curious tinkerer by nature</p>
+				<p class="text-ink-soft mt-1 text-sm sm:text-base">
 					A founder, CEO, consultant, software developer, hardware tinkerer, father of two, likes
 					gaming (PC/console/board), hitting mountainbike trails with friends, caffè macchiato and being
 					social!
 				</p>
 				<div class="print-hide mt-3 flex flex-wrap justify-center gap-2 sm:justify-start">
-					<span class="rounded-sm bg-slate-600 px-2 py-1 text-xs text-white"
+					<span class="bg-accent-tint text-accent rounded-full px-3 py-1 text-xs font-semibold"
 						>Cloud-native solutions</span
 					>
-					<span class="rounded-sm bg-slate-600 px-2 py-1 text-xs text-white"
+					<span class="bg-accent-tint text-accent rounded-full px-3 py-1 text-xs font-semibold"
 						>Interactive web apps</span
 					>
-					<span class="rounded-sm bg-slate-600 px-2 py-1 text-xs text-white"
+					<span class="bg-accent-tint text-accent rounded-full px-3 py-1 text-xs font-semibold"
 						>Frontend exploration</span
 					>
-					<span class="rounded-sm bg-slate-600 px-2 py-1 text-xs text-white"
+					<span class="bg-accent-tint text-accent rounded-full px-3 py-1 text-xs font-semibold"
 						>Exploring Zig & Go</span
 					>
 				</div>
-				<div class="mt-4">
-					<ContactCard />
-				</div>
 			</div>
+		</section>
+
+		<!-- Stat row -->
+		<div class="print-hide not-prose grid grid-cols-2 gap-4 lg:grid-cols-4">
+			{#each stats as stat (stat.label)}
+				<div class="border-edge bg-card flex flex-col gap-0.5 rounded-2xl border px-5 py-4">
+					<div class="font-display text-accent text-3xl font-extrabold">{stat.value}</div>
+					<div class="text-ink-muted text-xs sm:text-sm">{stat.label}</div>
+				</div>
+			{/each}
 		</div>
 
 		<!-- Main Content -->
-		<div class="grid flex-1 grid-cols-1 gap-6 p-8 pt-0 sm:p-12 sm:pt-0 lg:grid-cols-[1fr_2fr]">
-			<!-- Left Column: Education & Certifications -->
-			<div class="not-prose flex flex-col gap-6 dark:text-white">
-				<div class="overflow-hidden rounded-sm bg-slate-600 text-white shadow-md">
-					<div class="px-6 py-4">
-						<h2 class="mb-2 text-xl font-bold">Education</h2>
-						<p class="text-sm sm:text-base">
-							Bachelor of Engineering, Information Technology, 2005-2009, Novia University of
-							Applied Sciences
-						</p>
-					</div>
-				</div>
+		<div class="print-grid grid flex-1 grid-cols-1 gap-6 lg:grid-cols-[2fr_1fr]">
+			<!-- Work column -->
+			<section id="work" class="scroll-mt-20">
+				<Projects />
+			</section>
 
-				<div class="overflow-hidden rounded-sm bg-slate-600 text-white shadow-md">
-					<div class="px-6 py-4">
-						<h2 class="mb-2 text-xl font-bold">Certifications</h2>
+			<!-- Sidebar -->
+			<div class="not-prose flex flex-col gap-6">
+				<JobFitCard onanalyze={openDialog} />
+
+				<div
+					id="certifications"
+					class="resume-card border-edge bg-card scroll-mt-20 overflow-hidden rounded-2xl border"
+				>
+					<div class="px-6 py-5">
+						<h2 class="font-display mb-3 text-lg font-bold">Certifications</h2>
 						<div class="grid grid-cols-[auto_1fr] gap-2 text-xs sm:text-sm">
 							<Certifier tooltip="The Linux Foundation">
 								<LinuxFoundationLogo class="h-full" />
 							</Certifier>
 							<a
-								class="font-normal text-white no-underline hover:text-blue-400"
+								class="text-accent font-normal no-underline hover:underline"
 								href="https://www.credly.com/badges/591adb36-1424-4119-81e2-2ee806063a41"
 								target="_blank">Kubernetes Administrator</a
 							>
@@ -130,7 +148,7 @@
 								<LinuxFoundationLogo class="h-full" />
 							</Certifier>
 							<a
-								class="font-normal text-white no-underline hover:text-blue-400"
+								class="text-accent font-normal no-underline hover:underline"
 								href="https://www.credly.com/badges/ea350be1-0743-44ec-873e-fe214628e15d"
 								target="_blank">Kubernetes Application Developer</a
 							>
@@ -139,7 +157,7 @@
 								<MicrosoftLogo class="h-full" />
 							</Certifier>
 							<a
-								class="font-normal text-white no-underline hover:text-blue-400"
+								class="text-accent font-normal no-underline hover:underline"
 								href="https://learn.microsoft.com/api/credentials/share/en-us/tobylo-activesolution/66F629B1B2DF4B7A"
 								target="_blank">DevOps Engineer Expert</a
 							>
@@ -148,7 +166,7 @@
 								<MicrosoftLogo class="h-full" />
 							</Certifier>
 							<a
-								class="font-normal text-white no-underline hover:text-blue-400"
+								class="text-accent font-normal no-underline hover:underline"
 								href="https://learn.microsoft.com/api/credentials/share/en-us/tobylo-activesolution/5F903E01ED02CCA5"
 								target="_blank">Azure Cosmos DB Developer Specialty</a
 							>
@@ -157,7 +175,7 @@
 								<MicrosoftLogo class="h-full" />
 							</Certifier>
 							<a
-								class="font-normal text-white no-underline hover:text-blue-400"
+								class="text-accent font-normal no-underline hover:underline"
 								href="https://learn.microsoft.com/api/credentials/share/en-us/tobylo-activesolution/C654B890A7D89E44"
 								target="_blank">Azure Administrator Associate</a
 							>
@@ -185,9 +203,19 @@
 					</div>
 				</div>
 
-				<div class="overflow-hidden rounded-sm bg-slate-600 text-white shadow-md">
-					<div class="px-6 py-4">
-						<h2 class="mb-2 text-xl font-bold">Courses</h2>
+				<div class="resume-card border-edge bg-card overflow-hidden rounded-2xl border">
+					<div class="px-6 py-5">
+						<h2 class="font-display mb-3 text-lg font-bold">Education</h2>
+						<p class="text-sm sm:text-base">
+							Bachelor of Engineering, Information Technology, 2005-2009, Novia University of
+							Applied Sciences
+						</p>
+					</div>
+				</div>
+
+				<div class="resume-card border-edge bg-card overflow-hidden rounded-2xl border">
+					<div class="px-6 py-5">
+						<h2 class="font-display mb-3 text-lg font-bold">Courses</h2>
 						<div class="grid grid-cols-[auto_1fr] gap-2 text-xs sm:text-sm">
 							<Certifier tooltip="Cisco Networking Academy">
 								<CiscoLogo class="h-full" />
@@ -197,38 +225,40 @@
 					</div>
 				</div>
 
-				<div class="overflow-hidden rounded-sm bg-slate-600 text-white shadow-md">
-					<div class="px-6 py-4">
-						<h2 class="mb-2 text-xl font-bold">Languages</h2>
+				<div class="resume-card border-edge bg-card overflow-hidden rounded-2xl border">
+					<div class="px-6 py-5">
+						<h2 class="font-display mb-3 text-lg font-bold">Languages</h2>
 						<div class="flex flex-col gap-1 text-xs sm:text-sm">
 							<div class="flex justify-between">
 								<span>Swedish</span>
-								<span class="text-slate-300">Native</span>
+								<span class="text-ink-muted">Native</span>
 							</div>
 							<div class="flex justify-between">
 								<span>English</span>
-								<span class="text-slate-300">Fluent</span>
+								<span class="text-ink-muted">Fluent</span>
 							</div>
 							<div class="flex justify-between">
 								<span>Finnish</span>
-								<span class="text-slate-300">Basic</span>
+								<span class="text-ink-muted">Basic</span>
 							</div>
 						</div>
 					</div>
 				</div>
+
 				<!-- Hobby Projects -->
 				<HobbyProjects />
 			</div>
-
-			<!-- Right Column: Projects -->
-			<div>
-				<Projects />
-			</div>
 		</div>
 	</div>
+
+	<!-- Footer -->
+	<footer class="border-edge border-t">
+		<div class="not-prose mx-auto w-full max-w-6xl px-4 py-6 sm:px-8">
+			<ContactCard />
+		</div>
+	</footer>
 </div>
 
-<JobFitButton onclick={() => (dialogOpen = true)} />
 <JobFitDialog
 	bind:open={dialogOpen}
 	onsubmit={handleAnalyze}

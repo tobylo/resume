@@ -15,15 +15,15 @@
 	}
 </script>
 
-<div class="not-prose flex flex-col gap-4 dark:text-white">
+<div class="not-prose flex flex-col gap-4">
 	<div class="flex flex-col gap-2">
 		<div class="flex items-center justify-between">
-			<h2 class="text-base font-bold xl:text-xl">Projects</h2>
+			<h2 class="font-display text-lg font-bold xl:text-xl">Selected work</h2>
 			<button
 				type="button"
-				class="print-hidden flex cursor-pointer items-center gap-1 rounded-sm px-2 py-1 text-xs transition-colors {selectedTech
-					? 'bg-blue-500 text-white'
-					: 'bg-slate-400 text-slate-800 hover:bg-slate-500'}"
+				class="print-hidden flex cursor-pointer items-center gap-1 rounded-full px-3 py-1 text-xs transition-colors {selectedTech
+					? 'bg-accent text-accent-contrast'
+					: 'border-edge bg-card text-ink-soft hover:border-accent/40 hover:text-accent border'}"
 				onclick={() => (filterExpanded = !filterExpanded)}
 			>
 				<span>Filter{selectedTech ? `: ${selectedTech}` : ''}</span>
@@ -49,10 +49,10 @@
 					{#each allTechnologies as tech (tech)}
 						<button
 							type="button"
-							class="cursor-pointer rounded-sm px-2 py-0.5 text-xs transition-colors {selectedTech ===
+							class="cursor-pointer rounded-full px-2.5 py-0.5 text-xs transition-colors {selectedTech ===
 							tech
-								? 'bg-blue-500 text-white'
-								: 'bg-slate-400 text-slate-800 hover:bg-slate-500'}"
+								? 'bg-accent text-accent-contrast'
+								: 'border-edge bg-card text-ink-soft hover:border-accent/40 hover:text-accent border'}"
 							onclick={() => toggleFilter(tech)}
 						>
 							{tech}
@@ -62,7 +62,7 @@
 				{#if selectedTech}
 					<button
 						type="button"
-						class="cursor-pointer self-start text-xs text-slate-600 underline hover:text-slate-800"
+						class="text-accent hover:text-accent/80 cursor-pointer self-start text-xs underline"
 						onclick={() => (selectedTech = null)}
 					>
 						Clear filter
@@ -72,28 +72,13 @@
 		{/if}
 	</div>
 
-	<div class="relative flex flex-col">
-		<!-- Timeline line -->
-		<div
-			class="timeline-line absolute top-2 bottom-2 left-1.75 w-0.5 bg-slate-400 dark:bg-slate-500"
-		></div>
-
+	<div class="flex flex-col gap-3">
 		{#each filteredProjects as project (project.id)}
-			<div class="timeline-row relative flex gap-4 pb-4 last:pb-0">
-				<!-- Timeline dot -->
-				<div
-					class="timeline-dot relative z-10 mt-2 h-4 w-4 shrink-0 rounded-full border-2 border-slate-400 bg-slate-300 dark:border-slate-500 dark:bg-slate-800"
-				></div>
-
-				<!-- Card -->
-				<div class="flex-1">
-					<ProjectCard {project} />
-				</div>
-			</div>
+			<ProjectCard {project} />
 		{/each}
 	</div>
 
 	{#if filteredProjects.length === 0}
-		<p class="text-center text-slate-600">No projects found with this technology.</p>
+		<p class="text-ink-muted text-center">No projects found with this technology.</p>
 	{/if}
 </div>
