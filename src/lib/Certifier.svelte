@@ -26,7 +26,7 @@
 </script>
 
 <div
-	class="inline-flex items-center justify-center rounded-full p-0 text-sm font-medium text-white transition-colors hover:text-gray-400 focus-visible:text-white focus-visible:ring-3 focus-visible:ring-offset-2"
+	class="text-ink-soft hover:text-accent focus-visible:text-accent focus-visible:ring-accent inline-flex items-center justify-center rounded-full p-0 text-sm font-medium transition-colors focus-visible:ring-3 focus-visible:ring-offset-2"
 	use:melt={$trigger}
 	aria-label="Certifier"
 >
@@ -37,7 +37,7 @@
 	<div
 		use:melt={$content}
 		transition:fade={{ duration: 100 }}
-		class="z-10 rounded-lg bg-white shadow-sm"
+		class="border-edge bg-card text-ink z-10 rounded-lg border shadow-sm"
 	>
 		<div use:melt={$arrow}></div>
 		<p class="px-4 py-1">{tooltip}</p>

@@ -4,6 +4,21 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script>
+			// Apply the theme before first paint to avoid a flash of the wrong theme.
+			// Keep in sync with src/lib/theme.svelte.ts.
+			(function () {
+				try {
+					const stored = localStorage.getItem('theme');
+					const dark = stored
+						? stored === 'dark'
+						: window.matchMedia('(prefers-color-scheme: dark)').matches;
+					document.documentElement.classList.toggle('dark', dark);
+				} catch {
+					/* no theme persistence available */
+				}
+			})();
+		</script>
 		<title>Tobias Lolax | Software Developer & Consultant</title>
 		<meta
 			name="description"

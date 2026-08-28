@@ -10,7 +10,7 @@
 <button
 	type="button"
 	onclick={() => theme.toggle()}
-	class="cursor-pointer rounded-full bg-slate-600 p-2 text-white transition-colors hover:bg-slate-500 dark:bg-slate-400 dark:text-slate-900 dark:hover:bg-slate-300"
+	class="border-edge bg-card text-ink-soft hover:bg-accent-tint hover:text-accent cursor-pointer rounded-full border p-2 transition-colors"
 	aria-label="Toggle dark mode"
 >
 	{#if theme.dark}

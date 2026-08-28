@@ -5,6 +5,22 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+	--color-canvas: #f4f7f9;
+	--color-card: #ffffff;
+	--color-edge: #e3e8ee;
+	--color-ink: #14202b;
+	--color-ink-soft: #37475a;
+	--color-ink-muted: #5b6b7b;
+	--color-accent: #206d87;
+	--color-accent-tint: #e4eef2;
+	--color-accent-contrast: #ffffff;
+
+	--font-display:
+		'Bricolage Grotesque Variable', 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	--font-sans:
+		'Instrument Sans Variable', 'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui,
+		sans-serif;
+
 	@keyframes spin-backwards {
 		from {
 			transform: rotate(360deg);
@@ -13,6 +29,19 @@
 			transform: rotate(0deg);
 		}
 	}
+}
+
+/* Dark theme: swap the semantic tokens under the .dark class (set on <html>). */
+.dark {
+	--color-canvas: #0f171e;
+	--color-card: #16212b;
+	--color-edge: #26323e;
+	--color-ink: #e8eef3;
+	--color-ink-soft: #b4c2cd;
+	--color-ink-muted: #8fa1b0;
+	--color-accent: #4da3bf;
+	--color-accent-tint: #16333f;
+	--color-accent-contrast: #0b1218;
 }
 
 /*
@@ -29,12 +58,26 @@
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: var(--color-gray-200, currentcolor);
+		border-color: var(--color-edge, currentcolor);
 	}
 }
 
 /* Print styles */
 @media print {
+	/* Force the light palette on paper, regardless of the active theme */
+	:root,
+	.dark {
+		--color-canvas: #ffffff;
+		--color-card: #ffffff;
+		--color-edge: #cccccc;
+		--color-ink: #000000;
+		--color-ink-soft: #333333;
+		--color-ink-muted: #666666;
+		--color-accent: #000000;
+		--color-accent-tint: #ffffff;
+		--color-accent-contrast: #ffffff;
+	}
+
 	body {
 		background: white !important;
 		font-size: 12pt;
@@ -42,64 +85,53 @@
 		padding: 0 !important;
 	}
 
-	/* Remove padding from containers */
+	/* Remove chrome from page containers and compact their spacing */
 	.print-container {
 		padding: 0 !important;
 		margin: 0 !important;
-	}
-
-	/* Reduce padding and gaps for print */
-	.p-6,
-	.p-8,
-	.sm\:p-8,
-	.sm\:p-12 {
-		padding: 0.5rem !important;
-	}
-
-	.gap-6,
-	.gap-4 {
+		border: none !important;
+		outline: none !important;
+		box-shadow: none !important;
 		gap: 0.5rem !important;
 	}
 
-	.pb-4 {
-		padding-bottom: 0.25rem !important;
-	}
-
-	/* 1. Single column layout */
-	.lg\:grid-cols-\[1fr_2fr\] {
+	/* Single column layout */
+	.print-grid {
 		grid-template-columns: 1fr !important;
+		gap: 0.5rem !important;
 	}
 
-	/* 2. Remove card borders, use divider lines */
-	.bg-slate-600,
-	.bg-slate-700 {
-		background: none !important;
+	/* Cards become divider-separated blocks */
+	.resume-card {
+		display: block !important;
+		background: white !important;
+		color: black !important;
 		border: none !important;
 		border-bottom: 1px solid #ddd !important;
 		border-radius: 0 !important;
-		padding-left: 0 !important;
-		padding-right: 0 !important;
-	}
-
-	button.block {
-		background: none !important;
-		border: none !important;
-		border-bottom: 1px solid #eee !important;
-		border-radius: 0 !important;
+		box-shadow: none !important;
+		overflow: visible !important;
+		break-inside: avoid;
 		padding: 0.4rem 0 !important;
+		cursor: default !important;
 	}
 
-	/* 3. Compact header - hide profile image */
-	.print-hide {
+	.resume-card > div {
+		padding: 0 !important;
+	}
+
+	/* Hide web-only elements */
+	.print-hide,
+	.print-hidden {
 		display: none !important;
 	}
 
-	/* 4. Technology tags as plain text */
-	.expanded-content .flex.flex-wrap.gap-1 {
+	/* Technology tags as plain comma-separated text */
+	.expanded-content .tech-tags {
 		display: block !important;
 	}
 
-	.expanded-content .flex.flex-wrap.gap-1 span {
+	.tech-tag {
 		background: none !important;
 		padding: 0 !important;
 		font-size: 0.7rem !important;
@@ -107,74 +139,12 @@
 		display: inline !important;
 	}
 
-	.expanded-content .flex.flex-wrap.gap-1 span::after {
+	.expanded-content .tech-tag::after {
 		content: ', ';
 	}
 
-	.expanded-content .flex.flex-wrap.gap-1 span:last-child::after {
+	.expanded-content .tech-tag:last-child::after {
 		content: '';
-	}
-
-	/* Remove background colors for printing */
-	.bg-slate-700,
-	.bg-slate-600,
-	.bg-slate-500,
-	.bg-slate-400,
-	.bg-slate-300,
-	.bg-gray-200 {
-		background: white !important;
-		color: black !important;
-	}
-
-	/* Make cards have borders instead of backgrounds */
-	.bg-slate-600,
-	.bg-slate-700 {
-		border: 1px solid #ccc !important;
-	}
-
-	/* Hide interactive elements */
-	.animate-\[spin-backwards_50s_linear_infinite\] {
-		animation: none !important;
-	}
-
-	/* Ensure text is readable */
-	.text-white {
-		color: black !important;
-	}
-
-	.text-slate-300 {
-		color: #666 !important;
-	}
-
-	/* Hide elements marked for print */
-	.print-hidden,
-	[aria-label='Toggle dark mode'] {
-		display: none !important;
-	}
-
-	/* Remove shadow from cards */
-	.shadow-2xl,
-	.shadow-md {
-		box-shadow: none !important;
-	}
-
-	/* Remove all borders/shadows from main containers */
-	.print-container {
-		border: none !important;
-		outline: none !important;
-		box-shadow: none !important;
-		border-width: 0 !important;
-	}
-
-	/* Page break control */
-	.overflow-hidden {
-		overflow: visible !important;
-	}
-
-	/* Ensure project cards display as blocks, not buttons */
-	button.block {
-		display: block !important;
-		cursor: default !important;
 	}
 
 	/* Ensure links are visible */
@@ -194,11 +164,6 @@
 		content: '';
 	}
 
-	/* Prevent page breaks inside cards */
-	.rounded-sm {
-		break-inside: avoid;
-	}
-
 	/* Show expanded content, hide collapsed content */
 	.expanded-content {
 		display: block !important;
@@ -206,16 +171,5 @@
 
 	.collapsed-content {
 		display: none !important;
-	}
-
-	/* Hide timeline elements for print */
-	.timeline-line,
-	.timeline-dot {
-		display: none !important;
-	}
-
-	/* Remove timeline gap on project rows */
-	.timeline-row {
-		gap: 0 !important;
 	}
 }
