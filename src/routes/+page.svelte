@@ -87,8 +87,8 @@
 				<p class="text-ink-muted text-base sm:text-lg">Curious tinkerer by nature</p>
 				<p class="text-ink-soft mt-1 text-sm sm:text-base">
 					A founder, CEO, consultant, software developer, hardware tinkerer, father of two, likes
-					gaming (PC/console/board), hitting mountainbike trails with friends, caffè macchiato and being
-					social!
+					gaming (PC/console/board), hitting mountainbike trails with friends, caffè macchiato and
+					being social!
 				</p>
 				<div class="print-hide mt-3 flex flex-wrap justify-center gap-2 sm:justify-start">
 					<span class="bg-accent-tint text-accent rounded-full px-3 py-1 text-xs font-semibold"

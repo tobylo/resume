@@ -1,10 +1,15 @@
 <script lang="ts">
 	import type { FitAnalysis, OverallFit } from '$lib/job-fit/types';
-	import { PUBLIC_TURNSTILE_SITE_KEY } from '$env/static/public';
+	import * as publicEnv from '$env/static/public';
 	import { theme } from '$lib/theme.svelte';
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { tick } from 'svelte';
 	import { fade, fly } from 'svelte/transition';
+
+	// Optional at build time: without a key the CAPTCHA never renders and submit
+	// stays disabled, but the site still builds and prerenders.
+	const PUBLIC_TURNSTILE_SITE_KEY =
+		(publicEnv as Record<string, string | undefined>).PUBLIC_TURNSTILE_SITE_KEY ?? '';
 
 	const MAX_CHARS = 10000;
 	const MIN_CHARS = 50;
