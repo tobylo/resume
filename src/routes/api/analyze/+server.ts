@@ -159,10 +159,15 @@ async function callLLM(
 
 	const message = await client.messages.create({
 		model: 'claude-sonnet-5-5',
-		max_tokens: 2048,
+		max_tokens: 8192,
 		system: systemPrompt,
 		messages: [{ role: 'user', content: jobDescription }]
 	});
+
+	if (message.stop_reason === 'max_tokens') {
+		console.error('LLM response truncated at max_tokens');
+		throw new Error('LLM response truncated');
+	}
 
 	const textContent = message.content.find((c) => c.type === 'text');
 	if (!textContent || textContent.type !== 'text') {
