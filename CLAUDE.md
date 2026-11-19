@@ -1,58 +1,10 @@
-﻿# Resume Site Development Guidelines
+﻿@AGENTS.md
 
-Auto-generated from all feature plans. Last updated: 2026-02-05
+## Claude Code and T3
 
-## Active Technologies
+AGENTS.md, imported above, holds the rules for every harness. These add what is specific to Claude Code and T3.
 
-- TypeScript 5.9 (strict mode)
-- SvelteKit 2.49 + Svelte 5.46
-- Tailwind CSS 4.1
-- Vite 7.3
-- Bun (runtime)
-
-## Project Structure
-
-```text
-src/
-├── lib/
-│   ├── projects/          # Work project data + types
-│   ├── hobby-projects/    # Hobby project data + types (001-hobby-projects)
-│   ├── job-fit/           # Job fit analyzer module (002-job-fit-analyzer)
-│   ├── *.svelte           # Reusable components
-│   └── theme.svelte.ts    # Theme state
-├── routes/
-│   ├── api/analyze/       # Job fit API endpoint (002-job-fit-analyzer)
-│   ├── +page.svelte       # Main resume page
-│   ├── +page.ts           # Prerender config
-│   └── +layout.svelte     # Root layout
-└── app.css                # Global styles + print styles
-static/
-├── mugshot.webp
-└── hobby-projects/        # Hobby project thumbnails
-```
-
-## Commands
-
-```bash
-bun run dev       # Start dev server
-bun run build     # Build static site
-bun run preview   # Preview build
-bun run check     # TypeScript + Svelte type checking
-bun run lint      # Prettier + ESLint
-bun run format    # Auto-format
-```
-
-## Code Style
-
-- TypeScript: Strict mode, no `any`
-- Svelte: Runes only (`$state`, `$derived`, `$effect`, `$props`), no `$:` or `export let`
-- Styling: Tailwind CSS 4 only, no inline styles
-- HTML: Semantic elements, accessible, keyboard-navigable
-
-## Recent Changes
-
-- 002-job-fit-analyzer: Job fit analyzer with LLM integration (Cloudflare Pages + Claude API)
-- 001-hobby-projects: Adding hobby projects section with image cards
-
-<!-- MANUAL ADDITIONS START -->
-<!-- MANUAL ADDITIONS END -->
+- **Runs in T3.** Sessions usually run as T3 Code threads on the dev box. When you need the owner, ask with `AskUserQuestion`; T3 pushes it to the owner's phone. Your final message reaches the owner the same way.
+- **Paper.** Use the Paper MCP tools for anything visual: read the guide (`get_guide`, topic `paper-mcp-instructions`) once per session, take values with `get_jsx`, `get_computed_styles` and `get_tokens` (`format: "tailwind"` for the theme), and use screenshots only to check results. When a design change is agreed, make it in Paper first and keep the "Build notes — decisions" artboard current.
+- **Preview.** Check UI changes in the running app (`bun run dev`) at desktop and mobile widths, in both themes, before calling them done.
+- **Attribution.** `.claude/settings.json` turns off commit and PR attribution; keep it that way.
