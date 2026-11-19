@@ -61,6 +61,8 @@ export interface CertificationEntry {
 	name: string;
 	issuer: string;
 	url?: string;
+	/** False for expired or retired certifications. */
+	current: boolean;
 }
 
 export interface LanguageEntry {

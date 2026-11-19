@@ -10,7 +10,12 @@ export const resumeContext: ResumeContext = {
 		institution: education.institution,
 		years: education.years
 	},
-	certifications: certifications.map(({ name, issuer, url }) => ({ name, issuer, url })),
+	certifications: certifications.map(({ name, issuer, url, current }) => ({
+		name,
+		issuer,
+		url,
+		current
+	})),
 	languages: languages.map(({ language, level }) => ({ language, level })),
 	projects: projects.map((p) => ({
 		company: p.company,
