@@ -1,4 +1,4 @@
-import type { Project } from '$lib/projects';
+import type { Project } from '#lib/projects/index.ts';
 
 /** "2024 — now", "2022 — 2023", or "2018" for a single year. */
 export function formatPeriod({ start, end }: Project['period']): string {

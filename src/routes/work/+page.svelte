@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Closing from '$lib/components/Closing.svelte';
+	import Closing from '#lib/components/Closing.svelte';
 </script>
 
 <svelte:head>

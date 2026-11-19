@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { navItems, contact } from '$lib/site';
-	import { jobFit } from '$lib/job-fit/dialog.svelte';
+	import { navItems, contact } from '#lib/site.ts';
+	import { jobFit } from '#lib/job-fit/dialog.svelte.ts';
 	import Button from './Button.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 
@@ -138,9 +138,9 @@
 		</ul>
 
 		<div class="page flex flex-col gap-2.5 pt-8">
-			<Button variant="accent" block onclick={openJobFit}
-				>Is Tobias a fit? Paste the job ad →</Button
-			>
+			<Button variant="accent" block onclick={openJobFit}>
+				Is Tobias a fit? Paste the job ad →
+			</Button>
 			<Button variant="outline" block href="/cv" onclick={closeMenu}>Download CV</Button>
 		</div>
 

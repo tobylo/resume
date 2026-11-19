@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { heroVariants, ROTATE_MS, openTo, worksIn } from '$lib/home';
-	import { contact, person } from '$lib/site';
-	import { jobFit } from '$lib/job-fit/dialog.svelte';
+	import { heroVariants, ROTATE_MS, openTo, worksIn } from '#lib/home.ts';
+	import { contact, person } from '#lib/site.ts';
+	import { jobFit } from '#lib/job-fit/dialog.svelte.ts';
 	import Button from '../Button.svelte';
 
 	let active = $state(0);
@@ -51,8 +51,10 @@
 			<span class="font-semibold lg:font-medium">{person.name}</span>
 			<span class="text-ink-muted lg:text-ink">
 				<span class="hidden lg:inline">&nbsp;·&nbsp;</span>{person.title}<span
-					class="hidden lg:inline">&nbsp;·&nbsp;{person.location}</span
+					class="hidden lg:inline"
 				>
+					&nbsp;·&nbsp;{person.location}
+				</span>
 			</span>
 		</p>
 	</div>

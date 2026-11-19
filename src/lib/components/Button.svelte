@@ -52,7 +52,7 @@
 {#if rest.href !== undefined}
 	<a class={classes} {...rest as HTMLAnchorAttributes}>{@render children()}</a>
 {:else}
-	<button type="button" class={classes} {...rest as HTMLButtonAttributes}
-		>{@render children()}</button
-	>
+	<button type="button" class={classes} {...rest as HTMLButtonAttributes}>
+		{@render children()}
+	</button>
 {/if}
