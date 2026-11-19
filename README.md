@@ -2,7 +2,7 @@
 
 Source for [tobylo.dev](https://tobylo.dev): Tobias Lolax's resume site, with a full engagement timeline, a hobby lab, a printable CV and a job-fit analyzer that compares a pasted job ad against the real project history.
 
-Built with SvelteKit, Svelte 5, Tailwind CSS 4 and Bun, deployed on Cloudflare Pages.
+Built with SvelteKit, Svelte 5, Tailwind CSS 4 and Bun, deployed on Cloudflare Workers.
 
 ```bash
 bun install

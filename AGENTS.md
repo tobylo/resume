@@ -8,7 +8,9 @@ tobylo.dev: the owner's resume site. A recruiter should get role, terms and cont
 
 ## Stack and commands
 
-SvelteKit 3 with Svelte 5, Vite 8, TypeScript (strict), Tailwind CSS 4, Bun, deployed on Cloudflare Pages (`@sveltejs/adapter-cloudflare` 8, the last major that builds for Pages). Kit config lives in `vite.config.ts`; `src/lib` is imported as `#lib/...` with file extensions. Pages are prerendered; only `/api/analyze` runs on the server, reading its bindings from `cloudflare:workers` (typed in `src/cloudflare.d.ts`).
+SvelteKit 3 with Svelte 5, Vite 8, TypeScript (strict), Tailwind CSS 4, Bun, deployed as a Cloudflare Worker with static assets (`@sveltejs/adapter-cloudflare` 9). Kit config lives in `vite.config.ts`; `src/lib` is imported as `#lib/...` with file extensions. Pages are prerendered and served as static assets, with headers from `_headers`; only `/api/analyze` runs in the Worker, reading its bindings from `cloudflare:workers` (typed in `src/cloudflare.d.ts`) and getting its headers from `src/hooks.server.ts`.
+
+Worker config lives in `wrangler.toml`: compatibility date and flags, vars, KV, and the `previews` block. Previews share the compatibility date, flags and assets with production, but take vars and bindings only from `previews`, so a new var or binding goes in both places. Workers Builds deploys `main` and builds a Preview of every other branch. Secrets are not in the repo: `wrangler secret put` for production, `wrangler preview base-config secret put` for Previews.
 
 ```bash
 bun run dev       # dev server
@@ -16,6 +18,7 @@ bun run check     # svelte-check + TypeScript
 bun run lint      # Prettier + ESLint
 bun run format    # auto-format
 bun run build     # production build
+bun run preview   # serve the build with wrangler dev
 ```
 
 Local secrets for the analyzer go in `.dev.vars` (see `.dev.vars.example`).
@@ -47,7 +50,7 @@ Local secrets for the analyzer go in `.dev.vars` (see `.dev.vars.example`).
 - **Gates.** Before every commit: `bun run check`, `bun run lint` and `bun run build` all pass. Commit exactly the tree that passed.
 - **Code Health.** Files a commit adds or changes should score 10 in CodeScene (`code_health_review`). If one can't, say why in the PR.
 - **Review.** Before pushing, run the local adversarial review (`adversarial-review` skill: Codex and CodeRabbit) until both come back clean or every remaining finding is declined with reasoning. On the PR, answer every Codex and CodeRabbit finding: "fixed in <sha>", or the reasoning.
-- **Ready means green.** A PR is ready when its checks pass (CodeRabbit, Cloudflare Pages preview) and its preview has been looked at for the pages it touches, in light and dark, on desktop and mobile widths.
+- **Ready means green.** A PR is ready when its checks pass (CodeRabbit, Workers Builds) and its Preview (the workers.dev URL in the Cloudflare comment) has been looked at for the pages it touches, in light and dark, on desktop and mobile widths.
 - **Commits and PRs.** Write them as the owner would: what changes and why, plain and short. No AI attribution, co-author trailers or "generated with" footers. Commit with the owner's GitHub noreply address (`4395405+tobylo@users.noreply.github.com`): pushes with the private address are rejected.
 - **Scope.** Keep a PR to its slice. Propose other work separately instead of widening it.
 - **Failures.** A tool, check or build that fails is yours once you see it: look into it briefly, fix it if small, otherwise tell the owner what failed, the likely cause and what you recommend.

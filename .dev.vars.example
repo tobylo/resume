@@ -6,3 +6,8 @@ ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
 
 # Cloudflare Turnstile secret key for CAPTCHA verification
 TURNSTILE_SECRET_KEY=0x-your-secret-key-here
+
+# Optional: a Turnstile site key other than the one in wrangler.toml [vars],
+# for example Cloudflare's always-pass test key. Set it here, not in .env:
+# once .dev.vars exists, the build reads it instead of .env.
+# PUBLIC_TURNSTILE_SITE_KEY=1x00000000000000000000AA
