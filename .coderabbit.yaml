@@ -1,0 +1,6 @@
+# Review PRs into the redesign integration branch too, not only into main.
+reviews:
+  auto_review:
+    enabled: true
+    base_branches:
+      - redesign
