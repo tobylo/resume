@@ -6,13 +6,12 @@
 
 	let active = $state(0);
 	let hovered = $state(false);
-	let focused = $state(false);
 	let reducedMotion = $state(false);
 	// Set by the pause button or by picking a headline; holds until the visitor resumes.
 	let stopped = $state(false);
 
 	const rotating = $derived(!stopped && !reducedMotion);
-	const paused = $derived(!rotating || hovered || focused);
+	const paused = $derived(!rotating || hovered);
 
 	function show(index: number) {
 		active = index;
@@ -39,8 +38,6 @@
 	aria-label="Introduction"
 	onmouseenter={() => (hovered = true)}
 	onmouseleave={() => (hovered = false)}
-	onfocusin={() => (focused = true)}
-	onfocusout={() => (focused = false)}
 >
 	<div class="flex items-center gap-3 lg:gap-3.5">
 		<img
@@ -130,22 +127,20 @@
 				<span class="label text-ink-muted pl-2 text-[11px]/[14px] lg:text-xs/4" aria-live="off">
 					{active + 1} / {heroVariants.length}
 				</span>
-				{#if !reducedMotion}
-					<button
-						type="button"
-						onclick={() => (stopped = !stopped)}
-						class="text-ink-muted hover:text-ink inline-flex size-6 items-center justify-center"
-						aria-label={stopped ? 'Resume headline rotation' : 'Pause headline rotation'}
-					>
-						<svg class="size-3.5" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
-							{#if stopped}
-								<path d="M3 1.5v11l9-5.5z" />
-							{:else}
-								<path d="M3 1.5h3v11H3zM8 1.5h3v11H8z" />
-							{/if}
-						</svg>
-					</button>
-				{/if}
+				<button
+					type="button"
+					onclick={() => (stopped = !stopped)}
+					class="text-ink-muted hover:text-ink inline-flex size-6 items-center justify-center motion-reduce:hidden"
+					aria-label={stopped ? 'Resume headline rotation' : 'Pause headline rotation'}
+				>
+					<svg class="size-3.5" viewBox="0 0 14 14" fill="currentColor" aria-hidden="true">
+						{#if stopped}
+							<path d="M3 1.5v11l9-5.5z" />
+						{:else}
+							<path d="M3 1.5h3v11H3zM8 1.5h3v11H8z" />
+						{/if}
+					</svg>
+				</button>
 			</div>
 		</div>
 
