@@ -23,6 +23,17 @@
 		closeMenu();
 		jobFit.show();
 	}
+
+	// The menu is hidden from the desktop breakpoint up; close it there so a modal
+	// that can no longer be seen never leaves the page inert (a tablet rotating, say).
+	$effect(() => {
+		const desktop = window.matchMedia('(width >= 64rem)');
+		const onChange = (event: MediaQueryListEvent) => {
+			if (event.matches) closeMenu();
+		};
+		desktop.addEventListener('change', onChange);
+		return () => desktop.removeEventListener('change', onChange);
+	});
 </script>
 
 <header class="border-line border-b">
