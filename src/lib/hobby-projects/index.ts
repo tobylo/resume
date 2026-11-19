@@ -1,14 +1,14 @@
 export type { HobbyProject } from './types';
 
 import type { HobbyProject } from './types';
+import { devisor } from '$lib/devisor';
 
 export const hobbyProjects: HobbyProject[] = [
 	{
 		id: 'devisor',
-		title: 'Devisor',
-		description:
-			'A development supervisor that structures the work around coding agents, from first spike to shipped feature: exploring ideas with spikes and proofs of concept, shaping the plan, triaging what comes in, and building in greenfield and brownfield codebases. Each step runs as a structured workflow on any agent harness, and every run is traced so the workflows can improve over time. In active development in a private repository; a testbed for how far agentic development can go in 2026.',
-		technologies: ['Go', 'Agentic workflows', 'OpenTelemetry']
+		title: devisor.name,
+		description: `${devisor.tagline} ${devisor.loop} ${devisor.observable.lead} ${devisor.observable.body} ${devisor.status}.`,
+		technologies: [...devisor.technologies]
 	},
 	{
 		id: 'sdd-sub5',

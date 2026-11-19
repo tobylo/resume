@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { devisor } from '$lib/devisor';
+</script>
+
 <!--
 	The one large accent block. In dark mode it becomes a raised surface with a yellow top
 	rule and a yellow wordmark, so the page never glares.
@@ -14,27 +18,22 @@
 				id="devisor-feature"
 				class="font-display dark:text-accent text-5xl/12 lg:text-[72px]/[72px]"
 			>
-				Devisor
+				{devisor.name}
 			</h2>
 			<p class="dark:text-ink text-lg/[26px] font-medium lg:text-[22px]/[31px]">
-				A development supervisor that works alongside you, from first spike to shipped feature. My
-				testbed for how far agentic development can go in 2026.
+				{devisor.tagline}
 			</p>
 		</div>
 		<div class="flex flex-col gap-4 lg:flex-1 lg:gap-6 lg:pt-2">
-			<p class="hidden text-[17px]/7 lg:block">
-				Devisor assists through the whole loop: exploring ideas with spikes and PoCs, shaping the
-				plan, triaging what comes in, and building in greenfield and brownfield codebases. Each step
-				runs as a structured workflow on whichever agent harness you prefer.
-			</p>
+			<p class="hidden text-[17px]/7 lg:block">{devisor.loop}</p>
 			<p class="text-[15px]/6 lg:text-[17px]/7">
-				<strong class="dark:text-ink font-bold">Observable end to end.</strong> Every run is traced, so
-				Devisor can learn from its own work and improve its workflows over time.
+				<strong class="dark:text-ink font-bold">{devisor.observable.lead}</strong>
+				{devisor.observable.body}
 			</p>
 			<div class="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[13px]/4 font-medium">
-				<span class="dark:text-ink-tag hidden lg:inline">Go</span>
-				<span class="dark:text-ink-tag hidden lg:inline">Structured workflows</span>
-				<span class="dark:text-ink-tag hidden lg:inline">Any agent harness</span>
+				{#each devisor.traits as trait (trait)}
+					<span class="dark:text-ink-tag hidden lg:inline">{trait}</span>
+				{/each}
 				<a href="/devisor" class="dark:text-ink font-semibold underline underline-offset-4">
 					<span class="lg:hidden">Read the write-up →</span>
 					<span class="hidden lg:inline">Write-up →</span>
