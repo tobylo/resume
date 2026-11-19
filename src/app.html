@@ -9,15 +9,16 @@
 			// An explicit choice is stored; otherwise follow the system. Keep in sync with
 			// src/lib/theme.svelte.ts.
 			(function () {
+				let stored = null;
 				try {
-					const stored = localStorage.getItem('theme');
-					const dark =
-						stored === 'dark' ||
-						(stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-					document.documentElement.classList.toggle('dark', dark);
+					stored = localStorage.getItem('theme');
 				} catch {
-					/* no storage: the CSS default (light) applies */
+					/* storage blocked: no explicit choice, so the system decides */
 				}
+				const dark =
+					stored === 'dark' ||
+					(stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+				document.documentElement.classList.toggle('dark', dark);
 			})();
 		</script>
 		<meta name="author" content="Tobias Lolax" />

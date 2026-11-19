@@ -19,10 +19,14 @@ function createTheme() {
 	let systemDark = $state(browser && window.matchMedia('(prefers-color-scheme: dark)').matches);
 	const dark = $derived(choice ? choice === 'dark' : systemDark);
 
+	// The page always shows what the store resolved, so the toggle never "does nothing".
+	const apply = () => document.documentElement.classList.toggle('dark', dark);
+
 	if (browser) {
+		apply();
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
 			systemDark = event.matches;
-			document.documentElement.classList.toggle('dark', choice ? choice === 'dark' : systemDark);
+			apply();
 		});
 	}
 
@@ -37,7 +41,7 @@ function createTheme() {
 			} catch {
 				/* the choice still applies for this visit */
 			}
-			document.documentElement.classList.toggle('dark', choice === 'dark');
+			apply();
 		}
 	};
 }
