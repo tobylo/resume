@@ -10,6 +10,9 @@ import { resumeContext } from '$lib/job-fit/resume-data';
 import Anthropic from '@anthropic-ai/sdk';
 import * as z from 'zod';
 
+// Runs on every request; never prerendered.
+export const prerender = false;
+
 const MIN_CHARS = 50;
 const MAX_CHARS = 10000;
 const MAX_BODY_SIZE = 20000;
