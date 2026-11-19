@@ -19,8 +19,9 @@ PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAACYV-gxpOn8XYtRb"
 binding = "KV"
 id = "908063b5c6594e9bb530dd4a9679ecc5"
 
-# Previews do not inherit production settings: they get their own vars and the
-# "KV-preview" namespace. Their secrets come from the Preview base config.
+# Previews share the compatibility settings above but not vars or bindings, so
+# both are repeated here, with the "KV-preview" namespace. Preview secrets come
+# from the Preview base config.
 [previews.vars]
 PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAACYV-gxpOn8XYtRb"
 

@@ -10,7 +10,7 @@ tobylo.dev: the owner's resume site. A recruiter should get role, terms and cont
 
 SvelteKit 3 with Svelte 5, Vite 8, TypeScript (strict), Tailwind CSS 4, Bun, deployed as a Cloudflare Worker with static assets (`@sveltejs/adapter-cloudflare` 9). Kit config lives in `vite.config.ts`; `src/lib` is imported as `#lib/...` with file extensions. Pages are prerendered and served as static assets, with headers from `_headers`; only `/api/analyze` runs in the Worker, reading its bindings from `cloudflare:workers` (typed in `src/cloudflare.d.ts`) and getting its headers from `src/hooks.server.ts`.
 
-Worker config lives in `wrangler.toml`: compatibility date and flags, vars, KV, and the `previews` block that every Preview uses instead (they inherit nothing from production). Workers Builds deploys `main` and builds a Preview of every other branch. Secrets are not in the repo: `wrangler secret put` for production, `wrangler preview base-config secret put` for Previews.
+Worker config lives in `wrangler.toml`: compatibility date and flags, vars, KV, and the `previews` block. Previews share the compatibility date, flags and assets with production, but take vars and bindings only from `previews`, so a new var or binding goes in both places. Workers Builds deploys `main` and builds a Preview of every other branch. Secrets are not in the repo: `wrangler secret put` for production, `wrangler preview base-config secret put` for Previews.
 
 ```bash
 bun run dev       # dev server
