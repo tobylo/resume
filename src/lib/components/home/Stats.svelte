@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { stats } from '$lib/home';
+	import { stats } from '#lib/home.ts';
 </script>
 
 <section

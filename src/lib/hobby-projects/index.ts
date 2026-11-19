@@ -1,7 +1,7 @@
 export type { HobbyProject } from './types';
 
 import type { HobbyProject } from './types';
-import { devisor } from '$lib/devisor';
+import { devisor } from '#lib/devisor.ts';
 
 export const hobbyProjects: HobbyProject[] = [
 	{

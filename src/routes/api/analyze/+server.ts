@@ -4,10 +4,12 @@ import type {
 	AnalyzeResponse,
 	AnalyzeErrorResponse,
 	FitAnalysis
-} from '$lib/job-fit/types';
-import { buildSystemPrompt } from '$lib/job-fit/prompt';
-import { resumeContext } from '$lib/job-fit/resume-data';
+} from '#lib/job-fit/types.ts';
+import { buildSystemPrompt } from '#lib/job-fit/prompt.ts';
+import { resumeContext } from '#lib/job-fit/resume-data.ts';
 import Anthropic from '@anthropic-ai/sdk';
+import type { KVNamespace } from '@cloudflare/workers-types';
+import { env } from 'cloudflare:workers';
 import * as z from 'zod';
 
 // Runs on every request; never prerendered.
@@ -88,7 +90,7 @@ async function verifyTurnstile(token: string, secret: string, ip: string): Promi
 	}
 }
 
-async function checkRateLimit(kv: App.Platform['env']['KV'], ip: string): Promise<boolean> {
+async function checkRateLimit(kv: KVNamespace, ip: string): Promise<boolean> {
 	const now = Date.now();
 	const currentHour = Math.floor(now / 3600000);
 	const prevHour = currentHour - 1;
@@ -207,12 +209,8 @@ async function callLLM(
 	return result;
 }
 
-export const POST: RequestHandler = async ({ request, platform }) => {
-	if (!platform?.env) {
-		return errorResponse(500, 'Server configuration error', 'INTERNAL_ERROR');
-	}
-
-	const { KV, ANTHROPIC_API_KEY, TURNSTILE_SECRET_KEY } = platform.env;
+export const POST: RequestHandler = async ({ request }) => {
+	const { KV, ANTHROPIC_API_KEY, TURNSTILE_SECRET_KEY } = env;
 
 	if (!KV || !ANTHROPIC_API_KEY || !TURNSTILE_SECRET_KEY) {
 		console.error('Missing required bindings/env vars:', {

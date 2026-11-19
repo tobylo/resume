@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { devisor } from '$lib/devisor';
+	import { devisor } from '#lib/devisor.ts';
 </script>
 
 <!--

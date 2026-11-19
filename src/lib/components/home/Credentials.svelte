@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { certifications, education } from '$lib/credentials';
+	import { certifications, education } from '#lib/credentials.ts';
 
 	const current = certifications.filter((cert) => cert.featured && cert.current);
 	const previous = certifications.filter((cert) => cert.featured && !cert.current);
@@ -21,8 +21,9 @@
 					>
 						{cert.shortName ?? cert.name}&nbsp;↗
 					</a>
-					<span class="text-ink-muted text-[13px]/[18px] lg:text-sm/5">{cert.issuer} Certified</span
-					>
+					<span class="text-ink-muted text-[13px]/[18px] lg:text-sm/5">
+						{cert.issuer} Certified
+					</span>
 				</li>
 			{/each}
 			{#if previous.length > 0}

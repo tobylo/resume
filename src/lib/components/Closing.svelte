@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { contact } from '$lib/site';
-	import { jobFit } from '$lib/job-fit/dialog.svelte';
+	import { contact } from '#lib/site.ts';
+	import { jobFit } from '#lib/job-fit/dialog.svelte.ts';
 	import Button from './Button.svelte';
 
 	let { heading = "Hiring for a role like this? Let's compare notes." }: { heading?: string } =
