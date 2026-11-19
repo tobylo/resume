@@ -1,11 +1,31 @@
-name = "resume"
-compatibility_date = "2026-01-22"
+# Cloudflare Worker with static assets. The adapter generates the Worker entry
+# and the assets directory at build time, so neither is set here.
+name = "tobylo"
+compatibility_date = "2026-02-06"
+# @anthropic-ai/sdk imports node:crypto
 compatibility_flags = ["nodejs_compat"]
 
-# KV namespace for rate limiting
-# Create with: bunx wrangler kv namespace create KV
-# Create preview with: bunx wrangler kv namespace create KV --preview
+# Previews (one per non-production branch) are served on workers.dev.
+workers_dev = true
+preview_urls = true
+
+# The Turnstile site key is public. Nothing reads it yet: the analyzer dialog
+# will declare it as a public variable in src/env.ts, and the build gets it from
+# here because the adapter copies these vars into the build environment.
+[vars]
+PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAACYV-gxpOn8XYtRb"
+
+# Rate limiting for /api/analyze (production namespace "KV")
 [[kv_namespaces]]
 binding = "KV"
-id = "b437692669e541fe944a668658e3215a"
-preview_id = "2cc678fce1e24db19b59c70f78a81d6c"
+id = "908063b5c6594e9bb530dd4a9679ecc5"
+
+# Previews share the compatibility settings above but not vars or bindings, so
+# both are repeated here, with the "KV-preview" namespace. Preview secrets come
+# from the Preview base config.
+[previews.vars]
+PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAACYV-gxpOn8XYtRb"
+
+[[previews.kv_namespaces]]
+binding = "KV"
+id = "f30fd767b9bc49f39a3672af5f197926"
