@@ -1,0 +1,6 @@
+# Headers for static assets (prerendered pages, images, _app files). Responses
+# from the Worker get theirs from src/hooks.server.ts. Pages added these two by
+# default; Workers static assets do not.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
