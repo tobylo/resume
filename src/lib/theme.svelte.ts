@@ -1,33 +1,47 @@
 import { browser } from '$app/environment';
 
+type Choice = 'light' | 'dark' | null;
+
+const STORAGE_KEY = 'theme';
+
+function readChoice(): Choice {
+	try {
+		const stored = localStorage.getItem(STORAGE_KEY);
+		return stored === 'light' || stored === 'dark' ? stored : null;
+	} catch {
+		return null;
+	}
+}
+
+// Mirrors the inline script in app.html: an explicit choice wins, otherwise the system decides.
 function createTheme() {
-	let darkMode = $state(false);
+	let choice = $state<Choice>(browser ? readChoice() : null);
+	let systemDark = $state(browser && window.matchMedia('(prefers-color-scheme: dark)').matches);
+	const dark = $derived(choice ? choice === 'dark' : systemDark);
+
+	// The page always shows what the store resolved, so the toggle never "does nothing".
+	const apply = () => document.documentElement.classList.toggle('dark', dark);
 
 	if (browser) {
-		// Check localStorage first, then system preference
-		const stored = localStorage.getItem('theme');
-		if (stored) {
-			darkMode = stored === 'dark';
-		} else {
-			darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-		}
+		apply();
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+			systemDark = event.matches;
+			apply();
+		});
 	}
 
 	return {
 		get dark() {
-			return darkMode;
+			return dark;
 		},
 		toggle() {
-			darkMode = !darkMode;
-			if (browser) {
-				localStorage.setItem('theme', darkMode ? 'dark' : 'light');
-				document.documentElement.classList.toggle('dark', darkMode);
+			choice = dark ? 'light' : 'dark';
+			try {
+				localStorage.setItem(STORAGE_KEY, choice);
+			} catch {
+				/* the choice still applies for this visit */
 			}
-		},
-		init() {
-			if (browser) {
-				document.documentElement.classList.toggle('dark', darkMode);
-			}
+			apply();
 		}
 	};
 }
