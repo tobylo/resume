@@ -4,6 +4,13 @@ import type { HobbyProject } from './types';
 
 export const hobbyProjects: HobbyProject[] = [
 	{
+		id: 'devisor',
+		title: 'Devisor',
+		description:
+			'A development supervisor that structures the work around coding agents, from first spike to shipped feature: exploring ideas with spikes and proofs of concept, shaping the plan, triaging what comes in, and building in greenfield and brownfield codebases. Each step runs as a structured workflow on any agent harness, and every run is traced so the workflows can improve over time. In active development in a private repository; a testbed for how far agentic development can go in 2026.',
+		technologies: ['Go', 'Agentic workflows', 'OpenTelemetry']
+	},
+	{
 		id: 'sdd-sub5',
 		title: 'SUB5 Racing & Event',
 		image: '/hobby-projects/sdd-sub5.webp',
