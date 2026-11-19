@@ -1,50 +1,22 @@
 import { projects } from '$lib/projects';
 import { hobbyProjects } from '$lib/hobby-projects';
+import { certifications, education, languages } from '$lib/credentials';
 import type { ResumeContext } from './types';
 
 export const resumeContext: ResumeContext = {
 	education: {
-		degree: 'Bachelor of Engineering',
-		field: 'Information Technology',
-		institution: 'Novia University of Applied Sciences',
-		years: '2005-2009'
+		degree: education.degree,
+		field: education.field,
+		institution: education.institution,
+		years: education.years
 	},
-	certifications: [
-		{
-			name: 'Certified Kubernetes Administrator (CKA)',
-			issuer: 'The Linux Foundation',
-			url: 'https://www.credly.com/badges/591adb36-1424-4119-81e2-2ee806063a41'
-		},
-		{
-			name: 'Certified Kubernetes Application Developer (CKAD)',
-			issuer: 'The Linux Foundation',
-			url: 'https://www.credly.com/badges/ea350be1-0743-44ec-873e-fe214628e15d'
-		},
-		{
-			name: 'DevOps Engineer Expert',
-			issuer: 'Microsoft',
-			url: 'https://learn.microsoft.com/api/credentials/share/en-us/tobylo-activesolution/66F629B1B2DF4B7A'
-		},
-		{
-			name: 'Azure Cosmos DB Developer Specialty',
-			issuer: 'Microsoft',
-			url: 'https://learn.microsoft.com/api/credentials/share/en-us/tobylo-activesolution/5F903E01ED02CCA5'
-		},
-		{
-			name: 'Azure Administrator Associate',
-			issuer: 'Microsoft',
-			url: 'https://learn.microsoft.com/api/credentials/share/en-us/tobylo-activesolution/C654B890A7D89E44'
-		},
-		{ name: 'MCSA: Web Applications', issuer: 'Microsoft' },
-		{ name: 'Solutions Developer: App Builder', issuer: 'Microsoft' },
-		{ name: 'Solutions Developer: Web Applications', issuer: 'Microsoft' },
-		{ name: 'Specialist: C#', issuer: 'Microsoft' }
-	],
-	languages: [
-		{ language: 'Swedish', level: 'Native' },
-		{ language: 'English', level: 'Fluent' },
-		{ language: 'Finnish', level: 'Basic' }
-	],
+	certifications: certifications.map(({ name, issuer, url, current }) => ({
+		name,
+		issuer,
+		url,
+		current
+	})),
+	languages: languages.map(({ language, level }) => ({ language, level })),
 	projects: projects.map((p) => ({
 		company: p.company,
 		role: p.role,

@@ -5,7 +5,8 @@ function formatResumeContext(ctx: ResumeContext): string {
 - ${ctx.education.degree} in ${ctx.education.field}, ${ctx.education.institution} (${ctx.education.years})`;
 
 	const certifications = `## Certifications
-${ctx.certifications.map((c) => `- ${c.name} (${c.issuer})`).join('\n')}`;
+${ctx.certifications.map((c) => `- ${c.name} (${c.issuer})${c.current ? '' : ', no longer current'}`).join('\n')}
+Certifications marked "no longer current" do not satisfy a requirement for a valid certification; treat them as past experience only.`;
 
 	const languages = `## Languages
 ${ctx.languages.map((l) => `- ${l.language}: ${l.level}`).join('\n')}`;

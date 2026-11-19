@@ -107,11 +107,9 @@
 	padding-inline: var(--page-gutter);
 }
 
-/* Uppercase mono labels: dates, eyebrows, section labels. */
+/* Uppercase mono labels: dates, eyebrows, section labels. Pair with a text size (text-tag). */
 @utility label {
 	font-family: var(--font-mono);
-	font-size: var(--text-tag);
-	line-height: var(--text-tag--line-height);
 	font-weight: 500;
 	letter-spacing: var(--tracking-label);
 	text-transform: uppercase;

@@ -1,8 +1,15 @@
 export type { HobbyProject } from './types';
 
 import type { HobbyProject } from './types';
+import { devisor } from '$lib/devisor';
 
 export const hobbyProjects: HobbyProject[] = [
+	{
+		id: 'devisor',
+		title: devisor.name,
+		description: `${devisor.tagline} ${devisor.loop} ${devisor.observable.lead} ${devisor.observable.body} ${devisor.status}.`,
+		technologies: [...devisor.technologies]
+	},
 	{
 		id: 'sdd-sub5',
 		title: 'SUB5 Racing & Event',
