@@ -1,54 +1,29 @@
 <!doctype html>
-<html lang="en" class="h-dvh">
+<html lang="en">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script>
-			// Apply the theme before first paint to avoid a flash of the wrong theme.
-			// Keep in sync with src/lib/theme.svelte.ts.
+			// Apply the theme before first paint so dark visitors never get a white flash.
+			// An explicit choice is stored; otherwise follow the system. Keep in sync with
+			// src/lib/theme.svelte.ts.
 			(function () {
 				try {
 					const stored = localStorage.getItem('theme');
-					const dark = stored
-						? stored === 'dark'
-						: window.matchMedia('(prefers-color-scheme: dark)').matches;
+					const dark =
+						stored === 'dark' ||
+						(stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 					document.documentElement.classList.toggle('dark', dark);
 				} catch {
-					/* no theme persistence available */
+					/* no storage: the CSS default (light) applies */
 				}
 			})();
 		</script>
-		<title>Tobias Lolax | Software Developer & Consultant</title>
-		<meta
-			name="description"
-			content="Tobias Lolax - Software developer and consultant with 15+ years of experience in web development, cloud-native solutions, React, C#, and Kubernetes."
-		/>
 		<meta name="author" content="Tobias Lolax" />
-		<meta
-			name="keywords"
-			content="software developer, consultant, React, TypeScript, C#, Kubernetes, Azure, Stockholm"
-		/>
-
-		<!-- Open Graph / Social -->
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Tobias Lolax | Software Developer & Consultant" />
-		<meta
-			property="og:description"
-			content="Software developer and consultant with 15+ years of experience in web development, cloud-native solutions, React, C#, and Kubernetes."
-		/>
-		<meta property="og:image" content="%sveltekit.assets%/mugshot.webp" />
-
-		<!-- Twitter -->
-		<meta name="twitter:card" content="summary" />
-		<meta name="twitter:title" content="Tobias Lolax | Software Developer & Consultant" />
-		<meta
-			name="twitter:description"
-			content="Software developer and consultant with 15+ years of experience."
-		/>
 		%sveltekit.head%
 	</head>
-	<body data-sveltekit-preload-data="hover" class="min-h-dvh">
-		<div class="prose contents">%sveltekit.body%</div>
+	<body data-sveltekit-preload-data="hover">
+		<div class="contents">%sveltekit.body%</div>
 	</body>
 </html>

@@ -1,175 +1,164 @@
 @import 'tailwindcss';
 
-@plugin '@tailwindcss/typography';
-
+/* Dark mode follows the .dark class on <html>, set before first paint in app.html. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+  Design tokens from the Paper file ("Design system" page). Light values live here;
+  the same names are overridden for dark under .dark below, so every utility
+  (bg-canvas, text-ink, border-line, ...) switches theme on its own.
+*/
 @theme {
-	--color-canvas: #f4f7f9;
-	--color-card: #ffffff;
-	--color-edge: #e3e8ee;
-	--color-ink: #14202b;
-	--color-ink-soft: #37475a;
-	--color-ink-muted: #5b6b7b;
-	--color-accent: #206d87;
-	--color-accent-tint: #e4eef2;
-	--color-accent-contrast: #ffffff;
+	--font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
 
-	--font-display:
-		'Bricolage Grotesque Variable', 'Avenir Next', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	--font-sans:
-		'Instrument Sans Variable', 'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui,
-		sans-serif;
+	--color-canvas: #ffffff;
+	--color-ink: #0e0e0e;
+	--color-ink-body: #3a3a3a;
+	--color-ink-muted: #5c5c5c;
+	--color-ink-tag: #454545;
+	--color-line: #e6e6e6;
+	--color-line-strong: #0e0e0e;
+	--color-track: #d0d0d0;
+	--color-surface: #f2f2f2;
+	--color-error: #b42318;
+	/* The one accent, identical in both themes. Text and borders on it use on-accent. */
+	--color-accent: #ffd000;
+	--color-on-accent: #000000;
 
-	@keyframes spin-backwards {
-		from {
-			transform: rotate(360deg);
-		}
-		to {
-			transform: rotate(0deg);
-		}
+	--text-tag: 13px;
+	--text-tag--line-height: 16px;
+	--text-sm: 15px;
+	--text-sm--line-height: 22px;
+	--text-base: 17px;
+	--text-base--line-height: 27px;
+	--text-lead: 21px;
+	--text-lead--line-height: 32px;
+	--text-title: 26px;
+	--text-title--line-height: 32px;
+	--text-mobile-display: 36px;
+	--text-mobile-display--line-height: 38px;
+	--text-heading: 48px;
+	--text-heading--line-height: 52px;
+	--text-closing: 72px;
+	--text-closing--line-height: 74px;
+	--text-display: 96px;
+	--text-display--line-height: 96px;
+
+	--tracking-title: -0.02em;
+	--tracking-heading: -0.03em;
+	--tracking-label: 0.08em;
+
+	--container-page: 1248px;
+	--spacing-gutter: 96px;
+	--spacing-gutter-mobile: 20px;
+	--spacing-row: 40px;
+	--spacing-section: 120px;
+}
+
+:root {
+	color-scheme: light;
+	/* Display type: heavy in light, a step lighter in dark, where light-on-dark reads heavier. */
+	--display-weight: 800;
+	--display-tracking: -0.035em;
+	--page-gutter: 20px;
+}
+
+@media (width >= 48rem) {
+	:root {
+		--page-gutter: 48px;
 	}
 }
 
-/* Dark theme: swap the semantic tokens under the .dark class (set on <html>). */
-.dark {
-	--color-canvas: #0f171e;
-	--color-card: #16212b;
-	--color-edge: #26323e;
-	--color-ink: #e8eef3;
-	--color-ink-soft: #b4c2cd;
-	--color-ink-muted: #8fa1b0;
-	--color-accent: #4da3bf;
-	--color-accent-tint: #16333f;
-	--color-accent-contrast: #0b1218;
+@media (width >= 80rem) {
+	:root {
+		--page-gutter: 96px;
+	}
 }
 
-/*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
+.dark {
+	color-scheme: dark;
+	/* Warm ink, not inverted grey. */
+	--color-canvas: #121110;
+	--color-ink: #edebe6;
+	--color-ink-body: #c6c3bc;
+	--color-ink-muted: #9a968e;
+	--color-ink-tag: #aca89f;
+	--color-line: #2b2925;
+	--color-line-strong: #e2dfd8;
+	--color-track: #3b3934;
+	--color-surface: #1b1a18;
+	--color-error: #f97066;
+	--display-weight: 700;
+	--display-tracking: -0.03em;
+}
 
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
+/* Headlines, stats and section titles. Weight and tracking follow the theme. */
+@utility font-display {
+	font-weight: var(--display-weight);
+	letter-spacing: var(--display-tracking);
+}
+
+/* Page width: 1248px of content inside responsive side gutters (20 / 48 / 96px). */
+@utility page {
+	width: 100%;
+	max-width: calc(var(--container-page) + 2 * var(--page-gutter));
+	margin-inline: auto;
+	padding-inline: var(--page-gutter);
+}
+
+/* Uppercase mono labels: dates, eyebrows, section labels. */
+@utility label {
+	font-family: var(--font-mono);
+	font-size: var(--text-tag);
+	line-height: var(--text-tag--line-height);
+	font-weight: 500;
+	letter-spacing: var(--tracking-label);
+	text-transform: uppercase;
+}
+
 @layer base {
 	*,
 	::after,
 	::before,
 	::backdrop,
 	::file-selector-button {
-		border-color: var(--color-edge, currentcolor);
+		border-color: var(--color-line);
 	}
-}
 
-/* Print styles */
-@media print {
-	/* Force the light palette on paper, regardless of the active theme */
-	:root,
-	.dark {
-		--color-canvas: #ffffff;
-		--color-card: #ffffff;
-		--color-edge: #cccccc;
-		--color-ink: #000000;
-		--color-ink-soft: #333333;
-		--color-ink-muted: #666666;
-		--color-accent: #000000;
-		--color-accent-tint: #ffffff;
-		--color-accent-contrast: #ffffff;
+	html {
+		-webkit-text-size-adjust: 100%;
 	}
 
 	body {
-		background: white !important;
-		font-size: 12pt;
-		margin: 0 !important;
-		padding: 0 !important;
+		background-color: var(--color-canvas);
+		color: var(--color-ink);
+		font-family: var(--font-sans);
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 
-	/* Remove chrome from page containers and compact their spacing */
-	.print-container {
-		padding: 0 !important;
-		margin: 0 !important;
-		border: none !important;
-		outline: none !important;
-		box-shadow: none !important;
-		gap: 0.5rem !important;
+	:focus-visible {
+		outline: 2px solid var(--color-ink);
+		outline-offset: 3px;
 	}
+}
 
-	/* Single column layout */
-	.print-grid {
-		grid-template-columns: 1fr !important;
-		gap: 0.5rem !important;
-	}
-
-	/* Cards become divider-separated blocks */
-	.resume-card {
-		display: block !important;
-		background: white !important;
-		color: black !important;
-		border: none !important;
-		border-bottom: 1px solid #ddd !important;
-		border-radius: 0 !important;
-		box-shadow: none !important;
-		overflow: visible !important;
-		break-inside: avoid;
-		padding: 0.4rem 0 !important;
-		cursor: default !important;
-	}
-
-	.resume-card > div {
-		padding: 0 !important;
-	}
-
-	/* Hide web-only elements */
-	.print-hide,
-	.print-hidden {
-		display: none !important;
-	}
-
-	/* Technology tags as plain comma-separated text */
-	.expanded-content .tech-tags {
-		display: block !important;
-	}
-
-	.tech-tag {
-		background: none !important;
-		padding: 0 !important;
-		font-size: 0.7rem !important;
-		color: #666 !important;
-		display: inline !important;
-	}
-
-	.expanded-content .tech-tag::after {
-		content: ', ';
-	}
-
-	.expanded-content .tech-tag:last-child::after {
-		content: '';
-	}
-
-	/* Ensure links are visible */
-	a {
-		color: black !important;
-		text-decoration: underline !important;
-	}
-
-	a::after {
-		content: ' (' attr(href) ')';
-		font-size: 0.8em;
-		color: #666;
-	}
-
-	a[href^='mailto:']::after,
-	a[href^='#']::after {
-		content: '';
-	}
-
-	/* Show expanded content, hide collapsed content */
-	.expanded-content {
-		display: block !important;
-	}
-
-	.collapsed-content {
-		display: none !important;
+/* Paper is always light, whatever the active theme. */
+@media print {
+	:root,
+	.dark {
+		color-scheme: light;
+		--color-canvas: #ffffff;
+		--color-ink: #000000;
+		--color-ink-body: #1a1a1a;
+		--color-ink-muted: #5c5c5c;
+		--color-ink-tag: #3a3a3a;
+		--color-line: #d9d9d9;
+		--color-line-strong: #0e0e0e;
+		--color-track: #d0d0d0;
+		--color-surface: #ffffff;
+		--display-weight: 800;
+		--display-tracking: -0.035em;
 	}
 }
