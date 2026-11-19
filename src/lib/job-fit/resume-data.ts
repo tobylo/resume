@@ -49,6 +49,7 @@ export const resumeContext: ResumeContext = {
 		company: p.company,
 		role: p.role,
 		description: p.description,
+		outcome: p.outcome,
 		technologies: p.technologies,
 		period: p.period.end ? `${p.period.start}-${p.period.end}` : `${p.period.start}-present`
 	})),

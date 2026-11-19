@@ -15,7 +15,7 @@ ${ctx.projects
 	.map(
 		(p) =>
 			`### ${p.company} | ${p.role} (${p.period})
-${p.description}
+${p.description}${p.outcome ? `\nOutcome: ${p.outcome}` : ''}
 Technologies: ${p.technologies.join(', ')}`
 	)
 	.join('\n\n')}`;

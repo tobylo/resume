@@ -5,7 +5,9 @@ export const brandskyddsforeningen: Project = {
 	company: 'Brandskyddsföreningen',
 	role: 'System Developer & Frontend Lead',
 	description:
-		"Full-stack position as frontend lead on a progressive web app serving many kinds of users, built generically to take on new service offerings. The inspection flow works fully offline and syncs when back online, or whenever the inspector chooses. Used by all of Elektriska Nämnden's licensed inspectors in the field. CI/CD in Azure DevOps, Bicep for IaC, hosted in Azure.",
+		'Full-stack position as frontend lead on a progressive web app serving many kinds of users, built generically to take on new service offerings. The inspection flow works fully offline and syncs when back online, or whenever the inspector chooses. CI/CD in Azure DevOps, Bicep for IaC, hosted in Azure.',
+	outcome: "Used by all of Elektriska Nämnden's licensed inspectors in the field.",
+	featured: true,
 	technologies: [
 		'C#',
 		'Dapper',

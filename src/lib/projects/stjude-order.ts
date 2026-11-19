@@ -5,6 +5,7 @@ export const stjudeOrder: Project = {
 	company: 'St. Jude Medical Inc',
 	role: 'System Developer',
 	description: 'Further development of an order management system and integration with SAP.',
+	group: { id: 'stjude', name: 'St. Jude Medical' },
 	technologies: ['C#', 'XML', 'LINQ to XML', 'SFTP', 'SQL', 'ASP.NET MVC'],
 	period: {
 		start: '2014',
