@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { projects, featuredProjects } from '$lib/projects';
-	import { employer, moreClients } from '$lib/home';
+	import { projects, featuredProjects } from '#lib/projects/index.ts';
+	import { employer, moreClients } from '#lib/home.ts';
 	import WorkRow from './WorkRow.svelte';
 
 	const rest = projects.filter((project) => !project.featured);

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Project } from '$lib/projects';
-	import { formatPeriod, joinTags } from '$lib/format';
+	import type { Project } from '#lib/projects/index.ts';
+	import { formatPeriod, joinTags } from '#lib/format.ts';
 
 	let { project }: { project: Project } = $props();
 

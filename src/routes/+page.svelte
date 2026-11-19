@@ -1,10 +1,10 @@
 <script lang="ts">
-	import Hero from '$lib/components/home/Hero.svelte';
-	import Stats from '$lib/components/home/Stats.svelte';
-	import SelectedWork from '$lib/components/home/SelectedWork.svelte';
-	import DevisorFeature from '$lib/components/home/DevisorFeature.svelte';
-	import Credentials from '$lib/components/home/Credentials.svelte';
-	import Closing from '$lib/components/Closing.svelte';
+	import Hero from '#lib/components/home/Hero.svelte';
+	import Stats from '#lib/components/home/Stats.svelte';
+	import SelectedWork from '#lib/components/home/SelectedWork.svelte';
+	import DevisorFeature from '#lib/components/home/DevisorFeature.svelte';
+	import Credentials from '#lib/components/home/Credentials.svelte';
+	import Closing from '#lib/components/Closing.svelte';
 </script>
 
 <svelte:head>

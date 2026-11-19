@@ -8,7 +8,7 @@ tobylo.dev: the owner's resume site. A recruiter should get role, terms and cont
 
 ## Stack and commands
 
-SvelteKit 2 with Svelte 5, TypeScript (strict), Tailwind CSS 4, Bun, deployed on Cloudflare Pages (`@sveltejs/adapter-cloudflare`). Pages are prerendered; only `/api/analyze` runs on the server.
+SvelteKit 3 with Svelte 5, Vite 8, TypeScript (strict), Tailwind CSS 4, Bun, deployed on Cloudflare Pages (`@sveltejs/adapter-cloudflare` 8, the last major that builds for Pages). Kit config lives in `vite.config.ts`; `src/lib` is imported as `#lib/...` with file extensions. Pages are prerendered; only `/api/analyze` runs on the server, reading its bindings from `cloudflare:workers` (typed in `src/cloudflare.d.ts`).
 
 ```bash
 bun run dev       # dev server
@@ -32,6 +32,7 @@ Local secrets for the analyzer go in `.dev.vars` (see `.dev.vars.example`).
 - Tailwind utilities on theme tokens; no inline styles and no hard-coded colours. Light and dark both come from the tokens.
 - Semantic HTML, keyboard reachable, visible focus, and `prefers-reduced-motion` respected (the hero rotation pauses).
 - Prefer the platform: native `<dialog>`, CSS, and small components over new dependencies.
+- Svelte MCP: before writing Svelte or SvelteKit code, look up the current docs with the Svelte MCP (`list-sections`, then `get-documentation`); before calling it done, run `svelte-autofixer` on every `.svelte` and `.svelte.ts` file you touched until it reports nothing.
 
 ## The job-fit analyzer
 

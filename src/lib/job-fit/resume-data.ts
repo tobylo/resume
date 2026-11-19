@@ -1,6 +1,6 @@
-import { projects } from '$lib/projects';
-import { hobbyProjects } from '$lib/hobby-projects';
-import { certifications, education, languages } from '$lib/credentials';
+import { projects } from '#lib/projects/index.ts';
+import { hobbyProjects } from '#lib/hobby-projects/index.ts';
+import { certifications, education, languages } from '#lib/credentials.ts';
 import type { ResumeContext } from './types';
 
 export const resumeContext: ResumeContext = {

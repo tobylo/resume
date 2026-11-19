@@ -28,16 +28,7 @@ declare global {
 		// interface Locals {}
 		// interface PageData {}
 		// interface PageState {}
-		interface Platform {
-			env: {
-				KV: KVNamespace;
-				ANTHROPIC_API_KEY: string;
-				TURNSTILE_SECRET_KEY: string;
-			};
-			cf?: IncomingRequestCfProperties;
-			ctx: ExecutionContext;
-			caches: CacheStorage;
-		}
+		// interface Platform {}
 	}
 }
 
