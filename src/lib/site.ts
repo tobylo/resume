@@ -7,6 +7,12 @@ export const contact = {
 	gitHub: 'https://github.com/tobylo'
 } as const;
 
+export const person = {
+	name: 'Tobias Lolax',
+	title: 'Senior engineer & tech lead',
+	location: 'Stockholm'
+} as const;
+
 export const languages =
 	'Stockholm, Sweden · Swedish (native) · English (fluent) · Finnish (basic)';
 

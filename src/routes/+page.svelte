@@ -1,4 +1,9 @@
 <script lang="ts">
+	import Hero from '$lib/components/home/Hero.svelte';
+	import Stats from '$lib/components/home/Stats.svelte';
+	import SelectedWork from '$lib/components/home/SelectedWork.svelte';
+	import DevisorFeature from '$lib/components/home/DevisorFeature.svelte';
+	import Credentials from '$lib/components/home/Credentials.svelte';
 	import Closing from '$lib/components/Closing.svelte';
 </script>
 
@@ -10,16 +15,9 @@
 	/>
 </svelte:head>
 
-<!-- Placeholder hero for the foundation slice; the full homepage is the next slice. -->
-<section class="page flex flex-col gap-6 pt-10 pb-8 lg:gap-10 lg:pt-28 lg:pb-24">
-	<p class="label text-ink">Tobias Lolax · Senior engineer &amp; tech lead · Stockholm</p>
-	<h1 class="font-display text-mobile-display lg:text-display max-w-[1180px]">
-		An engineer who thinks like a founder, and takes ownership like one.
-	</h1>
-	<p class="text-ink-body lg:text-lead max-w-[640px] text-[17px]/[26px]">
-		22 client engagements over 17 years, across finance, retail, IoT and the public sector. I do my
-		best work when I own the product and the outcome, not just the tickets.
-	</p>
-</section>
-
+<Hero />
+<Stats />
+<SelectedWork />
+<DevisorFeature />
+<Credentials />
 <Closing />
