@@ -5,7 +5,7 @@ export const hm: Project = {
 	company: 'H&M',
 	role: 'System Developer',
 	description:
-		'Development of a scalable, message-based system for rapid expansion possibilities. The platform integrated with existing services and contained an e-commerce solution and a CMS. Automated onboarding using Azure DevOps. Also implemented a POC for generating suggestions to product descriptions based on product attributes.',
+		'Built a scalable, message-based e-commerce and CMS platform on Azure, integrated with existing services, with automated onboarding through Azure DevOps. Also built an early OpenAI proof of concept for generating product descriptions from product attributes. Took the platform to launch-ready; the department was shut down weeks before go-live.',
 	technologies: [
 		'C#',
 		'Minimal API',

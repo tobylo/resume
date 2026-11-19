@@ -3,9 +3,9 @@ import type { Project } from './types';
 export const brandskyddsforeningen: Project = {
 	id: 'brandskyddsforeningen',
 	company: 'Brandskyddsföreningen',
-	role: 'System Developer & Frontend lead',
+	role: 'System Developer & Frontend Lead',
 	description:
-		'Fullstack position but as frontend lead. The system handles many different personas and is generically built to accommodate new service offerings. Frontend is built as a PWA, and parts of it work offline since the application can be used in areas with spotty reception. CI/CD in Azure DevOps, Bicep for IaC, hosted in Azure.',
+		"Full-stack position as frontend lead on a progressive web app serving many kinds of users, built generically to take on new service offerings. The inspection flow works fully offline and syncs when back online, or whenever the inspector chooses. Used by all of Elektriska Nämnden's licensed inspectors in the field. CI/CD in Azure DevOps, Bicep for IaC, hosted in Azure.",
 	technologies: [
 		'C#',
 		'Dapper',

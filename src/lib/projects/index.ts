@@ -3,7 +3,7 @@ export type { Project } from './types';
 import { fintechNb } from './fintech-nb';
 import { brandskyddsforeningen } from './brandskyddsforeningen';
 import { hm } from './hm';
-import { mfex as fintechEcm } from './fintech-ecm';
+import { mfex } from './mfex';
 import { globalFundWatch } from './global-fund-watch';
 import { cint } from './cint';
 import { ndaIot } from './nda-iot';
@@ -27,7 +27,7 @@ export const projects = [
 	fintechNb,
 	brandskyddsforeningen,
 	hm,
-	fintechEcm,
+	mfex,
 	globalFundWatch,
 	cint,
 	ndaIot,
