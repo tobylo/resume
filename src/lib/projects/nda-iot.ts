@@ -2,10 +2,12 @@ import type { Project } from './types';
 
 export const ndaIot: Project = {
 	id: 'nda-iot',
-	company: 'Client name redacted',
+	company: 'IoT platform (under NDA)',
 	role: 'System Developer & Tech Lead',
 	description:
-		'Worked as Tech Lead on a project to create a scalable IoT solution targeting thousands of devices controlled via a custom-built mobile app in React Native. Developed a web-based administration interface with a real-time map of active devices.',
+		'Tech lead on a scalable IoT solution for thousands of devices, controlled from a custom React Native app, with a web admin showing a real-time map of the active fleet.',
+	outcome: 'Led the work from architecture to rollout, designed to scale from day one.',
+	featured: true,
 	technologies: [
 		'C#',
 		'TypeScript',

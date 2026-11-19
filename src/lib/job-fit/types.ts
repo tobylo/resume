@@ -72,6 +72,7 @@ export interface ProjectSummary {
 	company: string;
 	role: string;
 	description: string;
+	outcome?: string;
 	technologies: string[];
 	period: string;
 }

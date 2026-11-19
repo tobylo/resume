@@ -1,9 +1,10 @@
 export type { Project } from './types';
+import type { Project } from './types';
 
 import { fintechNb } from './fintech-nb';
 import { brandskyddsforeningen } from './brandskyddsforeningen';
 import { hm } from './hm';
-import { mfex as fintechEcm } from './fintech-ecm';
+import { mfex } from './mfex';
 import { globalFundWatch } from './global-fund-watch';
 import { cint } from './cint';
 import { ndaIot } from './nda-iot';
@@ -27,7 +28,7 @@ export const projects = [
 	fintechNb,
 	brandskyddsforeningen,
 	hm,
-	fintechEcm,
+	mfex,
 	globalFundWatch,
 	cint,
 	ndaIot,
@@ -47,6 +48,26 @@ export const projects = [
 	stjudeDistribution,
 	openSystemGroup
 ];
+
+// Projects shown under "Selected work" on the homepage and CV, in list order
+export const featuredProjects = projects.filter((p) => p.featured);
+
+// Ungrouped projects stand alone; grouped ones share one client entry, kept in list order
+export function groupByClient(
+	list: Project[]
+): { id: string; name: string; projects: Project[] }[] {
+	const groups: { id: string; name: string; projects: Project[] }[] = [];
+	for (const project of list) {
+		const key = project.group?.id ?? project.id;
+		const existing = groups.find((g) => g.id === key);
+		if (existing) {
+			existing.projects.push(project);
+		} else {
+			groups.push({ id: key, name: project.group?.name ?? project.company, projects: [project] });
+		}
+	}
+	return groups;
+}
 
 // Get all unique technologies across all projects, sorted alphabetically
 export const allTechnologies = [...new Set(projects.flatMap((p) => p.technologies))].sort((a, b) =>
