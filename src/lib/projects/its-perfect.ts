@@ -5,6 +5,7 @@ export const itsPerfect: Project = {
 	company: "It's Perfect Software Europe",
 	role: 'System Developer',
 	description: 'Built a multi-tenant point-of-sale and booking system on a scalable platform.',
+	cvDescription: 'Multi-tenant point-of-sale and booking system on a scalable platform.',
 	keyTechnologies: ['C#', 'TypeScript', 'AngularJS', 'Azure SQL Elastic Scale', 'Entity Framework'],
 	technologies: [
 		'C#',

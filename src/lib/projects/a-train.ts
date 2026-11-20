@@ -6,6 +6,8 @@ export const aTrain: Project = {
 	role: 'System Developer',
 	description:
 		'Built a partner-facing ticket booking service integrated with SMS providers, and ported existing applications from Java to C#.',
+	cvDescription:
+		'Partner-facing ticket booking with SMS integration; ported applications from Java to C#.',
 	keyTechnologies: ['C#', 'Java', 'WCF', 'REST', 'SQL', 'Nancy', 'Dapper'],
 	technologies: [
 		'Java',

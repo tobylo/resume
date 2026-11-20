@@ -6,6 +6,8 @@ export const hm: Project = {
 	role: 'System Developer · Platform',
 	description:
 		'Built a scalable, message-based e-commerce and CMS platform on Azure, integrated with existing services, with automated onboarding through Azure DevOps. Also built an early OpenAI proof of concept for generating product descriptions from product attributes.',
+	cvDescription:
+		'Built a scalable, message-based e-commerce and CMS platform on Azure with automated onboarding, plus an early OpenAI proof of concept for generating product descriptions.',
 	outcome: 'Took the platform to launch-ready. The department was shut down weeks before go-live.',
 	featured: true,
 	keyTechnologies: ['Event-driven', 'Service Bus', 'Cosmos DB', 'Azure Functions', 'OpenAI', 'C#'],

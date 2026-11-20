@@ -6,6 +6,8 @@ export const tya: Project = {
 	role: 'Maintenance & Project Manager · Developer',
 	description:
 		'Developed and maintained certification applications, including a generic Excel and Word report generator and a user portal.',
+	cvDescription:
+		'Certification applications, a generic Excel and Word report generator, and a user portal.',
 	keyTechnologies: ['C#', 'ASP.NET MVC', 'NHibernate', 'SQL', 'AngularJS', 'OpenXML'],
 	technologies: [
 		'C#',

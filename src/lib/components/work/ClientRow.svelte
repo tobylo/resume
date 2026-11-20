@@ -1,14 +1,12 @@
 <script lang="ts">
-	import type { TimelineClient } from '#lib/work.ts';
+	import { clientRole, type TimelineClient } from '#lib/work.ts';
 	import { formatPeriod } from '#lib/format.ts';
 	import WorkRow from '../WorkRow.svelte';
 
 	let { client }: { client: TimelineClient } = $props();
 
 	const [first, ...others] = $derived(client.projects);
-	const role = $derived(
-		others.length ? `${client.role} · ${client.projects.length} engagements` : client.role
-	);
+	const role = $derived(clientRole(client));
 </script>
 
 <WorkRow

@@ -5,6 +5,7 @@ export const sosAlarm: Project = {
 	company: 'SOS Alarm',
 	role: 'System Developer',
 	description: 'Developed a booking system.',
+	cvDescription: 'Booking system.',
 	keyTechnologies: ['C#', 'ASP.NET MVC', 'TypeScript', 'AngularJS', 'Less'],
 	technologies: [
 		'C#',
