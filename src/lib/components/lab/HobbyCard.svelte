@@ -25,9 +25,13 @@
 	};
 
 	// Card width in the lab grid: one column below md, two below xl, then three
-	// columns of the 1248px page.
-	const sizes =
-		'(min-width: 80rem) 395px, (min-width: 48rem) calc(50vw - 64px), calc(100vw - 40px)';
+	// columns that grow until the page reaches its 1248px width at 90rem.
+	const sizes = [
+		'(min-width: 90rem) 395px',
+		'(min-width: 80rem) calc((100vw - 256px) / 3)',
+		'(min-width: 48rem) calc(50vw - 64px)',
+		'calc(100vw - 40px)'
+	].join(', ');
 </script>
 
 <article class="flex flex-col gap-3.5" aria-labelledby="{project.id}-title">
