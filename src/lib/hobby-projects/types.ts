@@ -1,9 +1,14 @@
-/** A photo or screenshot, served from static/. */
+/**
+ * A photo or screenshot, served from static/. `src` is the full-size file;
+ * each entry in `widths` is a smaller copy beside it, named `<name>-<width>.webp`,
+ * so the card can offer a srcset.
+ */
 export interface HobbyImage {
 	kind: 'image';
 	src: string;
 	width: number;
 	height: number;
+	widths: number[];
 	alt: string;
 }
 

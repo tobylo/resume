@@ -1,4 +1,4 @@
-export type { HobbyProject, HobbyVisual, HobbyIllustration, HobbyLink } from './types';
+export type { HobbyProject, HobbyVisual, HobbyImage, HobbyIllustration, HobbyLink } from './types';
 
 import type { HobbyProject } from './types';
 import { devisor } from '#lib/devisor.ts';
@@ -41,6 +41,7 @@ export const hobbyProjects: HobbyProject[] = [
 			src: '/hobby-projects/sdd-sub5.webp',
 			width: 1742,
 			height: 963,
+			widths: [480, 800, 1200],
 			alt: 'The SUB5 Racing & Event homepage: a rider leaning into a corner under the headline "Utveckla din körning på bana".'
 		},
 		technologies: [
@@ -75,6 +76,7 @@ export const hobbyProjects: HobbyProject[] = [
 			src: '/hobby-projects/daddy-status.webp',
 			width: 1768,
 			height: 2048,
+			widths: [480, 800, 1200],
 			alt: 'A white picture frame with a cartoon portrait and the statuses "Pappa-status", "I möte" and "Upptagen".'
 		},
 		links: [{ label: 'GitHub', href: 'https://github.com/tobylo/daddy-status' }],
