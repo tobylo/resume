@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
-	import type { HobbyIllustration, HobbyProject } from '#lib/hobby-projects/index.ts';
+	import type { HobbyIllustration, HobbyImage, HobbyProject } from '#lib/hobby-projects/index.ts';
 	import DevisorVisual from './DevisorVisual.svelte';
 	import TrackVisual from './TrackVisual.svelte';
 	import KeysVisual from './KeysVisual.svelte';
@@ -16,12 +16,26 @@
 	};
 
 	const isExternal = (href: string) => /^https?:\/\//.test(href);
+
+	// The smaller copies sit beside the full-size file as <name>-<width>.webp.
+	const srcset = (image: HobbyImage) => {
+		const base = image.src.replace(/\.webp$/, '');
+		const copies = image.widths.map((w) => `${base}-${w}.webp ${w}w`);
+		return [...copies, `${image.src} ${image.width}w`].join(', ');
+	};
+
+	// Card width in the lab grid: one column below md, two below xl, then three
+	// columns of the 1248px page.
+	const sizes =
+		'(min-width: 80rem) 395px, (min-width: 48rem) calc(50vw - 64px), calc(100vw - 40px)';
 </script>
 
 <article class="flex flex-col gap-3.5" aria-labelledby="{project.id}-title">
 	{#if project.visual.kind === 'image'}
 		<img
 			src={project.visual.src}
+			srcset={srcset(project.visual)}
+			{sizes}
 			alt={project.visual.alt}
 			width={project.visual.width}
 			height={project.visual.height}
