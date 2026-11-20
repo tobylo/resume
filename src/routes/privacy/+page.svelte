@@ -81,8 +81,9 @@
 		<ul>
 			<li>
 				The ad is sent to Anthropic's API, which writes the analysis. Anthropic doesn't use it to
-				train its models; see <a href="https://www.anthropic.com/legal/privacy" rel="noopener">
-					Anthropic's privacy policy
+				train its models; see
+				<a href="https://www.anthropic.com/legal/commercial-terms" rel="noopener">
+					Anthropic's commercial terms
 				</a>. The analysis doesn't need names or contact details, so please leave them out.
 			</li>
 			<li>I don't store job ads. They aren't saved or logged on this site.</li>
