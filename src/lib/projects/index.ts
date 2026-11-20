@@ -49,6 +49,11 @@ export const projects = [
 	openSystemGroup
 ];
 
+// The first year in production, and full years since. Pages are prerendered,
+// so "now" is the year of the build.
+export const firstYear = Math.min(...projects.map((p) => Number(p.period.start)));
+export const yearsInProduction = new Date().getFullYear() - firstYear;
+
 // Projects shown under "Selected work" on the homepage and CV, in list order
 export const featuredProjects = projects.filter((p) => p.featured);
 

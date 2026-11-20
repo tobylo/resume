@@ -1,6 +1,13 @@
 // The full timeline at /work: every engagement, grouped into eras and then by client.
 
-import { projects, groupByClient, headlineTags, type Project } from '#lib/projects/index.ts';
+import {
+	projects,
+	groupByClient,
+	headlineTags,
+	firstYear,
+	yearsInProduction,
+	type Project
+} from '#lib/projects/index.ts';
 import { formatPeriod } from '#lib/format.ts';
 
 /** One client on the timeline: a single engagement, or a group of them shown as one row. */
@@ -69,14 +76,11 @@ export const eras: Era[] = eraDefinitions.flatMap((definition) => {
 	};
 });
 
-const firstYear = Math.min(...projects.map((project) => Number(project.period.start)));
-
 export const timelineStats = {
 	engagements: projects.length,
 	clients: groupByClient(projects).length,
 	firstYear,
-	// Prerendered, so this is the year of the build.
-	years: new Date().getFullYear() - firstYear
+	years: yearsInProduction
 };
 
 export const plural = (count: number, noun: string) => `${count} ${noun}${count === 1 ? '' : 's'}`;
