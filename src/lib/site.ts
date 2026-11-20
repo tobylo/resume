@@ -11,6 +11,16 @@ export const contact = {
 	gitHub: 'https://github.com/tobylo'
 } as const;
 
+// The canonical origin. Page meta builds absolute URLs from it, so canonicals and
+// og:url point at tobylo.dev even on a Preview.
+export const siteUrl = 'https://tobylo.dev';
+
+/** A page's absolute URL. No trailing slash except on the homepage, as SvelteKit serves them. */
+export const absoluteUrl = (path: string) => (path === '/' ? `${siteUrl}/` : `${siteUrl}${path}`);
+
+// The link preview image every page shares, rendered at build by src/routes/og.png.
+export const ogImage = { path: '/og.png', width: 1200, height: 630 } as const;
+
 export const person = {
 	name: 'Tobias Lolax',
 	title: 'Senior engineer & tech lead',

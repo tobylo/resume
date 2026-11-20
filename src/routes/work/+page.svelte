@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Meta from '#lib/components/Meta.svelte';
 	import Closing from '#lib/components/Closing.svelte';
 	import ClientRow from '#lib/components/work/ClientRow.svelte';
 	import { eras, timelineStats, plural } from '#lib/work.ts';
@@ -12,13 +13,11 @@
 	];
 </script>
 
-<svelte:head>
-	<title>Full timeline · Tobias Lolax</title>
-	<meta
-		name="description"
-		content="Every client engagement since {firstYear}, most recent first: {engagements} engagements for {clients} clients, from medtech and public radio to retail, IoT and finance."
-	/>
-</svelte:head>
+<Meta
+	title="Full timeline · Tobias Lolax"
+	description="Every client engagement since {firstYear}, most recent first: {engagements} engagements for {clients} clients, from medtech and public radio to retail, IoT and finance."
+	path="/work"
+/>
 
 <section class="page pt-10 pb-10 lg:pt-24 lg:pb-18" aria-labelledby="timeline">
 	<nav aria-label="Breadcrumb" class="label text-ink text-tag font-semibold">
