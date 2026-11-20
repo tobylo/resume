@@ -111,17 +111,33 @@ async function checkRateLimit(kv: KVNamespace, ip: string): Promise<boolean> {
 	return true;
 }
 
-function validateJobDescription(text: string): string | null {
+interface InputError {
+	error: string;
+	code: 'VALIDATION_ERROR' | 'NOT_A_JOB_AD';
+}
+
+function validateJobDescription(text: string): InputError | null {
 	if (text.length < MIN_CHARS) {
-		return `Job description must be at least ${MIN_CHARS} characters`;
+		return {
+			error: `Job description must be at least ${MIN_CHARS} characters`,
+			code: 'VALIDATION_ERROR'
+		};
 	}
 	if (text.length > MAX_CHARS) {
-		return 'Job description is too long (max 10,000 characters)';
+		return {
+			error: 'Job description is too long (max 10,000 characters)',
+			code: 'VALIDATION_ERROR'
+		};
 	}
 	const lowerText = text.toLowerCase();
 	const matches = JOB_KEYWORDS.filter((kw) => lowerText.includes(kw));
 	if (matches.length < MIN_KEYWORD_MATCHES) {
-		return 'This does not appear to be a job description. Please paste a job listing that includes role details, requirements, or qualifications.';
+		// Its own code, so the dialog can tell "not a job ad" from other input errors.
+		return {
+			error:
+				'This does not appear to be a job description. Please paste a job listing that includes role details, requirements, or qualifications.',
+			code: 'NOT_A_JOB_AD'
+		};
 	}
 	return null;
 }
@@ -256,9 +272,9 @@ export const POST: RequestHandler = async ({ request }) => {
 	}
 
 	// Input validation
-	const validationError = validateJobDescription(jobDescription);
-	if (validationError) {
-		return errorResponse(400, validationError, 'VALIDATION_ERROR');
+	const inputError = validateJobDescription(jobDescription);
+	if (inputError) {
+		return errorResponse(400, inputError.error, inputError.code);
 	}
 
 	// Turnstile verification

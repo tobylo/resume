@@ -1,0 +1,70 @@
+// Client side of /api/analyze: sends the job ad and sorts the answer into what the
+// dialog shows next. The limits mirror the endpoint's; the server stays the authority.
+
+import type {
+	AnalyzeErrorResponse,
+	AnalyzeRequest,
+	AnalyzeResponse,
+	FitAnalysis
+} from './types.ts';
+
+export const MIN_CHARS = 50;
+export const MAX_CHARS = 10000;
+
+/** What went wrong, as the dialog groups it. */
+export type Failure =
+	| { kind: 'not-a-job-ad' }
+	/** Any other input the server refused, with its message. */
+	| { kind: 'invalid'; message: string }
+	| { kind: 'rate-limited' }
+	| { kind: 'verification' }
+	/** The model, the server or the network. */
+	| { kind: 'failed' };
+
+/** Failures that replace the input with an error state; the rest show under the box. */
+export type ErrorKind = Exclude<Failure['kind'], 'not-a-job-ad' | 'invalid'>;
+
+export type Outcome = { ok: true; analysis: FitAnalysis } | ({ ok: false } & Failure);
+
+function failureFor(body: AnalyzeErrorResponse): Failure {
+	switch (body.code) {
+		case 'NOT_A_JOB_AD':
+			return { kind: 'not-a-job-ad' };
+		case 'VALIDATION_ERROR':
+			return { kind: 'invalid', message: body.error };
+		case 'RATE_LIMITED':
+			return { kind: 'rate-limited' };
+		case 'CAPTCHA_FAILED':
+			return { kind: 'verification' };
+		default:
+			return { kind: 'failed' };
+	}
+}
+
+function isResponse(body: unknown): body is AnalyzeResponse | AnalyzeErrorResponse {
+	return typeof body === 'object' && body !== null && 'success' in body;
+}
+
+/**
+ * Posts the job ad. Resolves with the report or a failure; rejects only when `signal`
+ * aborts, so the caller can tell "closed" from "failed".
+ */
+export async function analyze(request: AnalyzeRequest, signal: AbortSignal): Promise<Outcome> {
+	let body: unknown;
+	try {
+		const response = await fetch('/api/analyze', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(request),
+			signal
+		});
+		body = await response.json();
+	} catch (err) {
+		if (signal.aborted) throw err;
+		return { ok: false, kind: 'failed' };
+	}
+
+	if (!isResponse(body)) return { ok: false, kind: 'failed' };
+	if (body.success) return { ok: true, analysis: body.analysis };
+	return { ok: false, ...failureFor(body) };
+}
