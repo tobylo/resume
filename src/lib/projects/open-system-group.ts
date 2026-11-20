@@ -5,7 +5,17 @@ export const openSystemGroup: Project = {
 	company: 'Open System Group AB',
 	role: 'System Developer',
 	description:
-		'Lead developer of a modular Silverlight web application for monitoring and analysis of property consumption data. The application collects consumption values and meter readings from building automation systems and presents them in an easily understandable way. Features include media supplier management for cost calculations, weather normalization, forecasts and budgets, alarm thresholds, and integration with third-party SMS/email services. Also developed a modular data collection engine, a driver for reading BatScan UPS status via self-hosted OPC server, and web applications for alarm search and HVAC reports.',
+		'Lead developer of a modular web app for monitoring property energy consumption: meter data from building automation, cost calculations, weather normalisation, forecasts, budgets and alarms. Plus a modular data collection engine and an OPC driver for UPS monitoring.',
+	keyTechnologies: [
+		'C#',
+		'Silverlight',
+		'WCF',
+		'ASP.NET MVC',
+		'Entity Framework',
+		'SQL',
+		'OPC DA',
+		'Kendo UI'
+	],
 	technologies: [
 		'C#',
 		'Silverlight',

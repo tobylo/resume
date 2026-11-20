@@ -10,7 +10,7 @@ export interface Project {
 	};
 	/** Headline result, shown in bold next to the description on the site and CV. */
 	outcome?: string;
-	/** Headline technologies shown as tags where space is tight (homepage, CV page 1). */
+	/** Headline technologies shown as tags where space is tight (homepage, timeline, CV page 1), in display form. */
 	keyTechnologies?: string[];
 	/** Listed under "Selected work" on the homepage and on page 1 of the CV. */
 	featured?: boolean;

@@ -4,7 +4,9 @@ export const sverigesRadio: Project = {
 	id: 'sveriges-radio',
 	company: 'Sveriges Radio',
 	role: 'System Developer',
-	description: 'Development and maintenance of various applications.',
+	description:
+		'Developed and maintained a range of applications for the national public radio broadcaster.',
+	keyTechnologies: ['C#', 'ASP.NET', 'WCF', 'AWS SQS', 'DynamoDB', 'Elasticsearch', 'Dojo'],
 	technologies: [
 		'C#',
 		'ASP.NET',

@@ -4,7 +4,8 @@ export const sosAlarm: Project = {
 	id: 'sos-alarm',
 	company: 'SOS Alarm',
 	role: 'System Developer',
-	description: 'Development of a booking system.',
+	description: 'Developed a booking system.',
+	keyTechnologies: ['C#', 'ASP.NET MVC', 'TypeScript', 'AngularJS', 'Less'],
 	technologies: [
 		'C#',
 		'ASP.NET MVC',

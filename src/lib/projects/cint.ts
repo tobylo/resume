@@ -5,8 +5,9 @@ export const cint: Project = {
 	company: 'Cint',
 	role: 'System Developer',
 	description:
-		'Worked on a scalable integration project in Azure built with Service Bus and Azure Functions (including Durable Functions).',
-	technologies: ['C#', 'Azure Functions', 'Event Hubs', 'CosmosDB'],
+		'A scalable integration project on Azure, built with Service Bus and Azure Functions, including Durable Functions.',
+	keyTechnologies: ['C#', 'Azure Functions', 'Service Bus', 'Event Hubs', 'Cosmos DB'],
+	technologies: ['C#', 'Azure Functions', 'Service Bus', 'Event Hubs', 'CosmosDB'],
 	period: {
 		start: '2018',
 		end: '2018'
