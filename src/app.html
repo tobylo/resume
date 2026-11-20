@@ -4,9 +4,22 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<!-- Browser chrome follows the system scheme. Canvas colours from src/app.css. -->
-		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-		<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)" />
+		<!--
+			Browser chrome takes the canvas colour (from src/app.css) of the scheme in use: the
+			system's, or the visitor's choice, which turns one tag on for all media and the other off.
+		-->
+		<meta
+			name="theme-color"
+			content="#ffffff"
+			media="(prefers-color-scheme: light)"
+			data-scheme="light"
+		/>
+		<meta
+			name="theme-color"
+			content="#121110"
+			media="(prefers-color-scheme: dark)"
+			data-scheme="dark"
+		/>
 		<script>
 			// Apply the theme before first paint so dark visitors never get a white flash.
 			// An explicit choice is stored; otherwise follow the system. Keep in sync with
@@ -22,6 +35,13 @@
 					stored === 'dark' ||
 					(stored !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
 				document.documentElement.classList.toggle('dark', dark);
+				if (stored === 'light' || stored === 'dark') {
+					document
+						.querySelectorAll('meta[name="theme-color"][data-scheme]')
+						.forEach(function (meta) {
+							meta.media = meta.dataset.scheme === stored ? 'all' : 'not all';
+						});
+				}
 			})();
 		</script>
 		<meta name="author" content="Tobias Lolax" />
