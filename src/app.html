@@ -4,6 +4,9 @@
 		<meta charset="utf-8" />
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!-- Browser chrome follows the system scheme. Canvas colours from src/app.css. -->
+		<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+		<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)" />
 		<script>
 			// Apply the theme before first paint so dark visitors never get a white flash.
 			// An explicit choice is stored; otherwise follow the system. Keep in sync with

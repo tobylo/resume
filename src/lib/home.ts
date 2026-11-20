@@ -64,10 +64,13 @@ export interface Stat {
 	cvLabel?: string;
 }
 
+// Typed in: lead roles aren't a field on the projects. The OG image reads it too.
+export const leadYears = '5+ yrs';
+
 export const stats: readonly Stat[] = [
 	{ value: `${yearsInProduction} yrs`, label: 'in production software' },
 	{ value: String(projects.length), label: 'client engagements' },
-	{ value: '5+ yrs', label: 'in lead positions' },
+	{ value: leadYears, label: 'in lead positions' },
 	{
 		value: 'Founder',
 		label: 'of a 20+ person events company that runs itself. I handle its IT and admin.',

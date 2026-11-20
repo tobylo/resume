@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Meta from '#lib/components/Meta.svelte';
 	import Closing from '#lib/components/Closing.svelte';
 	import HobbyCard from '#lib/components/lab/HobbyCard.svelte';
 	import { hobbyProjects } from '#lib/hobby-projects/index.ts';
@@ -7,13 +8,11 @@
 	const eagerCount = 3;
 </script>
 
-<svelte:head>
-	<title>Hobby lab · Tobias Lolax</title>
-	<meta
-		name="description"
-		content="What Tobias Lolax builds outside client work: Devisor, software for a motorcycle track-day business, an auto clicker for Wayland, and other experiments with agents and RAG."
-	/>
-</svelte:head>
+<Meta
+	title="Hobby lab · Tobias Lolax"
+	description="What Tobias Lolax builds outside client work: Devisor, software for a motorcycle track-day business, an auto clicker for Wayland, and other experiments with agents and RAG."
+	path="/lab"
+/>
 
 <section class="page pt-10 pb-10 lg:pt-24 lg:pb-18" aria-labelledby="hobby-lab">
 	<nav aria-label="Breadcrumb" class="label text-ink text-tag font-semibold">
