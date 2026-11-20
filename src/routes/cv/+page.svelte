@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '#lib/components/Button.svelte';
+	import Meta from '#lib/components/Meta.svelte';
 	import Closing from '#lib/components/Closing.svelte';
 	import CvSheet from '#lib/components/cv/CvSheet.svelte';
 	import CvHeader from '#lib/components/cv/CvHeader.svelte';
@@ -23,13 +24,11 @@
 	const pages = 2;
 </script>
 
-<svelte:head>
-	<title>CV · {header.name}</title>
-	<meta
-		name="description"
-		content="{header.name}'s CV on two A4 pages: {header.title.toLowerCase()} with {yearsInProduction} years in production software. Print it or save it as a PDF."
-	/>
-</svelte:head>
+<Meta
+	title="CV · {header.name}"
+	description="{header.name}'s CV on two A4 pages: {header.title.toLowerCase()} with {yearsInProduction} years in production software. Print it or save it as a PDF."
+	path="/cv"
+/>
 
 <div class="cv bg-surface print:bg-canvas">
 	<div class="page a4:gap-8 flex flex-col items-center gap-5 py-8 lg:py-14 print:block print:p-0">

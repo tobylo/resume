@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Meta from '#lib/components/Meta.svelte';
 	import Closing from '#lib/components/Closing.svelte';
 	import Principle from '#lib/components/devisor/Principle.svelte';
 	import QuestionCell from '#lib/components/devisor/QuestionCell.svelte';
@@ -7,13 +8,11 @@
 	import { contact } from '#lib/site.ts';
 </script>
 
-<svelte:head>
-	<title>Devisor · Tobias Lolax</title>
-	<meta
-		name="description"
-		content="{devisor.summary} Why I'm building Devisor, the loop it runs, its principles and the questions it lets me explore."
-	/>
-</svelte:head>
+<Meta
+	title="Devisor · Tobias Lolax"
+	description="{devisor.summary} Why I'm building Devisor, the loop it runs, its principles and the questions it lets me explore."
+	path="/devisor"
+/>
 
 <!--
 	The page's accent block. In dark it becomes a raised surface with a yellow top rule and a
