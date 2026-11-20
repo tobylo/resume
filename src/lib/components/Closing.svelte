@@ -3,8 +3,14 @@
 	import { jobFit } from '#lib/job-fit/dialog.svelte.ts';
 	import Button from './Button.svelte';
 
-	let { heading = "Hiring for a role like this? Let's compare notes." }: { heading?: string } =
-		$props();
+	let {
+		heading = "Hiring for a role like this? Let's compare notes.",
+		secondary = { label: 'Email me', href: contact.email }
+	}: {
+		heading?: string;
+		/** The outline button under "Analyze job fit". */
+		secondary?: { label: string; href: string };
+	} = $props();
 </script>
 
 <section id="contact" class="page scroll-mt-8 pt-18 lg:pt-35">
@@ -18,7 +24,9 @@
 			<Button variant="cta" class="lg:justify-start" onclick={() => jobFit.show()}>
 				Analyze job fit
 			</Button>
-			<Button variant="outline" href={contact.email} class="lg:justify-start">Email me</Button>
+			<Button variant="outline" href={secondary.href} class="lg:justify-start">
+				{secondary.label}
+			</Button>
 		</div>
 	</div>
 </section>
