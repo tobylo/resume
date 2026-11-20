@@ -204,14 +204,18 @@ async function callLLM(
 		}
 		parsed = JSON.parse(text);
 	} catch {
-		console.error('Failed to parse LLM response as JSON. Raw text:', textContent.text);
+		// Never log the model's text: it can quote the job ad, and the site says it doesn't store ads.
+		console.error('Failed to parse LLM response as JSON. Length:', textContent.text.length);
 		throw new Error('Failed to parse LLM response as JSON');
 	}
 
 	const parseResult = fitAnalysisSchema.safeParse(parsed);
 	if (!parseResult.success) {
-		console.error('Schema validation failed:', JSON.stringify(parseResult.error.issues, null, 2));
-		console.error('Parsed LLM response:', JSON.stringify(parsed, null, 2));
+		// Where and why only; no values from the response.
+		console.error(
+			'Schema validation failed:',
+			parseResult.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.code}`)
+		);
 		throw new Error('LLM response does not match expected schema');
 	}
 
