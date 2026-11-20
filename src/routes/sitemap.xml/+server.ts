@@ -5,7 +5,7 @@ import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-const pages = ['/', '/work', '/devisor', '/lab', '/cv'];
+const pages = ['/', '/work', '/devisor', '/lab', '/cv', '/privacy'];
 
 export const GET: RequestHandler = () => {
 	const urls = pages.map((path) => `\t<url><loc>${absoluteUrl(path)}</loc></url>`).join('\n');

@@ -12,5 +12,6 @@
 		</a>
 		<a href={contact.gitHub} rel="me noopener" target="_blank" class="hover:underline">GitHub</a>
 		<a href="/lab" class="hover:underline">Hobby lab</a>
+		<a href="/privacy" class="hover:underline">Privacy</a>
 	</div>
 </footer>
