@@ -13,6 +13,18 @@ function readChoice(): Choice {
 	}
 }
 
+// Browser chrome (theme-color in app.html): a choice turns its scheme's tag on for all media and
+// the other off; without one, each tag goes back to matching its own system scheme.
+function applyThemeColor(choice: Choice) {
+	for (const meta of document.querySelectorAll<HTMLMetaElement>(
+		'meta[name="theme-color"][data-scheme]'
+	)) {
+		const scheme = meta.dataset.scheme;
+		if (choice) meta.media = scheme === choice ? 'all' : 'not all';
+		else meta.media = `(prefers-color-scheme: ${scheme})`;
+	}
+}
+
 // Mirrors the inline script in app.html: an explicit choice wins, otherwise the system decides.
 function createTheme() {
 	let choice = $state<Choice>(browser ? readChoice() : null);
@@ -20,7 +32,10 @@ function createTheme() {
 	const dark = $derived(choice ? choice === 'dark' : systemDark);
 
 	// The page always shows what the store resolved, so the toggle never "does nothing".
-	const apply = () => document.documentElement.classList.toggle('dark', dark);
+	const apply = () => {
+		document.documentElement.classList.toggle('dark', dark);
+		applyThemeColor(choice);
+	};
 
 	if (browser) {
 		apply();
