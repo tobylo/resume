@@ -101,8 +101,9 @@
 		<h2 id="browser">In your browser</h2>
 		<p>
 			If you switch between light and dark, your choice is saved in your browser's local storage so
-			the site remembers it. It never leaves your device. Fonts are served from this site, not from
-			a third party.
+			the site remembers it. The only place it goes is the analyzer's Cloudflare check, which is
+			told whether to draw itself light or dark. Fonts are served from this site, not from a third
+			party.
 		</p>
 	</section>
 
