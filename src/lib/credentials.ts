@@ -6,6 +6,8 @@ export interface Certification {
 	/** Shorter name for tight layouts (homepage). */
 	shortName?: string;
 	issuer: string;
+	/** What the short name is about, where it isn't clear alone ("Kubernetes" for CKA). Shown on the CV. */
+	topic?: string;
 	url?: string;
 	/** Still valid. Expired ones are shown as "previously". */
 	current: boolean;
@@ -48,6 +50,7 @@ export const certifications: Certification[] = [
 	{
 		name: 'Certified Kubernetes Administrator (CKA)',
 		shortName: 'CKA',
+		topic: 'Kubernetes',
 		issuer: 'The Linux Foundation',
 		url: 'https://www.credly.com/badges/591adb36-1424-4119-81e2-2ee806063a41',
 		current: false,
@@ -56,6 +59,7 @@ export const certifications: Certification[] = [
 	{
 		name: 'Certified Kubernetes Application Developer (CKAD)',
 		shortName: 'CKAD',
+		topic: 'Kubernetes',
 		issuer: 'The Linux Foundation',
 		url: 'https://www.credly.com/badges/ea350be1-0743-44ec-873e-fe214628e15d',
 		current: false,

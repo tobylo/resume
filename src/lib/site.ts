@@ -5,6 +5,8 @@ import { projects } from '#lib/projects/index.ts';
 export const contact = {
 	// The +resume suffix shows which emails came from the site.
 	email: 'mailto:tobias.lolax+resume@gmail.com',
+	// The CV is read on paper and copied by hand, so it shows the plain address.
+	cvEmail: 'tobias.lolax@gmail.com',
 	linkedIn: 'https://www.linkedin.com/in/tobiaslolax/',
 	gitHub: 'https://github.com/tobylo'
 } as const;
@@ -12,7 +14,8 @@ export const contact = {
 export const person = {
 	name: 'Tobias Lolax',
 	title: 'Senior engineer & tech lead',
-	location: 'Stockholm'
+	location: 'Stockholm',
+	country: 'Sweden'
 } as const;
 
 export const languages =

@@ -6,6 +6,8 @@ export const softone: Project = {
 	role: 'Project Manager · System Developer',
 	description:
 		'Migrated a Silverlight application to AngularJS and built new modules. Ran the workshops that set requirements and the development plan.',
+	cvDescription:
+		'Silverlight to AngularJS migration and new modules; ran the requirements workshops.',
 	keyTechnologies: ['AngularJS', 'ASP.NET Web API', 'HTML5', 'Balsamiq'],
 	technologies: ['Balsamiq', 'HTML5', 'AngularJS', 'ASP.NET WebAPI'],
 	period: {

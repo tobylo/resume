@@ -48,13 +48,19 @@ function spanOf(list: Project[]): Project['period'] {
 	};
 }
 
-function toClient(group: { id: string; name: string; projects: Project[] }): TimelineClient {
+export function toClient(group: { id: string; name: string; projects: Project[] }): TimelineClient {
 	return {
 		...group,
 		role: [...new Set(group.projects.map((project) => project.role))].join(' / '),
 		period: spanOf(group.projects),
 		tags: [...new Set(group.projects.flatMap(headlineTags))].slice(0, 8)
 	};
+}
+
+/** The client's role, with the number of engagements when there are several. */
+export function clientRole(client: TimelineClient): string {
+	const count = client.projects.length;
+	return count > 1 ? `${client.role} · ${count} engagements` : client.role;
 }
 
 function eraOf(project: Project) {

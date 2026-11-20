@@ -3,6 +3,16 @@
 /* Dark mode follows the .dark class on <html>, set before first paint in app.html. */
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* The CV's A4 layout: on paper, and on screens wide enough to show a whole sheet. */
+@custom-variant a4 {
+	@media print {
+		@slot;
+	}
+	@media (width >= 56rem) {
+		@slot;
+	}
+}
+
 /*
   Design tokens from the Paper file ("Design system" page). Light values live here;
   the same names are overridden for dark under .dark below, so every utility

@@ -38,4 +38,6 @@ export interface HobbyProject {
 	/** Links shown under the card copy. A card without links shows its technologies instead. */
 	links?: HobbyLink[];
 	technologies: string[];
+	/** Listed under "Side projects" on the CV, as a short name and a one-line description. */
+	cv?: { name: string; line: string };
 }

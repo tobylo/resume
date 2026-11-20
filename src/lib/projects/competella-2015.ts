@@ -6,6 +6,8 @@ export const competella2015: Project = {
 	role: 'System Developer',
 	description:
 		"Took the proof of concept to production, rebuilding most components of the client's line-of-business system to scale.",
+	cvDescription:
+		'Proof of concept for a redundant call-routing service, then took it to production at scale.',
 	group: { id: 'competella', name: 'Competella' },
 	label: 'Prod',
 	keyTechnologies: ['C#', 'Redis', 'ProtoBuf', 'IPC', 'TopShelf', 'Skype for Business'],

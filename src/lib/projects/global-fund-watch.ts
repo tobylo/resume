@@ -6,6 +6,8 @@ export const globalFundWatch: Project = {
 	role: 'System Developer · Project Lead',
 	description:
 		'Took over a product built by a third party. Led the move to a cloud-native setup: CI/CD, containers, a bare-metal Kubernetes environment, refactoring and new features.',
+	cvDescription:
+		'Took over a third-party product and led the move to cloud-native: CI/CD, containers, bare-metal Kubernetes.',
 	keyTechnologies: [
 		'Node.js',
 		'React',

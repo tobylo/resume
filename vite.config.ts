@@ -7,5 +7,11 @@ export default defineConfig({
 	plugins: [sveltekit({ preprocess: vitePreprocess(), adapter: adapter() })],
 	// Fixed at build time so the prerendered HTML and the hydrated page agree,
 	// whatever the visitor's clock says.
-	define: { __BUILD_YEAR__: JSON.stringify(new Date().getFullYear()) }
+	define: {
+		__BUILD_YEAR__: JSON.stringify(new Date().getFullYear()),
+		// "November 2026", for the CV's "Updated" line.
+		__BUILD_MONTH__: JSON.stringify(
+			new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })
+		)
+	}
 });
