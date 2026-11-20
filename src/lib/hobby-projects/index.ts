@@ -1,4 +1,4 @@
-export type { HobbyProject, HobbyVisual, HobbyLink } from './types';
+export type { HobbyProject, HobbyVisual, HobbyIllustration, HobbyLink } from './types';
 
 import type { HobbyProject } from './types';
 import { devisor } from '#lib/devisor.ts';

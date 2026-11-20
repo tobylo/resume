@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Component } from 'svelte';
-	import type { HobbyProject } from '#lib/hobby-projects/index.ts';
+	import type { HobbyIllustration, HobbyProject } from '#lib/hobby-projects/index.ts';
 	import DevisorVisual from './DevisorVisual.svelte';
 	import TrackVisual from './TrackVisual.svelte';
 	import KeysVisual from './KeysVisual.svelte';
@@ -8,7 +8,7 @@
 
 	let { project, lazy = false }: { project: HobbyProject; lazy?: boolean } = $props();
 
-	const illustrations: Record<'devisor' | 'track' | 'keys' | 'query', Component> = {
+	const illustrations: Record<HobbyIllustration['kind'], Component> = {
 		devisor: DevisorVisual,
 		track: TrackVisual,
 		keys: KeysVisual,
