@@ -19,4 +19,6 @@ export interface Project {
 		id: string;
 		name: string;
 	};
+	/** Short label for this engagement within its group on the timeline (e.g. "PoC"). Defaults to its period. */
+	label?: string;
 }

@@ -1,5 +1,7 @@
 // Contact details and navigation shared by every page.
 
+import { projects } from '#lib/projects/index.ts';
+
 export const contact = {
 	// The +resume suffix shows which emails came from the site.
 	email: 'mailto:tobias.lolax+resume@gmail.com',
@@ -24,7 +26,7 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-	{ label: 'Work', href: '/work', hint: '22 engagements' },
+	{ label: 'Work', href: '/work', hint: `${projects.length} engagements` },
 	{ label: 'Now building', href: '/devisor', hint: 'Devisor' },
 	{ label: 'Contact', href: '#contact', hint: 'Email · LinkedIn' },
 	{ label: 'Hobby lab', href: '/lab', hint: 'Side projects' }

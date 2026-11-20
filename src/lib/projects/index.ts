@@ -49,8 +49,18 @@ export const projects = [
 	openSystemGroup
 ];
 
+// The first year in production, and full years since, counted to the year of
+// the build so the prerendered page and the hydrated page show the same number.
+export const firstYear = Math.min(...projects.map((p) => Number(p.period.start)));
+export const yearsInProduction = __BUILD_YEAR__ - firstYear;
+
 // Projects shown under "Selected work" on the homepage and CV, in list order
 export const featuredProjects = projects.filter((p) => p.featured);
+
+// Headline technologies where space is tight: the curated list, or the first eight
+export function headlineTags(project: Project): string[] {
+	return project.keyTechnologies ?? project.technologies.slice(0, 8);
+}
 
 // Ungrouped projects stand alone; grouped ones share one client entry, kept in list order
 export function groupByClient(

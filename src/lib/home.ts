@@ -1,5 +1,7 @@
 // Homepage copy that isn't project data.
 
+import { projects, yearsInProduction } from '#lib/projects/index.ts';
+
 export interface HeroVariant {
 	headline: string;
 	lead: string;
@@ -10,7 +12,7 @@ export interface HeroVariant {
 export const heroVariants: HeroVariant[] = [
 	{
 		headline: 'An engineer who thinks like a founder, and takes ownership like one.',
-		lead: '22 client engagements over 17 years, across finance, retail, IoT and the public sector. I do my best work when I own the product and the outcome, not just the tickets.'
+		lead: `${projects.length} client engagements over ${yearsInProduction} years, across finance, retail, IoT and the public sector. I do my best work when I own the product and the outcome, not just the tickets.`
 	},
 	{
 		headline: 'Turning fuzzy problems into software people rely on.',
@@ -18,7 +20,7 @@ export const heroVariants: HeroVariant[] = [
 	},
 	{
 		headline: 'Rethinking how software gets built in the age of agents.',
-		lead: "A hands-on engineer and tech lead with 17 years in production. These days I'm working out how AI agents fit into a real team's workflow, and building the tooling to make that stick."
+		lead: `A hands-on engineer and tech lead with ${yearsInProduction} years in production. These days I'm working out how AI agents fit into a real team's workflow, and building the tooling to make that stick.`
 	}
 ];
 
@@ -43,8 +45,8 @@ export const worksIn = [
 ] as const;
 
 export const stats = [
-	{ value: '17 yrs', label: 'in production software' },
-	{ value: '22', label: 'client engagements' },
+	{ value: `${yearsInProduction} yrs`, label: 'in production software' },
+	{ value: String(projects.length), label: 'client engagements' },
 	{ value: '5+ yrs', label: 'in lead positions' },
 	{
 		value: 'Founder',
