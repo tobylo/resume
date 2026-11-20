@@ -11,7 +11,7 @@ export interface Certification {
 	url?: string;
 	/** Still valid. Expired ones are shown as "previously". */
 	current: boolean;
-	/** Shown on the homepage and CV page 1; the rest only reach the analyzer. */
+	/** Shown on the homepage and the CV; the rest only reach the analyzer. */
 	featured?: boolean;
 }
 

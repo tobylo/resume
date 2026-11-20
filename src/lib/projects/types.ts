@@ -10,9 +10,9 @@ export interface Project {
 	};
 	/** Headline result, shown in bold next to the description on the site and CV. */
 	outcome?: string;
-	/** Headline technologies shown as tags where space is tight (homepage, timeline, CV page 1), in display form. */
+	/** Headline technologies shown as tags where space is tight (homepage, timeline, CV entries), in display form. */
 	keyTechnologies?: string[];
-	/** Listed under "Selected work" on the homepage and on page 1 of the CV. */
+	/** Listed under "Selected work" on the homepage and "Selected experience" on the CV (page 1 holds four; the rest continue on page 2). */
 	featured?: boolean;
 	/** Engagements sharing a group are shown as one client on the timeline and CV. */
 	group?: {
