@@ -49,7 +49,11 @@
 			Cloudflare hosts the site. To deliver each page and keep the site safe from abuse, it
 			processes your IP address and the details of the request, such as the page, your browser and
 			the time. Cloudflare can process this data outside the EU; the transfer is covered by the
-			EU–US Data Privacy Framework and standard contractual clauses.
+			EU–US Data Privacy Framework and standard contractual clauses. How long Cloudflare keeps this
+			data is set out in
+			<a href="https://www.cloudflare.com/privacypolicy/" rel="noopener">
+				Cloudflare's privacy policy
+			</a>.
 		</p>
 		<p>
 			The legal basis is my legitimate interest in running a secure website (GDPR Art. 6(1)(f)).
@@ -104,7 +108,12 @@
 
 	<section aria-labelledby="email">
 		<h2 id="email">Email</h2>
-		<p>If you email me, I use your message to reply and keep it in my inbox, which Google hosts.</p>
+		<p>
+			If you email me, I use your message to reply and keep it in my inbox, which Google hosts. I
+			delete it when our conversation is over, unless we end up working together. The legal basis is
+			taking steps you asked for before a possible contract (GDPR Art. 6(1)(b)), or otherwise my
+			legitimate interest in answering you (GDPR Art. 6(1)(f)).
+		</p>
 	</section>
 
 	<section aria-labelledby="rights">
