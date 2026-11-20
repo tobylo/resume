@@ -24,11 +24,13 @@
 		return [...copies, `${image.src} ${image.width}w`].join(', ');
 	};
 
-	// Card width in the lab grid: one column below md, two below xl, then three
-	// columns that grow until the page reaches its 1248px width at 90rem.
+	// Card width in the lab grid: one column below md, two below xl, then three.
+	// The page caps at 1248px of content plus gutters (1344px with two columns,
+	// 1440px with three); the px conditions keep that true with larger fonts.
 	const sizes = [
-		'(min-width: 90rem) 395px',
+		'(min-width: 80rem) and (min-width: 1440px) 395px',
 		'(min-width: 80rem) calc((100vw - 256px) / 3)',
+		'(min-width: 48rem) and (min-width: 1344px) 608px',
 		'(min-width: 48rem) calc(50vw - 64px)',
 		'calc(100vw - 40px)'
 	].join(', ');
