@@ -1,0 +1,31 @@
+# Rebuild the site just after New Year. Pages are prerendered, so the
+# "years in production" count is fixed at build time and only moves when the
+# site is rebuilt. This starts a production build through a Workers Builds
+# Deploy Hook (Cloudflare dashboard: Worker > Settings > Builds > Deploy Hooks,
+# branch main); the hook URL is the repository secret CLOUDFLARE_DEPLOY_HOOK_URL.
+
+name: New Year rebuild
+
+on:
+  schedule:
+    # Noon UTC on 1 January, when it is 1 January in every time zone, so the
+    # build's clock reads the new year wherever the build machine runs.
+    - cron: '0 12 1 1 *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger the production build
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.CLOUDFLARE_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "::error::CLOUDFLARE_DEPLOY_HOOK_URL is not set"
+            exit 1
+          fi
+          curl --fail-with-body --silent --show-error --retry 3 -X POST "$DEPLOY_HOOK_URL"
