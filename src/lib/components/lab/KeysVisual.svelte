@@ -7,7 +7,7 @@
 
 <div class="{frame} bg-surface border-line-strong">
 	<p class={corner}>Start / stop clicking</p>
-	<div class="flex flex-wrap items-center gap-2">
+	<div class="flex flex-wrap items-center gap-1.5 lg:gap-2">
 		{#each keys as key, i (key)}
 			{#if i > 0}
 				<span class="text-ink-muted text-[20px]/6 font-bold">+</span>
