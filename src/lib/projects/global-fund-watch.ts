@@ -3,9 +3,19 @@ import type { Project } from './types';
 export const globalFundWatch: Project = {
 	id: 'global-fund-watch',
 	company: 'Global Fund Watch',
-	role: 'System Developer & Project Lead',
+	role: 'System Developer · Project Lead',
 	description:
-		'Took over a product previously built by a third party, starting with analysis. Led the move to a cloud-native setup: CI/CD, containerization, a bare-metal Kubernetes hosting environment, refactoring and new development of the product.',
+		'Took over a product built by a third party. Led the move to a cloud-native setup: CI/CD, containers, a bare-metal Kubernetes environment, refactoring and new features.',
+	keyTechnologies: [
+		'Node.js',
+		'React',
+		'TypeScript',
+		'GraphQL',
+		'MongoDB',
+		'Kubernetes',
+		'AKS',
+		'Prometheus'
+	],
 	technologies: [
 		'Node.js',
 		'React',

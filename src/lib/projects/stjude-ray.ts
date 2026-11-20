@@ -4,8 +4,9 @@ export const stjudeRay: Project = {
 	id: 'stjude-ray',
 	company: 'St. Jude Medical Sverige',
 	role: 'System Developer',
-	description: 'Further development of a data and statistics application.',
+	description: 'Further developed a data and statistics application.',
 	group: { id: 'stjude', name: 'St. Jude Medical' },
+	keyTechnologies: ['C#', 'SQL'],
 	technologies: ['C#', 'ASP.NET', 'SQL'],
 	period: {
 		start: '2014',

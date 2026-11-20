@@ -4,7 +4,8 @@ export const stanleySecurity: Project = {
 	id: 'stanley-security',
 	company: 'Stanley Security Sverige',
 	role: 'System Developer',
-	description: 'Creating the ability to dynamically create, present, and persist forms.',
+	description: 'Made it possible to create, present and store forms dynamically.',
+	keyTechnologies: ['C#', 'SQL', 'JavaScript', 'JSON', 'Grunt'],
 	technologies: ['C#', 'JSON', 'SQL', 'JavaScript', 'Bower', 'Grunt'],
 	period: {
 		start: '2014',
