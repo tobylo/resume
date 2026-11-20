@@ -95,7 +95,7 @@ export const devisor = {
 		{
 			topic: 'Evals',
 			title: 'Can the workflows improve themselves?',
-			body: 'Every session is stored in full: prompts, text, tool calls and sub-agents. The bet is that this history makes good evals, and good evals make an automated self-improvement loop possible.'
+			body: 'Every session is stored in full: prompts, text, tool calls and sub-agents. The bet is that we might be able to extract metrics and outcomes to construct good evals, and good evals make an automated self-improvement loop possible.'
 		},
 		{
 			topic: 'Forge',
