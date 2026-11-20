@@ -52,6 +52,11 @@ export const projects = [
 // Projects shown under "Selected work" on the homepage and CV, in list order
 export const featuredProjects = projects.filter((p) => p.featured);
 
+// Headline technologies where space is tight: the curated list, or the first eight
+export function headlineTags(project: Project): string[] {
+	return project.keyTechnologies ?? project.technologies.slice(0, 8);
+}
+
 // Ungrouped projects stand alone; grouped ones share one client entry, kept in list order
 export function groupByClient(
 	list: Project[]

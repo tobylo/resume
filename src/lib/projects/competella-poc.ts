@@ -6,6 +6,7 @@ export const competellaPoc: Project = {
 	role: 'System Developer',
 	description: 'Developed a POC for redundant and scalable call routing service.',
 	group: { id: 'competella', name: 'Competella' },
+	label: 'PoC',
 	technologies: ['C#', 'Redis', 'IPC', 'TopShelf', 'ProtoBuf', 'JSON'],
 	period: {
 		start: '2015',

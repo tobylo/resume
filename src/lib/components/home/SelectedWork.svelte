@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { projects, featuredProjects } from '#lib/projects/index.ts';
+	import { projects, featuredProjects, headlineTags } from '#lib/projects/index.ts';
 	import { employer, moreClients } from '#lib/home.ts';
-	import WorkRow from './WorkRow.svelte';
+	import { formatPeriod } from '#lib/format.ts';
+	import WorkRow from '../WorkRow.svelte';
 
 	const rest = projects.filter((project) => !project.featured);
 	const firstYear = Math.min(...rest.map((project) => Number(project.period.start)));
@@ -26,7 +27,18 @@
 	</div>
 
 	{#each featuredProjects as project (project.id)}
-		<WorkRow {project} />
+		<WorkRow
+			id={project.id}
+			period={formatPeriod(project.period)}
+			title={project.company}
+			role={project.role}
+			tags={headlineTags(project)}
+		>
+			<p class="text-ink-body text-[16px]/[25px] lg:text-base">{project.description}</p>
+			{#if project.outcome}
+				<p class="text-[16px]/[25px] font-semibold lg:text-base">{project.outcome}</p>
+			{/if}
+		</WorkRow>
 	{/each}
 
 	<div

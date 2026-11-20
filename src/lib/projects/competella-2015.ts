@@ -7,6 +7,7 @@ export const competella2015: Project = {
 	description:
 		'Implementation of a previously developed POC. This project touched most components of the clients existing LOB system, rebuilding them to become scalable.',
 	group: { id: 'competella', name: 'Competella' },
+	label: 'Prod',
 	technologies: [
 		'C#',
 		'Redis',
