@@ -5,7 +5,8 @@ export const kmd: Project = {
 	company: 'KMD',
 	role: 'System Developer',
 	description:
-		'Responsible for developing a freemium version of an existing application for both administrators and end users. Also adapted the existing STS solution to be used by external applications with JWT tokens.',
+		'Built a freemium version of an existing application for administrators and end users, and opened the STS solution to external apps with JWT.',
+	keyTechnologies: ['C#', 'Azure', 'AngularJS', 'ASP.NET MVC', 'Web API', 'JWT', 'SQL Azure'],
 	technologies: [
 		'C#',
 		'Microsoft Azure',

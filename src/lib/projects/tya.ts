@@ -3,9 +3,10 @@ import type { Project } from './types';
 export const tya: Project = {
 	id: 'tya',
 	company: 'TYA',
-	role: 'Maintenance Manager, Project Manager & System Developer',
+	role: 'Maintenance & Project Manager · Developer',
 	description:
-		'Development and maintenance of applications related to certifications. Developed a solution for generating generic Excel and Word reports. Also worked on the development of a user portal.',
+		'Developed and maintained certification applications, including a generic Excel and Word report generator and a user portal.',
+	keyTechnologies: ['C#', 'ASP.NET MVC', 'NHibernate', 'SQL', 'AngularJS', 'OpenXML'],
 	technologies: [
 		'C#',
 		'ASP.NET MVC',

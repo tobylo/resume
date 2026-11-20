@@ -5,8 +5,9 @@ export const stjudeDistribution: Project = {
 	company: 'St. Jude Medical',
 	role: 'System Developer',
 	description:
-		'Further development of a distribution platform. Improved the speed of specific hardware validation and wrote an integration with SAP.',
+		'Further developed a distribution platform: sped up hardware validation and built an SAP integration.',
 	group: { id: 'stjude', name: 'St. Jude Medical' },
+	keyTechnologies: ['C#', 'SFTP', 'Unix'],
 	technologies: ['C#', 'SSH', 'Unix', 'SFTP', 'XML', 'NUnit'],
 	period: {
 		start: '2013',

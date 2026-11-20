@@ -4,8 +4,9 @@ export const competellaPoc: Project = {
 	id: 'competella-poc',
 	company: 'Competella',
 	role: 'System Developer',
-	description: 'Developed a POC for redundant and scalable call routing service.',
+	description: 'Built a proof of concept for a redundant, scalable call-routing service.',
 	group: { id: 'competella', name: 'Competella' },
+	keyTechnologies: ['C#', 'Redis', 'ProtoBuf', 'IPC', 'TopShelf'],
 	technologies: ['C#', 'Redis', 'IPC', 'TopShelf', 'ProtoBuf', 'JSON'],
 	period: {
 		start: '2015',
