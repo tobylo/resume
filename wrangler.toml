@@ -9,9 +9,9 @@ compatibility_flags = ["nodejs_compat"]
 workers_dev = true
 preview_urls = true
 
-# The Turnstile site key is public. Nothing reads it yet: the analyzer dialog
-# will declare it as a public variable in src/env.ts, and the build gets it from
-# here because the adapter copies these vars into the build environment.
+# The Turnstile site key is public. src/env.ts declares it as a static public
+# variable for the job fit dialog; the build gets it from here because the
+# adapter copies these vars into the build environment.
 [vars]
 PUBLIC_TURNSTILE_SITE_KEY = "0x4AAAAAACYV-gxpOn8XYtRb"
 

@@ -13,7 +13,13 @@ export interface AnalyzeResponse {
 export interface AnalyzeErrorResponse {
 	success: false;
 	error: string;
-	code: 'VALIDATION_ERROR' | 'RATE_LIMITED' | 'CAPTCHA_FAILED' | 'LLM_ERROR' | 'INTERNAL_ERROR';
+	code:
+		| 'VALIDATION_ERROR'
+		| 'NOT_A_JOB_AD'
+		| 'RATE_LIMITED'
+		| 'CAPTCHA_FAILED'
+		| 'LLM_ERROR'
+		| 'INTERNAL_ERROR';
 }
 
 // === Analysis Types ===
