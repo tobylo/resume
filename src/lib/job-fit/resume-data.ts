@@ -28,7 +28,7 @@ export const resumeContext: ResumeContext = {
 	hobbyProjects: hobbyProjects.map((p) => ({
 		title: p.title,
 		description: p.description,
-		technologies: p.technologies ?? []
+		technologies: p.technologies
 	})),
 	allSkills: [...new Set(projects.flatMap((p) => p.technologies))].sort((a, b) =>
 		a.localeCompare(b)
