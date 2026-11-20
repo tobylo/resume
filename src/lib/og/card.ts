@@ -8,15 +8,32 @@ import { projects, yearsInProduction } from '#lib/projects/index.ts';
 export const OG_WIDTH = ogImage.width;
 export const OG_HEIGHT = ogImage.height;
 
-// Light theme values from src/app.css. Link previews have no theme.
-const color = {
-	canvas: '#ffffff',
-	ink: '#0e0e0e',
-	inkStrong: '#000000',
-	inkBody: '#3a3a3a',
-	subtitle: '#1a1a1a',
-	accent: '#ffd000'
-} as const;
+/** The theme colours the card uses. Link previews have no theme, so these are the light ones. */
+export interface OgPalette {
+	canvas: string;
+	ink: string;
+	inkBody: string;
+	accent: string;
+}
+
+/**
+ * Reads the light colour tokens from src/app.css, so the card follows the theme.
+ * The light values are in `@theme`, which comes before the dark and print overrides,
+ * so the first declaration of each name is the light one.
+ */
+export function lightPalette(css: string): OgPalette {
+	const token = (name: string) => {
+		const value = css.match(new RegExp(`--color-${name}:\\s*([^;]+);`))?.[1].trim();
+		if (!value) throw new Error(`--color-${name} not found in src/app.css`);
+		return value;
+	};
+	return {
+		canvas: token('canvas'),
+		ink: token('ink'),
+		inkBody: token('ink-body'),
+		accent: token('accent')
+	};
+}
 
 /** The three mono stats along the bottom; counts come from the data so a rebuild keeps them current. */
 export const ogStats = [
@@ -45,7 +62,7 @@ const el = (
 const mono = { fontFamily: 'JetBrains Mono', fontWeight: 600 } as const;
 const sans = { fontFamily: 'Inter' } as const;
 
-function header(avatar: string): OgNode {
+function header(color: OgPalette, avatar: string): OgNode {
 	return el('div', { display: 'flex', alignItems: 'center', gap: 16 }, [
 		el(
 			'img',
@@ -55,13 +72,13 @@ function header(avatar: string): OgNode {
 		),
 		el(
 			'div',
-			{ ...mono, fontSize: 22, letterSpacing: 0.44, lineHeight: '28px', color: color.inkStrong },
+			{ ...mono, fontSize: 22, letterSpacing: 0.44, lineHeight: '28px', color: color.ink },
 			'tobylo.dev'
 		)
 	]);
 }
 
-function identity(): OgNode {
+function identity(color: OgPalette): OgNode {
 	return el('div', { display: 'flex', flexDirection: 'column', gap: 18 }, [
 		el(
 			'div',
@@ -71,7 +88,7 @@ function identity(): OgNode {
 				fontWeight: 800,
 				letterSpacing: -5.12,
 				lineHeight: '120px',
-				color: color.inkStrong
+				color: color.ink
 			},
 			person.name
 		),
@@ -83,14 +100,14 @@ function identity(): OgNode {
 				fontWeight: 600,
 				letterSpacing: -0.34,
 				lineHeight: '40px',
-				color: color.subtitle
+				color: color.ink
 			},
 			`${person.title} · ${person.location}`
 		)
 	]);
 }
 
-function statRow(): OgNode {
+function statRow(color: OgPalette): OgNode {
 	return el(
 		'div',
 		{ display: 'flex', gap: 36 },
@@ -112,7 +129,7 @@ function statRow(): OgNode {
 }
 
 /** The whole card. `avatar` is a data URI of the 64px avatar. */
-export function ogCard(avatar: string): OgNode {
+export function ogCard(color: OgPalette, avatar: string): OgNode {
 	return el(
 		'div',
 		{
@@ -131,7 +148,7 @@ export function ogCard(avatar: string): OgNode {
 					flexGrow: 1,
 					padding: '64px 72px'
 				},
-				[header(avatar), identity(), statRow()]
+				[header(color, avatar), identity(color), statRow(color)]
 			),
 			el('div', {
 				width: 40,

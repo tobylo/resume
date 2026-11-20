@@ -4,7 +4,7 @@
 
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { OG_HEIGHT, OG_WIDTH, ogCard } from '#lib/og/card.ts';
+import { OG_HEIGHT, OG_WIDTH, lightPalette, ogCard } from '#lib/og/card.ts';
 import type { RequestHandler } from './$types';
 
 export const prerender = true;
@@ -25,14 +25,19 @@ export const GET: RequestHandler = async () => {
 		load<typeof import('satori')>('satori'),
 		load<typeof import('@resvg/resvg-js')>('@resvg/resvg-js')
 	]);
-	const [inter600, inter800, mono600, avatar] = await Promise.all([
+	const [inter600, inter800, mono600, avatar, css] = await Promise.all([
 		fontsource('inter', 'inter-latin-600-normal.woff'),
 		fontsource('inter', 'inter-latin-800-normal.woff'),
 		fontsource('jetbrains-mono', 'jetbrains-mono-latin-600-normal.woff'),
-		fromRoot('src', 'lib', 'og', 'avatar.png')
+		fromRoot('src', 'lib', 'og', 'avatar.png'),
+		fromRoot('src', 'app.css')
 	]);
 
-	const svg = await satori(ogCard(`data:image/png;base64,${avatar.toString('base64')}`), {
+	const card = ogCard(
+		lightPalette(css.toString('utf8')),
+		`data:image/png;base64,${avatar.toString('base64')}`
+	);
+	const svg = await satori(card, {
 		width: OG_WIDTH,
 		height: OG_HEIGHT,
 		fonts: [
