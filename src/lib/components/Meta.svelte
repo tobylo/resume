@@ -1,5 +1,6 @@
 <!--
-	Page title, description, canonical URL and link preview tags. Every page renders one.
+	Page title, description, canonical URL and link preview tags. Every page renders one
+	(/cv once its slice lands).
 	The preview image is shared: src/routes/og.png renders it at build time.
 -->
 <script lang="ts">
