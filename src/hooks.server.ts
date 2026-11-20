@@ -1,7 +1,16 @@
 import type { Handle } from '@sveltejs/kit/hooks';
 
+// Inter and JetBrains Mono are only found once the stylesheet has loaded, which puts them
+// last in the critical chain. Preload the Latin variable files every page uses, so they
+// load alongside the CSS. The other subsets stay lazy: browsers fetch them only when a
+// page needs those characters.
+const LATIN_FONTS = /\/(inter|jetbrains-mono)-latin-wght-normal\.[\w-]+\.woff2$/;
+
 export const handle: Handle = async ({ event, resolve }) => {
-	const response = await resolve(event);
+	const response = await resolve(event, {
+		preload: ({ type, path }) =>
+			type === 'js' || type === 'css' || (type === 'font' && LATIN_FONTS.test(path))
+	});
 
 	response.headers.set('X-Content-Type-Options', 'nosniff');
 	response.headers.set('X-Frame-Options', 'DENY');

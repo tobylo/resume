@@ -42,6 +42,8 @@
 	<div class="flex items-center gap-3 lg:gap-3.5">
 		<img
 			src="/avatar.webp"
+			srcset="/avatar-80.webp 80w, /avatar-120.webp 120w, /avatar.webp 192w"
+			sizes="(min-width: 1024px) 36px, 40px"
 			alt=""
 			width="96"
 			height="96"
