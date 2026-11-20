@@ -87,8 +87,8 @@
 			</li>
 			<li>I don't store job ads. They aren't saved or logged on this site.</li>
 			<li>
-				To allow 5 analyses an hour, your IP address is kept with a counter for up to two hours,
-				then deleted automatically.
+				To allow 5 analyses an hour, your IP address is kept with a counter and deleted
+				automatically two hours after your last analysis.
 			</li>
 		</ul>
 		<p>
