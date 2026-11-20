@@ -68,12 +68,13 @@
 
 	<section aria-labelledby="analyzer">
 		<h2 id="analyzer">The job-fit analyzer</h2>
-		<p>When you paste a job ad and run an analysis:</p>
+		<p>
+			When you open the analyzer, Cloudflare Turnstile checks that you're a person, even if you
+			close it again without pasting anything. It processes your IP address and signals from your
+			browser for that check.
+		</p>
+		<p>When you run an analysis:</p>
 		<ul>
-			<li>
-				Cloudflare Turnstile checks that you're a person. It processes your IP address and signals
-				from your browser for that check.
-			</li>
 			<li>
 				The ad is sent to Anthropic's API, which writes the analysis. Anthropic doesn't use it to
 				train its models; see <a href="https://www.anthropic.com/legal/privacy" rel="noopener">
