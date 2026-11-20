@@ -91,7 +91,7 @@
 		<p
 			class="text-ink-muted lg:text-ink-body text-tag/[18px] text-center lg:order-first lg:text-left lg:text-[14px]/5"
 		>
-			I don't store job ads. Up to 5 reports per hour.
+			I don't store job ads. Up to 5 analyses per hour.
 		</p>
 	</div>
 </form>

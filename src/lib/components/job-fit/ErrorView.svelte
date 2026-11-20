@@ -18,7 +18,7 @@
 	const copy: Record<ErrorKind, { label: string; title: string; body: string }> = {
 		'rate-limited': {
 			label: 'Limit reached',
-			title: "That's 5 reports this hour.",
+			title: "That's 5 analyses this hour.",
 			body: 'The analyzer is rate-limited to keep it fair and affordable. Try again in an hour, or skip the robot and email me directly.'
 		},
 		verification: {

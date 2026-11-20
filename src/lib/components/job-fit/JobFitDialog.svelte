@@ -103,7 +103,7 @@
 	{onclose}
 	aria-labelledby="job-fit-title"
 	class={[
-		'bg-canvas text-ink backdrop:bg-on-accent/40 m-0 h-dvh max-h-none w-full max-w-none outline-none',
+		'bg-canvas text-ink backdrop:bg-on-accent/40 m-0 h-dvh max-h-none w-full max-w-none overscroll-contain outline-none',
 		'lg:border-line-strong lg:m-auto lg:h-fit lg:max-h-[calc(100dvh-4rem)] lg:border-[1.5px]',
 		isReport ? 'lg:w-[760px]' : 'lg:w-[600px]'
 	]}
