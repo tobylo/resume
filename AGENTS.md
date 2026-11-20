@@ -51,7 +51,7 @@ Local secrets for the analyzer go in `.dev.vars` (see `.dev.vars.example`).
 - **Code Health.** Files a commit adds or changes should score 10 in CodeScene (`code_health_review`). If one can't, say why in the PR.
 - **Review.** Before pushing, run the local adversarial review (`adversarial-review` skill: Codex and CodeRabbit) until both come back clean or every remaining finding is declined with reasoning. On the PR, answer every Codex and CodeRabbit finding: "fixed in <sha>", or the reasoning.
 - **Ready means green.** A PR is ready when its checks pass (CodeRabbit, Workers Builds) and its Preview (the workers.dev URL in the Cloudflare comment) has been looked at for the pages it touches, in light and dark, on desktop and mobile widths.
-- **Commits and PRs.** Write them as the owner would: what changes and why, plain and short. No AI attribution, co-author trailers or "generated with" footers. Commit with the owner's GitHub noreply address (`4395405+tobylo@users.noreply.github.com`): pushes with the private address are rejected.
+- **Commits and PRs.** Write them as the owner would: what changes and why, plain and short. No AI attribution, co-author trailers or "generated with" footers. Commit with the owner's GitHub noreply address (`4395405+tobylo@users.noreply.github.com`): pushes with the private address are rejected. Entire adds an `Entire-Checkpoint:` trailer to each commit, linking it to the session that made it; keep it, it is not attribution.
 - **Scope.** Keep a PR to its slice. Propose other work separately instead of widening it.
 - **Failures.** A tool, check or build that fails is yours once you see it: look into it briefly, fix it if small, otherwise tell the owner what failed, the likely cause and what you recommend.
 
