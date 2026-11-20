@@ -56,8 +56,10 @@ function eraOf(project: Project) {
 	return era;
 }
 
-export const eras: Era[] = eraDefinitions.map((definition) => {
+export const eras: Era[] = eraDefinitions.flatMap((definition) => {
 	const inEra = projects.filter((project) => eraOf(project) === definition);
+	// An era with no engagements has no period to show, so it is left out.
+	if (!inEra.length) return [];
 	return {
 		id: `era-${definition.from}`,
 		heading: definition.heading,
