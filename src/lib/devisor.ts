@@ -9,6 +9,23 @@ const summary =
 	'A development supervisor that works alongside you, from first spike to shipped feature.';
 const status = 'In active development · private repo';
 
+// Why I'm building it: one entry per paragraph.
+const why: readonly (readonly Segment[])[] = [
+	[
+		"Coding agents have become remarkably good at writing code. What they're still bad at is everything around it: exploring an idea before committing to it, deciding what's worth building, sorting what comes in, and keeping a real codebase coherent over time."
+	],
+	[
+		'Today that work happens in my head, in chat logs and in scattered notes. Devisor is my attempt to give it a home: a supervisor that structures the work around the agents, so a quick spike and a production feature can both move fast without the codebase paying for it later.'
+	],
+	[
+		"It's also an honest experiment: ",
+		{
+			strong: 'how much of what I do as a senior consultant can a well-run agent factory take over?'
+		},
+		' Building it keeps me sharp in exactly the areas that question touches.'
+	]
+];
+
 export const devisor = {
 	name: 'Devisor',
 	summary,
@@ -28,22 +45,7 @@ export const devisor = {
 		{ label: 'Runs on', value: 'Any agent harness' },
 		{ label: 'Status', value: status }
 	],
-	why: [
-		[
-			"Coding agents have become remarkably good at writing code. What they're still bad at is everything around it: exploring an idea before committing to it, deciding what's worth building, sorting what comes in, and keeping a real codebase coherent over time."
-		],
-		[
-			'Today that work happens in my head, in chat logs and in scattered notes. Devisor is my attempt to give it a home: a supervisor that structures the work around the agents, so a quick spike and a production feature can both move fast without the codebase paying for it later.'
-		],
-		[
-			"It's also an honest experiment: ",
-			{
-				strong:
-					'how much of what I do as a senior consultant can a well-run agent factory take over?'
-			},
-			' Building it keeps me sharp in exactly the areas that question touches.'
-		]
-	],
+	why,
 	stagesNote: 'Each step is a structured workflow',
 	stages: [
 		{
