@@ -14,7 +14,8 @@ export const hobbyProjects: HobbyProject[] = [
 		meta: 'Go · Private repo · 2026',
 		visual: { kind: 'devisor', alt: '' },
 		links: [{ label: 'Read the write-up', href: '/devisor' }],
-		technologies: [...devisor.technologies]
+		technologies: [...devisor.technologies],
+		cv: { name: devisor.name, line: 'a development supervisor for coding agents, in Go.' }
 	},
 	{
 		id: 'sub5-backoffice',
@@ -26,7 +27,8 @@ export const hobbyProjects: HobbyProject[] = [
 			kind: 'track',
 			alt: 'A rider checked in at the track: transponder #4471, Black Group, lap time 1:07.5.'
 		},
-		technologies: ['SvelteKit', 'Svelte 5', 'Cloudflare Workers', 'D1', 'Cloudflare Access']
+		technologies: ['SvelteKit', 'Svelte 5', 'Cloudflare Workers', 'D1', 'Cloudflare Access'],
+		cv: { name: 'SUB5 backoffice', line: 'track-day operations on SvelteKit and Cloudflare.' }
 	},
 	{
 		id: 'sdd-sub5',
@@ -59,7 +61,8 @@ export const hobbyProjects: HobbyProject[] = [
 		meta: 'Rust · Linux · Open source',
 		visual: { kind: 'keys', alt: 'The hotkey Ctrl + Shift + F6 starts and stops clicking.' },
 		links: [{ label: 'GitHub', href: 'https://github.com/tobylo/auto-clicker' }],
-		technologies: ['Rust', 'Linux', 'Wayland', 'KDE Plasma']
+		technologies: ['Rust', 'Linux', 'Wayland', 'KDE Plasma'],
+		cv: { name: 'Auto clicker', line: 'Rust tray app for Wayland.' }
 	},
 	{
 		id: 'daddy-status',

@@ -21,6 +21,8 @@ interface TurnstileWidget {
 declare global {
 	/** The year the site was built, from `define` in vite.config.ts. */
 	const __BUILD_YEAR__: number;
+	/** The month and year the site was built ("November 2026"), from `define` in vite.config.ts. */
+	const __BUILD_MONTH__: string;
 
 	interface Window {
 		turnstile: TurnstileWidget;

@@ -6,6 +6,8 @@ export const sverigesRadio: Project = {
 	role: 'System Developer',
 	description:
 		'Developed and maintained a range of applications for the national public radio broadcaster.',
+	cvDescription:
+		'Development and maintenance of applications for the national public radio broadcaster.',
 	keyTechnologies: ['C#', 'ASP.NET', 'WCF', 'AWS SQS', 'DynamoDB', 'Elasticsearch', 'Dojo'],
 	technologies: [
 		'C#',

@@ -6,6 +6,8 @@ export const openSystemGroup: Project = {
 	role: 'System Developer',
 	description:
 		'Lead developer of a modular web app for monitoring property energy consumption: meter data from building automation, cost calculations, weather normalisation, forecasts, budgets and alarms. Plus a modular data collection engine and an OPC driver for UPS monitoring.',
+	cvDescription:
+		'Lead developer of a modular platform for monitoring property energy consumption, plus its data collection engine.',
 	keyTechnologies: [
 		'C#',
 		'Silverlight',
