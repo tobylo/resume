@@ -5,7 +5,8 @@ import type {
 	AnalyzeErrorResponse,
 	AnalyzeRequest,
 	AnalyzeResponse,
-	FitAnalysis
+	FitAnalysis,
+	OverallFit
 } from './types.ts';
 
 export const MIN_CHARS = 50;
@@ -41,8 +42,27 @@ function failureFor(body: AnalyzeErrorResponse): Failure {
 	}
 }
 
+const FITS: readonly unknown[] = ['strong', 'partial', 'not-ideal'] satisfies OverallFit[];
+
+function isObject(value: unknown): value is Record<string, unknown> {
+	return typeof value === 'object' && value !== null;
+}
+
+// Enough of the shape that the report can render it; the endpoint validates the rest.
+function isAnalysis(value: unknown): value is FitAnalysis {
+	return (
+		isObject(value) &&
+		FITS.includes(value.overallFit) &&
+		typeof value.overallSummary === 'string' &&
+		Array.isArray(value.strengths) &&
+		Array.isArray(value.gaps)
+	);
+}
+
 function isResponse(body: unknown): body is AnalyzeResponse | AnalyzeErrorResponse {
-	return typeof body === 'object' && body !== null && 'success' in body;
+	if (!isObject(body)) return false;
+	if (body.success === true) return isAnalysis(body.analysis);
+	return body.success === false && typeof body.code === 'string' && typeof body.error === 'string';
 }
 
 /**
