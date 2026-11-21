@@ -45,14 +45,16 @@
 			})();
 		</script>
 		<script>
-			// Cloudflare Web Analytics. Pages added this beacon itself; a Worker doesn't, so it
-			// lives here. Only the live domain counts, not Previews or workers.dev. The token is
+			// Cloudflare Web Analytics (cookieless; see /privacy). Pages added this beacon itself;
+			// a Worker doesn't, so it lives here. Only the live domain counts, not Previews or
+			// workers.dev. The token is the tobylo.dev site's, set up for manual snippet
+			// installation: the old Pages site's token is refused from this hostname. The token is
 			// public: it ships in every page.
 			if (location.hostname === 'tobylo.dev') {
 				const beacon = document.createElement('script');
 				beacon.defer = true;
 				beacon.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-				beacon.dataset.cfBeacon = '{"token": "e3f5cca768ab457b941e05e827578480"}';
+				beacon.dataset.cfBeacon = '{"token": "b441081fd98a4fb59c0c6d50bd8b7726"}';
 				document.head.appendChild(beacon);
 			}
 		</script>
