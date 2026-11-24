@@ -31,7 +31,7 @@ export const heroVariants: HeroVariant[] = [
 export const ROTATE_MS = 7000;
 
 const role = 'Senior / lead product engineering';
-const workplace = 'Stockholm hybrid or remote';
+const workplace = 'Stockholm onsite or hybrid';
 const notice = "3 months' notice";
 
 export const openTo = {
